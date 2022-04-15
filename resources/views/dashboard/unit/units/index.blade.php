@@ -20,9 +20,10 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Reg Number</th>
-          <th scope="col">Owner</th>
-          <th scope="col">Merk</th>
           <th scope="col">Type</th>
+          <th scope="col">Merk</th>
+          <th scope="col">Model</th>
+          <th scope="col">Owner</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -33,11 +34,12 @@
                 <td>{{ ($units->currentpage()-1) * $units->perpage() + $loop->index + 1 }}
                 </td>
                 <td>{{ $unit->noReg }}</td>
-                <td>{{ $unit->Owner->name }}</td>
+                <td>{{ $unit->type->title }}</td>
                 <td>{{ $unit->models->brand->name }}</td>
                 <td>{{ $unit->models->name }}</td>
-                <td>{{ $unit->type->title }}</td>
+                <td>{{ $unit->Owner->name }}</td>
                 <td>
+                  <a href="/dashboard/units/{{$unit->slug }}" class="badge bg-info"><span data-feather="eye"></span></a>
                     <a href="/dashboard/units/{{$unit->slug }}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
                     <form action="/dashboard/units/{{ $unit->slug }}" method="post" class="d-inline">
                         @method('delete')
@@ -50,8 +52,6 @@
         @else
             <tr><td colspan="4" class="text-center">Data Not Found</td></tr>
         @endif
-       
-       
       </tbody>
     </table>
 </div>

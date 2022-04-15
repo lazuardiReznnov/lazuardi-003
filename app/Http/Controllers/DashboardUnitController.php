@@ -48,7 +48,9 @@ class DashboardUnitController extends Controller
      */
     public function show(Unit $unit)
     {
-        //
+        return view('dashboard.unit.units.show', [
+            'unit' => $unit,
+        ]);
     }
 
     /**
