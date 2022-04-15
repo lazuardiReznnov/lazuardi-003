@@ -18,10 +18,11 @@ return new class extends Migration {
             $table->foreignId('owner_id');
             $table->foreignId('models_id');
             $table->string('noReg')->unique();
-            $table->string('vin');
-            $table->string('engineNum');
-            $table->year('year');
-            $table->string('color');
+            $table->string('slug')->unique();
+            $table->string('vin')->nullable();
+            $table->string('engineNum')->nullable();
+            $table->year('year')->nullable();
+            $table->string('color')->nullable();
             $table->timestamps();
         });
     }

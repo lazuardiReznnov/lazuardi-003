@@ -21,7 +21,7 @@
       </h6>
       <ul class="nav flex-column mb-2">
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link {{ Request::is('dashboard/units*') ? 'active' : '' }}" href="/dashboard/units">
             <span data-feather="grid"></span>
             UNIT LIST
           </a>

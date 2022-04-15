@@ -31,5 +31,10 @@ class ModelsSeeder extends Seeder
             'name' => 'Dutro 130HD Long',
             'slug' => 'dutro-130hdl',
         ]);
+        Models::create([
+            'brand_id' => 2,
+            'name' => 'Canter 125 Super Speed',
+            'slug' => 'canter-125-super-speed',
+        ]);
     }
 }

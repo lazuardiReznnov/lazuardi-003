@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\type;
-use App\Http\Requests\StoretypeRequest;
-use App\Http\Requests\UpdatetypeRequest;
+use App\Models\Unit;
+use Illuminate\Http\Request;
 
-class TypeController extends Controller
+class DashboardUnitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.unit.units.index', [
+            'units' => Unit::latest()->paginate(),
+        ]);
     }
 
     /**
@@ -31,10 +32,10 @@ class TypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoretypeRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoretypeRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class TypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\type  $type
+     * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function show(type $type)
+    public function show(Unit $unit)
     {
         //
     }
@@ -53,10 +54,10 @@ class TypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\type  $type
+     * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function edit(type $type)
+    public function edit(Unit $unit)
     {
         //
     }
@@ -64,11 +65,11 @@ class TypeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatetypeRequest  $request
-     * @param  \App\Models\type  $type
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatetypeRequest $request, type $type)
+    public function update(Request $request, Unit $unit)
     {
         //
     }
@@ -76,10 +77,10 @@ class TypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\type  $type
+     * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(type $type)
+    public function destroy(Unit $unit)
     {
         //
     }

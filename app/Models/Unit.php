@@ -10,6 +10,7 @@ class Unit extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $with = ['models', 'owner', 'type'];
 
     public function models()
     {
