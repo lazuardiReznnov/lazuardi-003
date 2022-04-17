@@ -7,6 +7,8 @@ use App\Models\Brand;
 use App\Models\Owner;
 use App\Models\Models;
 use App\Models\Type;
+use App\Models\Grup;
+
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -37,6 +39,7 @@ class DashboardUnitController extends Controller
             'owners' => Owner::all(),
             'models' => Models::all(),
             'types' => Type::all(),
+            'grups' => grup::all(),
         ]);
     }
 
@@ -48,7 +51,31 @@ class DashboardUnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'noReg' => 'required|max:20',
+            'type_id' => 'required',
+            'owner_id' => 'required',
+            'models_id' => 'required',
+            'grup_id' => 'required',
+            'noReg' => 'required|unique:units',
+            'slug' => 'required|unique:units',
+            'vin' => 'required',
+            'year' => 'required',
+            'color' => 'required',
+        ]);
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request
+                ->file('image')
+                ->store('post-images');
+        }
+
+        Unit::create($validatedData);
+
+        return redirect('/dashboard/units')->with(
+            'success',
+            'New Unit Has Been aded.'
+        );
     }
 
     /**
