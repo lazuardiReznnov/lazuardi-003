@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\type;
+use App\Models\Grup;
 use App\Models\Owner;
 
 class DatabaseSeeder extends Seeder
@@ -22,8 +22,13 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             ModelsSeeder::class,
             UnitSeeder::class,
+            OwnerSeeder::class,
         ]);
 
-        Owner::factory(5)->create();
+        Grup::create([
+            'name' => 'Gema Cipta Gemilang',
+            'slug' => 'gcg',
+        ]);
+        // Owner::factory(5)->create();
     }
 }

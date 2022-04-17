@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Unit extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     protected $guarded = ['id'];
     protected $with = ['models', 'owner', 'type'];
+    protected $load = ['grup'];
 
     public function models()
     {
@@ -27,8 +30,22 @@ class Unit extends Model
         return $this->belongsTo(Type::class);
     }
 
+    public function grup()
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'noReg',
+            ],
+        ];
     }
 }

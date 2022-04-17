@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->foreignId('type_id');
             $table->foreignId('owner_id');
             $table->foreignId('models_id');
+            $table->foreignId('grup_id');
             $table->string('noReg')->unique();
             $table->string('slug')->unique();
             $table->string('vin')->nullable();

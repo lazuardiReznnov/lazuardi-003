@@ -5,7 +5,7 @@
   <h1 class="h2">UNIT LIST</h1>
 </div>
 <div class="table-responsive col-lg-8">
-    <a href="/dashboard/unit/units/create" class="btn btn-primary mb-3">Add New Unit</a>
+    <a href="/dashboard/units/create" class="btn btn-primary mb-3">Add New Unit</a>
 
     <!-- Alert -->
     @if(session()->has('success'))

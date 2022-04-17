@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Owner;
 
 class OwnerSeeder extends Seeder
 {
@@ -14,6 +15,13 @@ class OwnerSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Owner::create([
+            'name' => 'PT. Gema Cipta Gemilang',
+            'slug' => 'gcg',
+            'address' => 'address',
+            'email' => 'gemaciptagemilang@gmail.com',
+            'phone' => '021',
+            'img' => 'null',
+        ]);
     }
 }

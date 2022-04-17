@@ -31,3 +31,13 @@ Route::get('/dashboard/unit/types/checkSlug', [
 ]);
 
 Route::resource('/dashboard/units', DashboardUnitController::class);
+
+Route::get('/dashboard/unit/getmodels', [
+    DashboardUnitController::class,
+    'getmodels',
+]);
+
+Route::get('/dashboard/unit/checkSlug', [
+    DashboardUnitController::class,
+    'checkSlug',
+]);
