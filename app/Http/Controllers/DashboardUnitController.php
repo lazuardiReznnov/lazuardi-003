@@ -60,14 +60,14 @@ class DashboardUnitController extends Controller
             'noReg' => 'required|unique:units',
             'slug' => 'required|unique:units',
             'vin' => 'required',
+            'engineNum' => 'required',
             'year' => 'required',
             'color' => 'required',
+            'img' => 'image|file|max:2048',
         ]);
 
-        if ($request->file('image')) {
-            $validatedData['image'] = $request
-                ->file('image')
-                ->store('post-images');
+        if ($request->file('img')) {
+            $validatedData['img'] = $request->file('img')->store('post-img');
         }
 
         Unit::create($validatedData);

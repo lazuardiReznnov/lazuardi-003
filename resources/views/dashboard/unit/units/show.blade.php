@@ -20,7 +20,7 @@
      <div class="col-md-10">
          <div class="row mt-5">
              <div class="col-md-4">
-                @if($unit->image)
+                @if($unit->img)
                 <div style="max-height: 350px; overflow:hidden">
                   <img src="{{ asset('storage/'. $unit->img) }}" class="card-img-top img-thumbnail rounded-circle mt-3" alt="..." class="img-fluid">    
                 </div>
