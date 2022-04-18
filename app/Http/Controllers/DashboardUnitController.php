@@ -8,7 +8,7 @@ use App\Models\Owner;
 use App\Models\Models;
 use App\Models\Type;
 use App\Models\Grup;
-
+use Illuminate\support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -122,7 +122,14 @@ class DashboardUnitController extends Controller
      */
     public function destroy(Unit $unit)
     {
-        //
+        Unit::destroy($unit->id);
+        if ($unit->img) {
+            storage::delete($unit->img);
+        }
+        return redirect('/dashboard/units')->with(
+            'success',
+            'New Post Has Been Deleted.'
+        );
     }
 
     public function getmodels(Request $request)
