@@ -134,7 +134,7 @@ class DashboardUnitController extends Controller
 
     public function getmodels(Request $request)
     {
-        $models = Models::where('brand_id', $request->brandID)->get();
+        $models = Models::where('brand_id', $request->brand)->get();
         return response()->json($models);
     }
 
