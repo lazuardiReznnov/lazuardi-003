@@ -99,7 +99,14 @@ class DashboardUnitController extends Controller
      */
     public function edit(Unit $unit)
     {
-        //
+        return view('dashboard.unit.units.edit', [
+            'unit' => $unit,
+            'brands' => Brand::all(),
+            'owners' => Owner::all(),
+            'models' => Models::all(),
+            'types' => Type::all(),
+            'grups' => grup::all(),
+        ]);
     }
 
     /**
