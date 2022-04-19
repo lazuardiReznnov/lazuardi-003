@@ -18,6 +18,21 @@ function previewImage() {
   }
 }
 
+const brand = document.querySelector('#brand')
+const models = document.querySelector('#models')
+
+brand.addEventListener('change', function () {
+  fetch('/dashboard/unit/getmodels?brand=' + brand.value)
+    .then((response) => response.json())
+    .then((response) => {
+      const m = response
+      let card = '<option>---Pilih Models---</option>'
+      m.forEach(
+        (m) => (card += '<option value="' + m.id + '">' + m.name + '</option>'),
+      )
+      models.innerHTML = card
+    })
+})
 // // slug categories
 
 // // slug alternatif`

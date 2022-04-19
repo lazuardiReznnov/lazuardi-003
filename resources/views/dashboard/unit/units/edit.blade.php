@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-lg-8">
-        <form action="/dashboard/units{{ $unit->slug }}" method="post" enctype="multipart/form-data">
+        <form action="/dashboard/units/{{ $unit->slug }}" method="post" enctype="multipart/form-data">
           @method('put')
             @csrf
             <div class="mb-3">
@@ -61,7 +61,7 @@
               <select class="form-select" id="brand" name="brand_id">
                 <option value="" selected>--Select Brand Unit--</option>
                @foreach($brands as $brand)
-               @if(old('brand_id')==$brand->id)
+               @if(old('brand_id',$unit->models->brand_id)==$brand->id)
                    <option value="{{ $brand->id }}" selected>{{ $brand->name }}</option>
                 @endif   
                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -71,8 +71,10 @@
             
             <div class="mb-3">
               <label for="Models" class="form-label ">Models</label>
-              <select class="form-select" id="models_id" name="models_id">
-               
+              <select class="form-select" id="models" name="models_id">
+                @if(old('models_id',$unit->models_id)== $unit->models_id)
+                   <option value="{{ $unit->models_id }}" selected>{{ $unit->models->name }}</option>
+               @endif
               </select>
             
             </div>
@@ -82,7 +84,7 @@
               <select class="form-select" id="grup" name="grup_id">
                 <option value="" selected>--Select Brand Unit--</option>
                @foreach($grups as $grup)
-               @if(old('grup_id')==$grup->id)
+               @if(old('grup_id',$unit->grup_id)==$grup->id)
                    <option value="{{ $grup->id }}" selected>{{ $grup->name }}</option>
                 @endif   
                    <option value="{{ $grup->id }}">{{ $grup->name }}</option>
@@ -92,7 +94,7 @@
 
             <div class="mb-3">
               <label for="vin" class="form-label">Vin</label>
-              <input type="text" name="vin" class="form-control @error('vin') is-invalid @enderror" id="vin" value="{{ old('vin') }}" required autofocus>
+              <input type="text" name="vin" class="form-control @error('vin') is-invalid @enderror" id="vin" value="{{ old('vin',$unit->vin) }}" required autofocus>
               @error('vin')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -102,7 +104,7 @@
 
             <div class="mb-3">
               <label for="engineNum" class="form-label">Engine Number</label>
-              <input type="text" name="engineNum" class="form-control @error('engineNum') is-invalid @enderror" id="engineNum" value="{{ old('engineNum') }}" required>
+              <input type="text" name="engineNum" class="form-control @error('engineNum') is-invalid @enderror" id="engineNum" value="{{ old('engineNum',$unit->engineNum) }}" required>
               @error('engineNum')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -115,7 +117,9 @@
               <select name="year" class="form-select">
                 <option selected>--Pilih Tahun</option>
               @for ($a=2012;$a<=$now;$a++)
-              
+              @if(old($a,$unit->year)==$a)
+                <option value='{{ $a }}' selected>{{$a }} </option>
+                @endif
                 <option value='{{ $a }}'>{{$a }} </option>
               @endfor
               </select>
@@ -127,7 +131,7 @@
             </div>
             <div class="mb-3">
               <label for="color" class="form-label">Color</label>
-              <input type="text" name="color" class="form-control @error('color') is-invalid @enderror" id="color" value="{{ old('color') }}" required>
+              <input type="text" name="color" class="form-control @error('color') is-invalid @enderror" id="color" value="{{ old('color',$unit->color) }}" required>
              
               @error('color')
                 <div class="invalid-feedback">
@@ -138,7 +142,12 @@
 
           <div class="mb-3">
             <label for="image" class="form-label">Upload Image</label>
+            @if($unit->img)
+            <input type="hidden" name="old_img" value="{{ $unit->img }}">
+            <img src="{{ asset('storage/'. $unit->img) }}" class="d-block img-preview img-fluid mb-2 col-sm-5">
+            @else
             <img class="img-preview img-fluid mb-2 col-sm-5">
+            @endif
             <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="img" onchange="previewImage()">
             @error('image')
             <div class="invalid-feedback">
@@ -146,17 +155,16 @@
             </div>
           @enderror
           </div>
-            <button type="submit" class="btn btn-primary">Create Post</button>
+            <button type="submit" class="btn btn-primary">Update Unit</button>
           </form>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 
 <script type="text/javascript">
 // slug post
 //  slug alternatif`
- const noReg = document.querySelector('#noReg')
+const noReg = document.querySelector('#noReg')
 const slug = document.querySelector('#slug')
 
 // noReg.addEventListener('change', function () {
@@ -171,29 +179,6 @@ noReg.addEventListener('change', function () {
 });
 
  
-$('#brand').change(function(){
-    var brandID = $(this).val();    
-    if(brandID){
-        $.ajax({
-           type:"GET",
-           url:"/dashboard/unit/getmodels?brandID="+brandID,
-           dataType: 'JSON',
-           success:function(res){               
-            if(res){
-              
-                $("#models").empty();
-                $("#models").append('<option>---Pilih Models---</option>');
-                $.each(res,function(kode,models){
-                    $("#models").append('<option value="'+models.id+'">'+models.name+'</option>');
-                });
-            }else{
-               $("#models").empty();
-            }
-           }
-        });
-    }else{
-        $("#models").empty();
-    }      
-   });
+
 </script>
 @endsection

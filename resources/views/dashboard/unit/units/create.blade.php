@@ -202,11 +202,7 @@
         </form>
     </div>
 </div>
-<script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"
-></script>
+
 
 <script type="text/javascript">
     // slug post
@@ -225,51 +221,7 @@
             .then((data) => (slug.value = data.slug));
     });
 
-    // $('#brand').change(function(){
-    //     var brandID = $(this).val();
-    //     if(brandID){
-    //         $.ajax({
-    //            type:"GET",
-    //            url:"/dashboard/unit/getmodels?brandID="+brandID,
-    //            dataType: 'JSON',
-    //            success:function(res){
-    //             if(res){
 
-    //                 $("#models").empty();
-    //                 $("#models").append('<option>---Pilih Models---</option>');
-    //                 $.each(res,function(kode,models){
-    //                     $("#models").append('<option value="'+models.id+'">'+models.name+'</option>');
-    //                 });
-    //             }else{
-    //                $("#models").empty();
-    //             }
-    //            }
-    //         });
-    //     }else{
-    //         $("#models").empty();
-    //     }
-    //    });
-
-    const brand = document.querySelector("#brand");
-    const models = document.querySelector("#models");
-
-    brand.addEventListener("change", function () {
-        fetch("/dashboard/unit/getmodels?brand=" + brand.value)
-            .then((response) => response.json())
-            .then((response) => {
-                const m = response;
-                let card = "<option>---Pilih Models---</option>";
-                m.forEach(
-                    (m) =>
-                        (card +=
-                            '<option value="' +
-                            m.id +
-                            '">' +
-                            m.name +
-                            "</option>")
-                );
-                models.innerHTML = card;
-            });
-    });
+   
 </script>
 @endsection
