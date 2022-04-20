@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Models;
+use App\Models\Brand;
 use Illuminate\Http\Request;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardModelsController extends Controller
 {
@@ -26,7 +28,9 @@ class DashboardModelsController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.unit.models.create',[
+            'brands' => Brand::all(),
+        ]);
     }
 
     /**
@@ -83,5 +87,11 @@ class DashboardModelsController extends Controller
     public function destroy(Models $models)
     {
         //
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Models::class, 'slug', $request->nama);
+        return response()->json(['slug' => $slug]);
     }
 }

@@ -44,3 +44,7 @@ Route::get('/dashboard/unit/checkSlug', [
 ]);
 
 Route::resource('/dashboard/unit/models',DashboardModelsController::class);
+Route::get('/dashboard/unit/models/checkSlug', [
+    DashboardUnitController::class,
+    'checkSlug',
+]);
