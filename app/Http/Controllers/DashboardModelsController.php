@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Models;
-use App\Http\Requests\StoreModelsRequest;
-use App\Http\Requests\UpdateModelsRequest;
+use Illuminate\Http\Request;
 
-class ModelsController extends Controller
+class DashboardModelsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,9 @@ class ModelsController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.unit.models.index',[
+            'models' => Models::latest()->Paginate()
+        ]);
     }
 
     /**
@@ -31,10 +32,10 @@ class ModelsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreModelsRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreModelsRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -64,11 +65,11 @@ class ModelsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateModelsRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Models  $models
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateModelsRequest $request, Models $models)
+    public function update(Request $request, Models $models)
     {
         //
     }

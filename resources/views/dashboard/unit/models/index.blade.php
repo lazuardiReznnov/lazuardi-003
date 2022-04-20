@@ -2,11 +2,11 @@
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-    <h1 class="h2">UNIT LIST</h1>
+    <h1 class="h2">Models List</h1>
 </div>
 <div class="table-responsive col-lg-8">
-    <a href="/dashboard/units/create" class="btn btn-primary mb-3"
-        >Add New Unit</a
+    <a href="/dashboard/unit/models/create" class="btn btn-primary mb-3"
+        >Add New Models</a
     >
 
     <!-- Alert -->
@@ -21,38 +21,30 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Reg Number</th>
-                <th scope="col">Type</th>
                 <th scope="col">Merk</th>
-                <th scope="col">Model</th>
-                <th scope="col">Owner</th>
+                <th scope="col">Models Name</th>
+                <th scope="col">Models Slug</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @if($units->count()) @foreach($units as $unit)
+            @if($models->count()) @foreach($models as $model)
             <tr>
                 <td>
-                    {{ ($units->currentpage()-1) * $units->perpage() + $loop->index + 1 }}
+                    {{ ($models->currentpage()-1) * $models->perpage() + $loop->index + 1 }}
                 </td>
-                <td>{{ $unit->noReg }}</td>
-                <td>{{ $unit->type->title }}</td>
-                <td>{{ $unit->models->brand->name }}</td>
-                <td>{{ $unit->models->name }}</td>
-                <td>{{ $unit->Owner->name }}</td>
+                <td>{{ $model->brand->name }}</td>
+                <td>{{ $model->name }}</td>
+                <td>{{ $model->slug }}</td>
+
                 <td>
                     <a
-                        href="/dashboard/units/{{$unit->slug }}"
-                        class="badge bg-info"
-                        ><span data-feather="eye"></span
-                    ></a>
-                    <a
-                        href="/dashboard/units/{{$unit->slug }}/edit"
+                        href="/dashboard/unit/models/{{$model->slug }}/edit"
                         class="badge bg-warning"
                         ><span data-feather="edit"></span
                     ></a>
                     <form
-                        action="/dashboard/units/{{ $unit->slug }}"
+                        action="/dashboard/unit/models/{{ $model->slug }}"
                         method="post"
                         class="d-inline"
                     >
@@ -76,7 +68,7 @@
 </div>
 <div class="row">
     <div class="col-md-8">
-        {{ $units->links() }}
+        {{ $models->links() }}
     </div>
 </div>
 @endsection

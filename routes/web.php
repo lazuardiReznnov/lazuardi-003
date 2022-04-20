@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardTypesController;
+use App\Http\Controllers\DashboardModelsController;
 use App\Http\Controllers\DashboardUnitController;
 
 use Illuminate\Support\Facades\Route;
@@ -41,3 +42,5 @@ Route::get('/dashboard/unit/checkSlug', [
     DashboardUnitController::class,
     'checkSlug',
 ]);
+
+Route::resource('/dashboard/unit/models',DashboardModelsController::class);
