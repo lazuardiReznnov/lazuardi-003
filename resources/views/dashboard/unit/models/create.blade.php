@@ -29,13 +29,13 @@
             </div>
 
             <div class="mb-3">
-                <label for="Models" class="form-label">Models Name</label>
+                <label for="name" class="form-label">Models Name</label>
                 <input
                     type="text"
                     class="form-control @error('name') is-invalid @enderror"
                     name="name"
                     value="{{ old('name') }}"
-                    id="nama"
+                    id="name"
                 />
                 @error('name')
                 <div class="invalid-feedback">
@@ -68,7 +68,8 @@
 <script type="text/javascript">
     // slug post
     //  slug alternatif`
-    const nama = document.querySelector("#nama");
+   //  slug alternatif`
+   const name = document.querySelector("#name");
     const slug = document.querySelector("#slug");
 
     // noReg.addEventListener('change', function () {
@@ -76,10 +77,10 @@
     //   preslug = preslug.replace(/ /g, '-')
     //   slug.value = preslug.toLowerCase()
     // });
-    nama.addEventListener("change", function () {
-        fetch("/dashboard/unit/models/checkSlug?nama=" + nama.value)
+    name.addEventListener("change", function () {
+        fetch("/dashboard/unit/model/slug?name=" + name.value)
             .then((response) => response.json())
-            .then((data) => console.log(data));
+            .then((data) => (slug.value = data.slug));
     });
 </script>
 @endsection

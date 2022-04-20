@@ -16,8 +16,8 @@ class DashboardModelsController extends Controller
      */
     public function index()
     {
-        return view('dashboard.unit.models.index',[
-            'models' => Models::latest()->Paginate()
+        return view('dashboard.unit.models.index', [
+            'models' => Models::latest()->Paginate(),
         ]);
     }
 
@@ -28,7 +28,7 @@ class DashboardModelsController extends Controller
      */
     public function create()
     {
-        return view('dashboard.unit.models.create',[
+        return view('dashboard.unit.models.create', [
             'brands' => Brand::all(),
         ]);
     }
@@ -89,9 +89,9 @@ class DashboardModelsController extends Controller
         //
     }
 
-    public function checkSlug(Request $request)
+    public function slug(Request $request)
     {
-        $slug = SlugService::createSlug(Models::class, 'slug', $request->nama);
+        $slug = SlugService::createSlug(Models::class, 'slug', $request->name);
         return response()->json(['slug' => $slug]);
     }
 }
