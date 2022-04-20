@@ -41,7 +41,18 @@ class DashboardModelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'brand_id' => 'required',
+            'name' => 'required|max:20|unique:models',
+            'slug' => 'required|unique:models',
+        ]);
+
+        Models::create($validatedData);
+
+        return redirect('/dashboard/unit/models')->with(
+            'success',
+            'New Unit Has Been aded.'
+        );
     }
 
     /**
