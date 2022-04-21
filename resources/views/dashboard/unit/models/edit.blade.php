@@ -1,24 +1,28 @@
+
+
 @extends('dashboard.layouts.main') @section('container')
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-    <h1 class="h2">Form New Models</h1>
+    <h1 class="h2">Form Edit Models</h1>
 </div>
 
 <div class="row">
     <div class="col-lg-8">
         <form
-            action="/dashboard/unit/models"
+            action="/dashboard/unit/models/{{ $models->slug }}"
             method="post"
             enctype="multipart/form-data"
         >
             @csrf
+            @method('put')
 
             <div class="mb-3">
                 <label for="brand" class="form-label">Brand</label>
                 <select class="form-select" id="brand" name="brand_id">
                     <option value="" selected>--Select Brand Unit--</option>
-                    @foreach($brands as $brand) @if(old('brand_id')==$brand->id)
+                    @foreach($brands as $brand) 
+                    @if(old('brand_id',$models->brand_id)==$brand->id)
                     <option value="{{ $brand->id }}" selected>
                         {{ $brand->name }}
                     </option>
@@ -34,7 +38,7 @@
                     type="text"
                     class="form-control @error('name') is-invalid @enderror"
                     name="name"
-                    value="{{ old('name') }}"
+                    value="{{ old('name',$models->name) }}"
                     id="name"
                 />
                 @error('name')
@@ -51,7 +55,7 @@
                     name="slug"
                     class="form-control @error('slug') is-invalid @enderror"
                     id="slug"
-                    value="{{ old('slug') }} "
+                    value="{{ old('slug',$models->slug) }} "
                     readonly
                 />
                 @error('slug')
@@ -60,7 +64,7 @@
                 </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Create Models Unit</button>
+            <button type="submit" class="btn btn-primary">Update Models Unit</button>
         </form>
     </div>
 </div>

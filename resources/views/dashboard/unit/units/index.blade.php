@@ -4,7 +4,7 @@
 >
     <h1 class="h2">UNIT LIST</h1>
 </div>
-<div class="table-responsive col-lg-8">
+<div class="table-responsive col-lg-10">
     <a href="/dashboard/units/create" class="btn btn-primary mb-3"
         >Add New Unit</a
     >
@@ -22,8 +22,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Reg Number</th>
-                <th scope="col">Type</th>
                 <th scope="col">Merk</th>
+                <th scope="col">Type</th>
                 <th scope="col">Model</th>
                 <th scope="col">Owner</th>
                 <th scope="col">Action</th>
@@ -36,8 +36,8 @@
                     {{ ($units->currentpage()-1) * $units->perpage() + $loop->index + 1 }}
                 </td>
                 <td>{{ $unit->noReg }}</td>
-                <td>{{ $unit->type->title }}</td>
                 <td>{{ $unit->models->brand->name }}</td>
+                <td>{{ $unit->type->title }}</td>
                 <td>{{ $unit->models->name }}</td>
                 <td>{{ $unit->Owner->name }}</td>
                 <td>

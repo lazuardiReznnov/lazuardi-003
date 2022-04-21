@@ -43,7 +43,7 @@ Route::get('/dashboard/unit/checkSlug', [
     'checkSlug',
 ]);
 
-Route::resource('/dashboard/unit/models', DashboardModelsController::class);
+Route::resource('/dashboard/unit/models', DashboardModelsController::class)->except('show');
 
 Route::get('/dashboard/unit/model/slug', [
     DashboardModelsController::class,

@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-lg-6">
-        <form action="/dashboard/types" method="post">
+        <form action="/dashboard/unit/types" method="post">
           @csrf
             <div class="mb-3">
               <label for="title" class="form-label">title</label>
@@ -37,7 +37,7 @@
     const slug = document.querySelector('#slug');
     
     title.addEventListener('change', function () {
-      fetch('/dashboard/types/checkSlug?title=' + title.value)
+      fetch('/dashboard/unit/types/checkSlug?title=' + title.value)
         .then((response) => response.json())
         .then((data) => (slug.value = data.slug))
     });

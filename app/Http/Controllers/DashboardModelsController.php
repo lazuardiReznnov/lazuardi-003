@@ -72,9 +72,12 @@ class DashboardModelsController extends Controller
      * @param  \App\Models\Models  $models
      * @return \Illuminate\Http\Response
      */
-    public function edit(Models $models)
+    public function edit(Models $model)
     {
-        //
+        return view('dashboard.unit.models.edit', [
+            'models' => $model,
+            'brands' => Brand::all(),
+        ]);
     }
 
     /**
@@ -84,9 +87,27 @@ class DashboardModelsController extends Controller
      * @param  \App\Models\Models  $models
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Models $models)
+    public function update(Request $request, Models $model)
     {
-        //
+        $rules = [
+            'brand_id' => 'required',
+        ];
+
+        if ($request->slug != $model->slug) {
+            $rules['slug'] = 'required|unique:models';
+        }
+        if ($request->name != $model->name) {
+            $rules['name'] = 'required|max:20|unique:models';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        Models::where('id', $model->id)->update($validatedData);
+
+        return redirect('/dashboard/unit/models')->with(
+            'success',
+            'New Unit Has Been Update.'
+        );
     }
 
     /**
@@ -95,9 +116,14 @@ class DashboardModelsController extends Controller
      * @param  \App\Models\Models  $models
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Models $models)
+    public function destroy(Models $model)
     {
-        //
+        Models::destroy($model->id);
+
+        return redirect('/dashboard/unit/models')->with(
+            'success',
+            'Data Has Been Delete!'
+        );
     }
 
     public function slug(Request $request)

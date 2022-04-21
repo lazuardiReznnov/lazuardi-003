@@ -39,7 +39,7 @@
 
                 <td>
                     <a
-                        href="/dashboard/unit/models/{{$model->slug }}/edit"
+                        href="/dashboard/unit/models/{{$model->slug}}/edit"
                         class="badge bg-warning"
                         ><span data-feather="edit"></span
                     ></a>
