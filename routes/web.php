@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardUnitController;
+use App\Http\Controllers\DashboardPartsController;
 use App\Http\Controllers\DashboardTypesController;
 use App\Http\Controllers\DashboardModelsController;
-use App\Http\Controllers\DashboardUnitController;
-
-use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,5 @@ Route::get('/dashboard/unit/model/slug', [
     DashboardModelsController::class,
     'slug',
 ]);
+
+Route::resource('/dashboard/parts', DashboardPartsController::class);
