@@ -12,15 +12,10 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('spareparts', function (Blueprint $table) {
+        Schema::create('categorie_parts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('categorie_id');
-            $table->foreignId('models_id');
-            $table->string('name');
-            $table->string('merk');
+            $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('codePart');
-            $table->integer('qty');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('spareparts');
+        Schema::dropIfExists('categorie_parts');
     }
 };

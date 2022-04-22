@@ -44,7 +44,10 @@ Route::get('/dashboard/unit/checkSlug', [
     'checkSlug',
 ]);
 
-Route::resource('/dashboard/unit/models', DashboardModelsController::class)->except('show');
+Route::resource(
+    '/dashboard/unit/models',
+    DashboardModelsController::class
+)->except('show');
 
 Route::get('/dashboard/unit/model/slug', [
     DashboardModelsController::class,
@@ -52,3 +55,5 @@ Route::get('/dashboard/unit/model/slug', [
 ]);
 
 Route::resource('/dashboard/parts', DashboardPartsController::class);
+
+Route::get('/dashboard/part/cari', [DashboardPartsController::class, 'cari']);

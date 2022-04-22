@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoriePart;
 use App\Models\sparepart;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class DashboardPartsController extends Controller
      */
     public function index()
     {
-        return view('dashboard.sparepart.stok.index');
+        return view('dashboard.sparepart.stok.index', [
+            'categories' => CategoriePart::all(),
+        ]);
     }
 
     /**
@@ -81,5 +84,14 @@ class DashboardPartsController extends Controller
     public function destroy(sparepart $sparepart)
     {
         //
+    }
+
+    public function cari(Request $request)
+    {
+        $sparepart = sparepart::where(
+            'categorie_id',
+            $request->categori
+        )->get();
+        return response()->json($sparepart);
     }
 }

@@ -8,7 +8,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Models extends Model
 {
-    use HasFactory,Sluggable;
+    use HasFactory, Sluggable;
     protected $guarded = ['id'];
     protected $with = ['brand'];
 
@@ -16,10 +16,17 @@ class Models extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
+    public function sparepart()
+    {
+        $this->hasMany(sparepart::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
     }
+
     public function sluggable(): array
     {
         return [
