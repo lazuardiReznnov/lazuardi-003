@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\CategoriePart;
 use App\Models\sparepart;
+use App\Models\Brand;
+use App\Models\Models;
 use Illuminate\Http\Request;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPartsController extends Controller
 {
@@ -32,7 +35,15 @@ class DashboardPartsController extends Controller
      */
     public function create()
     {
-        //
+        $brands = Brand::All();
+        $models = Models::All();
+        $categories = CategoriePart::all();
+
+        return view('dashboard.sparepart.stok.create', [
+            'brands' => $brands,
+            'models' => $models,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -91,12 +102,27 @@ class DashboardPartsController extends Controller
         //
     }
 
-    public function cari(Request $request)
+    public function getmodels(Request $request)
     {
-        $sparepart = sparepart::where(
-            'categorie_id',
-            $request->categori
-        )->get();
-        return response()->json($sparepart);
+        $models = Models::where('brand_id', $request->brand)->get();
+        return response()->json($models);
     }
+
+    public function slug(Request $request)
+    {
+        $slug = SlugService::createSlug(
+            sparepart::class,
+            'slug',
+            $request->name
+        );
+        return response()->json(['slug' => $slug]);
+    }
+    // public function cari(Request $request)
+    // {
+    //     $sparepart = sparepart::where(
+    //         'categorie_id',
+    //         $request->categori
+    //     )->get();
+    //     return response()->json($sparepart);
+    // }
 }

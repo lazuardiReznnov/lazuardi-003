@@ -56,4 +56,11 @@ Route::get('/dashboard/unit/model/slug', [
 
 Route::resource('/dashboard/parts', DashboardPartsController::class);
 
-Route::get('/dashboard/part/cari', [DashboardPartsController::class, 'cari']);
+// Route::get('/dashboard/part/cari', [DashboardPartsController::class, 'cari']);
+
+Route::get('/dashboard/part/getmodels', [
+    DashboardPartsController::class,
+    'getmodels',
+]);
+
+Route::get('/dashboard/part/slug', [DashboardPartsController::class, 'slug']);
