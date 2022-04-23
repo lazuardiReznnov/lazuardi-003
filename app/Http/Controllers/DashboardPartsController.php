@@ -15,8 +15,13 @@ class DashboardPartsController extends Controller
      */
     public function index()
     {
+        $part = sparepart::latest();
+        if (request('categori')) {
+            $part->where('categorie_id', request('categori'));
+        }
         return view('dashboard.sparepart.stok.index', [
             'categories' => CategoriePart::all(),
+            'parts' => $part->paginate(10)->withQueryString(),
         ]);
     }
 

@@ -14,4 +14,9 @@ class CategoriePart extends Model
     {
         return $this->hasMany(sparepart::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
