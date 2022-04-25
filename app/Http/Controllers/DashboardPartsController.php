@@ -109,7 +109,26 @@ class DashboardPartsController extends Controller
      */
     public function update(Request $request, sparepart $sparepart)
     {
-        //
+        $rules = [
+            'categorie_id' => 'required',
+            'models_id' => 'required',
+            'name' => 'required|max:100',
+            'merk' => 'required:max:50',
+            'slug' => 'required|unique:spareparts',
+            'codePart' => 'required',
+        ];
+        if ($request->slug != $sparepart->slug) {
+            $rules['slug'] = 'required|unique:spareparts';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        sparepart::where('id', $sparepart->id)->update($validatedData);
+
+        return redirect('/dashboard/spareparts')->with(
+            'success',
+            'Unit Has Been Updated.!'
+        );
     }
 
     /**

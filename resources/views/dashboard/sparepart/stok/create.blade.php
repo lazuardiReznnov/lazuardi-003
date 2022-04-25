@@ -146,7 +146,7 @@
     const slug = document.querySelector("#slug");
 
     name.addEventListener("change", function () {
-        fetch("/dashboard/part/slug?name=" + name.value)
+        fetch("/dashboard/sparepart/slug?name=" + name.value)
             .then((response) => response.json())
             .then((data) => (slug.value = data.slug));
     });

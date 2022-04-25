@@ -12,10 +12,11 @@
 <div class="row">
     <div class="col-lg-6">
         <form
-            action="/dashboard/parts"
+            action="/dashboard/spareparts/{{ $part->slug }}"
             method="post"
             enctype="multipart/form-data"
         >
+          @method('put')
             @csrf
 
             <div class="mb-3">

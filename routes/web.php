@@ -63,4 +63,7 @@ Route::get('/dashboard/sparepart/getmodels', [
     'getmodels',
 ]);
 
-Route::get('/dashboard/part/slug', [DashboardPartsController::class, 'slug']);
+Route::get('/dashboard/sparepart/slug', [
+    DashboardPartsController::class,
+    'slug',
+]);
