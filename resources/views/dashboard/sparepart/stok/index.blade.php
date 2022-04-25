@@ -2,11 +2,11 @@
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-    <h1 class="h2">STOK LIST</h1>
+    <h1 class="h2">SPREPART LIST</h1>
 </div>
 
 <div class="table-responsive col-lg-10">
-    <a href="/dashboard/parts/create" class="btn btn-primary mb-3"
+    <a href="/dashboard/spareparts/create" class="btn btn-primary mb-3"
         >Add New Stok</a
     >
 
@@ -18,7 +18,7 @@
     @endif
 
     <div class="col-md-5 my-4">
-      <form action="/dashboard/parts" method="get" class="d-inline">
+      <form action="/dashboard/spareparts" method="get" class="d-inline">
         <div class="input-group">
             <select class="form-select" id="categori" name="categori" >
               <option selected>Choose...</option>
@@ -55,8 +55,24 @@
                <td>{{ $part->codePart }}</td>
                <td>{{ $part->qty }}</td>
                <td>
-                  <a href="" class="badge bg-danger text-decoration-none">Delete</a>
-                  <a href="" class="badge bg-warning text-decoration-none">Edit</a>
+                <a
+                href="/dashboard/spareparts/{{ $part->slug }}/edit"
+                class="badge bg-warning"
+                ><span data-feather="edit"></span
+            ></a>
+            <form
+                action="/dashboard/spareparts/{{ $part->slug }}"
+                method="post"
+                class="d-inline"
+            >
+                @method('delete') @csrf
+                <button
+                    class="badge bg-danger border-0"
+                    onclick="return confirm('are You sure ??')"
+                >
+                    <span data-feather="x-circle"></span>
+                </button>
+            </form>
               </td>
              </tr>
              @endforeach

@@ -16,6 +16,12 @@ class DashboardPartsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->brands = Brand::All();
+        $this->models = Models::All();
+        $this->categories = CategoriePart::all();
+    }
     public function index()
     {
         $part = sparepart::latest();
@@ -35,14 +41,10 @@ class DashboardPartsController extends Controller
      */
     public function create()
     {
-        $brands = Brand::All();
-        $models = Models::All();
-        $categories = CategoriePart::all();
-
         return view('dashboard.sparepart.stok.create', [
-            'brands' => $brands,
-            'models' => $models,
-            'categories' => $categories,
+            'brands' => $this->brands,
+            'models' => $this->models,
+            'categories' => $this->categories,
         ]);
     }
 
@@ -54,7 +56,21 @@ class DashboardPartsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'categorie_id' => 'required',
+            'models_id' => 'required',
+            'name' => 'required|max:100',
+            'merk' => 'required:max:50',
+            'slug' => 'required|unique:spareparts',
+            'codePart' => 'required',
+        ]);
+
+        sparepart::create($validatedData);
+
+        return redirect('/dashboard/spareparts')->with(
+            'success',
+            'New Sparepart Data Has Been aded.!'
+        );
     }
 
     /**
@@ -76,7 +92,12 @@ class DashboardPartsController extends Controller
      */
     public function edit(sparepart $sparepart)
     {
-        //
+        return view('dashboard.sparepart.stok.edit', [
+            'part' => $sparepart,
+            'brands' => $this->brands,
+            'models' => $this->models,
+            'categories' => $this->categories,
+        ]);
     }
 
     /**
@@ -99,7 +120,12 @@ class DashboardPartsController extends Controller
      */
     public function destroy(sparepart $sparepart)
     {
-        //
+        sparepart::destroy($sparepart->id);
+
+        return redirect('/dashboard/spareparts')->with(
+            'success',
+            'New Sparepart Data Has Been Deleted.!'
+        );
     }
 
     public function getmodels(Request $request)

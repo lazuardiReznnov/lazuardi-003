@@ -66,7 +66,7 @@
             <li class="nav-item">
                 <a
                     class="nav-link {{ Request::is('dashboard/parts*') ? 'active' : '' }}"
-                    href="/dashboard/parts"
+                    href="/dashboard/spareparts"
                 >
                     <span data-feather="grid"></span>
                     STOK SPAREPART

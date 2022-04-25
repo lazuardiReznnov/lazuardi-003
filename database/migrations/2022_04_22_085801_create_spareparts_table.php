@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('merk');
             $table->string('slug')->unique();
             $table->string('codePart');
-            $table->integer('qty');
+            $table->integer('qty')->default(0);
             $table->timestamps();
         });
     }
