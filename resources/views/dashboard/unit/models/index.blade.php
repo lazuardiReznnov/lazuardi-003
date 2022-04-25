@@ -6,7 +6,7 @@
 </div>
 <div class="table-responsive col-lg-8">
     <a href="/dashboard/unit/models/create" class="btn btn-primary mb-3"
-        >Add New Models</a
+        ><span data-feather="plus-circle"></span> Add </a
     >
 
     <!-- Alert -->

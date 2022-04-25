@@ -65,11 +65,11 @@
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
                 <a
-                    class="nav-link {{ Request::is('dashboard/parts*') ? 'active' : '' }}"
+                    class="nav-link {{ Request::is('dashboard/spareparts*') ? 'active' : '' }}"
                     href="/dashboard/spareparts"
                 >
                     <span data-feather="grid"></span>
-                    STOK SPAREPART
+                    SPAREPART
                 </a>
             </li>
         </ul>

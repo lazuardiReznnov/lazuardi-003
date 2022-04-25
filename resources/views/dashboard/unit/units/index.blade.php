@@ -6,7 +6,7 @@
 </div>
 <div class="table-responsive col-lg-10">
     <a href="/dashboard/units/create" class="btn btn-primary mb-3"
-        >Add New Unit</a
+        ><span data-feather="plus-circle"></span> Add </a
     >
 
     <!-- Alert -->

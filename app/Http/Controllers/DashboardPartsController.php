@@ -28,7 +28,7 @@ class DashboardPartsController extends Controller
         if (request('categori')) {
             $part->where('categorie_id', request('categori'));
         }
-        return view('dashboard.sparepart.stok.index', [
+        return view('dashboard.sparepart.index', [
             'categories' => CategoriePart::all(),
             'parts' => $part->paginate(10)->withQueryString(),
         ]);
@@ -41,7 +41,7 @@ class DashboardPartsController extends Controller
      */
     public function create()
     {
-        return view('dashboard.sparepart.stok.create', [
+        return view('dashboard.sparepart.create', [
             'brands' => $this->brands,
             'models' => $this->models,
             'categories' => $this->categories,
@@ -92,7 +92,7 @@ class DashboardPartsController extends Controller
      */
     public function edit(sparepart $sparepart)
     {
-        return view('dashboard.sparepart.stok.edit', [
+        return view('dashboard.sparepart.edit', [
             'part' => $sparepart,
             'brands' => $this->brands,
             'models' => $this->models,

@@ -5,7 +5,7 @@
   <h1 class="h2">TYPE UNIT LIST</h1>
 </div>
 <div class="table-responsive col-lg-8">
-    <a href="/dashboard/unit/types/create" class="btn btn-primary mb-3">Create New Post</a>
+    <a href="/dashboard/unit/types/create" class="btn btn-primary mb-3"><span data-feather="plus-circle"></span> Add</a>
 
     <!-- Alert -->
     @if(session()->has('success'))
