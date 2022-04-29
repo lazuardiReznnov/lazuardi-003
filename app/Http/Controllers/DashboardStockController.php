@@ -12,9 +12,15 @@ class DashboardStockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->stock = Stock::latest();
+    }
     public function index()
     {
-        return view('dashboard.stok.index');
+        return view('dashboard.stok.index', [
+            'stocks' => $this->stock->paginate(10),
+        ]);
     }
 
     /**

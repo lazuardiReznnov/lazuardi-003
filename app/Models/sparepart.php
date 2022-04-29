@@ -12,7 +12,7 @@ class sparepart extends Model
 
     protected $guarded = ['id'];
 
-    protected $with = ['models', 'categoriePart', 'stok'];
+    protected $with = ['models', 'categoriePart', 'stock'];
 
     public function categoriePart()
     {
@@ -24,7 +24,7 @@ class sparepart extends Model
         return $this->belongsTo(Models::class);
     }
 
-    public function stok()
+    public function stock()
     {
         return $this->belongsTo(Stock::class);
     }
