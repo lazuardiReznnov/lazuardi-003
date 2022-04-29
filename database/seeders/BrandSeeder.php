@@ -24,5 +24,10 @@ class BrandSeeder extends Seeder
             'name' => 'Mistubishi',
             'slug' => 'mistsubishi',
         ]);
+
+        Brand::Create([
+            'name' => 'All',
+            'slug' => 'all',
+        ]);
     }
 }

@@ -23,11 +23,32 @@ class DatabaseSeeder extends Seeder
             ModelsSeeder::class,
             UnitSeeder::class,
             OwnerSeeder::class,
+            CategoriePartSeeder::class,
+            SparepartSeeder::class,
         ]);
 
         Grup::create([
             'name' => 'Gema Cipta Gemilang',
             'slug' => 'gcg',
+        ]);
+
+        Grup::create([
+            'name' => 'Gema Berkat Gemilang',
+            'slug' => 'gbg',
+        ]);
+
+        Grup::create([
+            'name' => 'Gema Sinar Gemilang',
+            'slug' => 'gsg',
+        ]);
+
+        Grup::create([
+            'name' => 'Triraksa Jaya Mandiri',
+            'slug' => 'tjm',
+        ]);
+        Grup::create([
+            'name' => 'Setia Pratama Logistic',
+            'slug' => 'spl',
         ]);
         // Owner::factory(5)->create();
     }

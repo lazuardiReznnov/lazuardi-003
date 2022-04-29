@@ -6,25 +6,27 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Models extends Model
+class sparepart extends Model
 {
     use HasFactory, Sluggable;
+
     protected $guarded = ['id'];
-    protected $with = ['brand'];
 
-    public function brand()
+    protected $with = ['models', 'categoriePart', 'stok'];
+
+    public function categoriePart()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(CategoriePart::class);
     }
 
-    public function sparepart()
+    public function models()
     {
-        $this->hasMany(sparepart::class);
+        return $this->belongsTo(Models::class);
     }
 
-    public function getRouteKeyName()
+    public function stok()
     {
-        return 'slug';
+        return $this->belongsTo(Stock::class);
     }
 
     public function sluggable(): array
@@ -34,5 +36,9 @@ class Models extends Model
                 'source' => 'name',
             ],
         ];
+    }
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

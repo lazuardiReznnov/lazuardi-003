@@ -36,5 +36,11 @@ class ModelsSeeder extends Seeder
             'name' => 'Canter 125 Super Speed',
             'slug' => 'canter-125-super-speed',
         ]);
+
+        Models::create([
+            'brand_id' => 3,
+            'name' => 'Universal',
+            'slug' => 'universal',
+        ]);
     }
 }

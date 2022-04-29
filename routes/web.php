@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\DashboardTypesController;
-use App\Http\Controllers\DashboardUnitController;
-
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardUnitController;
+use App\Http\Controllers\DashboardPartsController;
+use App\Http\Controllers\DashboardTypesController;
+use App\Http\Controllers\DashboardModelsController;
+use App\Http\Controllers\DashboardStockController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +44,32 @@ Route::get('/dashboard/unit/checkSlug', [
     DashboardUnitController::class,
     'checkSlug',
 ]);
+
+Route::resource(
+    '/dashboard/unit/models',
+    DashboardModelsController::class
+)->except('show');
+
+Route::get('/dashboard/unit/model/slug', [
+    DashboardModelsController::class,
+    'slug',
+]);
+
+Route::resource(
+    '/dashboard/spareparts',
+    DashboardPartsController::class
+)->except('show');
+
+// Route::get('/dashboard/part/cari', [DashboardPartsController::class, 'cari']);
+
+Route::get('/dashboard/sparepart/getmodels', [
+    DashboardPartsController::class,
+    'getmodels',
+]);
+
+Route::get('/dashboard/sparepart/slug', [
+    DashboardPartsController::class,
+    'slug',
+]);
+
+Route::resource('/dashboard/stocks', DashboardStockController::class);

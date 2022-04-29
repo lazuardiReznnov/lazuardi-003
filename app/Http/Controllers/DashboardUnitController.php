@@ -8,7 +8,7 @@ use App\Models\Owner;
 use App\Models\Models;
 use App\Models\Type;
 use App\Models\Grup;
-
+use Illuminate\support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -52,22 +52,21 @@ class DashboardUnitController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'noReg' => 'required|max:20',
+            'noReg' => 'required|max:20|unique:units',
             'type_id' => 'required',
             'owner_id' => 'required',
             'models_id' => 'required',
             'grup_id' => 'required',
-            'noReg' => 'required|unique:units',
             'slug' => 'required|unique:units',
             'vin' => 'required',
+            'engineNum' => 'required',
             'year' => 'required',
             'color' => 'required',
+            'img' => 'image|file|max:2048',
         ]);
 
-        if ($request->file('image')) {
-            $validatedData['image'] = $request
-                ->file('image')
-                ->store('post-images');
+        if ($request->file('img')) {
+            $validatedData['img'] = $request->file('img')->store('unit-img');
         }
 
         Unit::create($validatedData);
@@ -99,7 +98,14 @@ class DashboardUnitController extends Controller
      */
     public function edit(Unit $unit)
     {
-        //
+        return view('dashboard.unit.units.edit', [
+            'unit' => $unit,
+            'brands' => Brand::all(),
+            'owners' => Owner::all(),
+            'models' => Models::all(),
+            'types' => Type::all(),
+            'grups' => grup::all(),
+        ]);
     }
 
     /**
@@ -111,7 +117,39 @@ class DashboardUnitController extends Controller
      */
     public function update(Request $request, Unit $unit)
     {
-        //
+        $rules = [
+            'type_id' => 'required',
+            'owner_id' => 'required',
+            'models_id' => 'required',
+            'grup_id' => 'required',
+            'vin' => 'required',
+            'engineNum' => 'required',
+            'year' => 'required',
+            'color' => 'required',
+            'img' => 'image|file|max:2048',
+        ];
+
+        if ($request->noReg != $unit->noReg) {
+            $rules['noReg'] = 'required|unique:units|max:25';
+        }
+        if ($request->slug != $unit->slug) {
+            $rules['slug'] = 'required|unique:units';
+        }
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('img')) {
+            if ($request->old_img) {
+                storage::delete($request->old_img);
+            }
+            $validatedData['img'] = $request->file('img')->store('unit_img');
+        }
+
+        Unit::where('id', $unit->id)->update($validatedData);
+
+        return redirect('/dashboard/units')->with(
+            'success',
+            'Unit Has Been Updated.!'
+        );
     }
 
     /**
@@ -122,12 +160,19 @@ class DashboardUnitController extends Controller
      */
     public function destroy(Unit $unit)
     {
-        //
+        Unit::destroy($unit->id);
+        if ($unit->img) {
+            storage::delete($unit->img);
+        }
+        return redirect('/dashboard/units')->with(
+            'success',
+            'New Post Has Been Deleted.'
+        );
     }
 
     public function getmodels(Request $request)
     {
-        $models = Models::where('brand_id', $request->brandID)->get();
+        $models = Models::where('brand_id', $request->brand)->get();
         return response()->json($models);
     }
 
