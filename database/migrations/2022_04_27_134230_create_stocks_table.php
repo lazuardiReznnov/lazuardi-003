@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('sparepart_id');
             $table->date('date');
-            $table->string('kode_bon');
+            $table->string('inv');
             $table->enum('type', ['cash', 'credit']);
             $table->string('store_name');
             $table->integer('qty');

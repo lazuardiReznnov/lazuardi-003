@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Stock extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+    protected $with = ['sparepart'];
+
+    public function sparepart()
+    {
+        return $this->hasMany(sparepart::class);
+    }
 }

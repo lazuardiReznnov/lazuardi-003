@@ -12,7 +12,7 @@ class sparepart extends Model
 
     protected $guarded = ['id'];
 
-    protected $with = ['models', 'categoriePart'];
+    protected $with = ['models', 'categoriePart', 'stok'];
 
     public function categoriePart()
     {
@@ -22,6 +22,11 @@ class sparepart extends Model
     public function models()
     {
         return $this->belongsTo(Models::class);
+    }
+
+    public function stok()
+    {
+        return $this->belongsTo(Stock::class);
     }
 
     public function sluggable(): array
