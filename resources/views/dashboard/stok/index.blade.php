@@ -38,13 +38,14 @@
         <tr>
             <td>{{ ($stocks->currentpage()-1) * $stocks->perpage() + $loop->index + 1 }}</td>
             <td>{{ $stock->type }}</td>
-            <td>{{ $stock->date }}</td>
+            <td>{{ date('d/m/Y', strtotime($stock->date)) }}</td>
             <td>{{ $stock->inv }}</td>
             <td>{{ $stock->store_name }}</td>
             <td>{{ $stock->sparepart->name }}</td>
             <td>{{ $stock->qty }}</td>
-            <td>{{ $stock->price }}</td>
-            <td>{{ $stock->price*$stock->qty }}</td>
+            <td>@currency($stock->price)</td>
+            <td>@currency($stock->price*$stock->qty)</td>
+            <td>
             <a
             href="/dashboard/stocks/{{ $stock->id }}/edit"
             class="badge bg-warning"

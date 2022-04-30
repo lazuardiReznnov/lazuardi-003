@@ -31,11 +31,10 @@
             <div class="mb-3">
                 <label for="date" class="form-label">Date</label>
                 <input
-                    type="text"
+                    type="date"
                     name="date"
                     class="form-control @error('date') is-invalid @enderror"
                     id="date"
-                    placeholder="YYYY-MM-DD"
                     value="{{ old('date') }} "
                     
                 />
@@ -68,7 +67,6 @@
                     name="store_name"
                     class="form-control @error('store_name') is-invalid @enderror"
                     id="store_name"
-                    placeholder="YYYY-MM-DD"
                     value="{{ old('store_name') }} "
                     
                 />
@@ -102,23 +100,7 @@
                 ></select>
             </div>
 
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    class="form-control @error('name') is-invalid @enderror"
-                    id="name"
-                    value="{{ old('name') }} "
-                    
-                />
-                @error('name')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
+            
              <div class="mb-3 col-md-3">
                 <label for="qty" class="form-label">Qty</label>
                 <input

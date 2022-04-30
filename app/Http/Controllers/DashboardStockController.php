@@ -54,7 +54,28 @@ class DashboardStockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'type' => 'required',
+            'sparepart_id' => 'required',
+            'date' => 'required',
+            'inv' => 'required',
+            'store_name' => 'required',
+            'qty' => 'required',
+            'price' => 'required',
+        ]);
+
+        $sparepart = sparepart::where('id', $request->sparepart_id);
+        $sparepart_qty = $sparepart->first();
+        $part_update = $validatedData['qty'] + $sparepart_qty->qty;
+
+        Stock::create($validatedData);
+
+        $sparepart->update(['qty' => $part_update]);
+
+        return redirect('/dashboard/stocks')->with(
+            'success',
+            'Unit Has Been Added.!'
+        );
     }
 
     /**
@@ -99,7 +120,17 @@ class DashboardStockController extends Controller
      */
     public function destroy(Stock $stock)
     {
-        //
+        $sparepart = sparepart::where('id', $stock->sparepart_id);
+        $sparepart_qty = $sparepart->first();
+        $part_update = $sparepart_qty->qty - $stock->qty;
+
+        $sparepart->update(['qty' => $part_update]);
+        Stock::destroy($stock->id);
+
+        return redirect('/dashboard/stocks')->with(
+            'success',
+            'Unit Has Been Deleted.!'
+        );
     }
 
     public function getsparepart(Request $request)

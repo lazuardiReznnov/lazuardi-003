@@ -14,6 +14,6 @@ class Stock extends Model
 
     public function sparepart()
     {
-        return $this->hasMany(sparepart::class);
+        return $this->belongsTo(sparepart::class);
     }
 }
