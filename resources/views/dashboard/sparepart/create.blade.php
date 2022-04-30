@@ -96,7 +96,7 @@
                     value="{{ old('merk') }} "
                     
                 />
-                @error('name')
+                @error('merk')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
@@ -113,7 +113,7 @@
                     value="{{ old('codePart') }} "
                     
                 />
-                @error('name')
+                @error('codePart')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

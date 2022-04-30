@@ -6,9 +6,16 @@
 </div>
 
 <div class="table-responsive">
-    <a href="/dashboard/spareparts/create" class="btn btn-primary mb-3"
+    <a href="/dashboard/stocks/create" class="btn btn-primary mb-3"
     > <span data-feather="plus-circle"></span></a
 >
+    <!-- Alert -->
+    @if(session()->has('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session("success") }}
+    </div>
+    @endif
+    
     <table class="table table-striped table-sm">
       <thead>
         <tr>

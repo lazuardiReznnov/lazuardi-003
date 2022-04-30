@@ -73,3 +73,8 @@ Route::get('/dashboard/sparepart/slug', [
 ]);
 
 Route::resource('/dashboard/stocks', DashboardStockController::class);
+
+Route::get('/dashboard/stock/getsparepart', [
+    DashboardStockController::class,
+    'getsparepart',
+]);

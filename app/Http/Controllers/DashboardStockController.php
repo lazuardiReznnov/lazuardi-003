@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\CategoriePart;
+use App\Models\Models;
+use App\Models\sparepart;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 
@@ -15,6 +19,10 @@ class DashboardStockController extends Controller
     public function __construct()
     {
         $this->stock = Stock::latest();
+        $this->sparepart = sparepart::all();
+        $this->models = Models::All();
+        $this->brand = Brand::All();
+        $this->categories = CategoriePart::all();
     }
     public function index()
     {
@@ -30,7 +38,12 @@ class DashboardStockController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.stok.create', [
+            'brands' => $this->brand,
+            'models' => $this->models,
+            'spareparts' => $this->sparepart,
+            'categories' => $this->categories,
+        ]);
     }
 
     /**
@@ -87,5 +100,14 @@ class DashboardStockController extends Controller
     public function destroy(Stock $stock)
     {
         //
+    }
+
+    public function getsparepart(Request $request)
+    {
+        $sparepart = sparepart::where(
+            'categorie_id',
+            $request->categoripart
+        )->get();
+        return response()->json($sparepart);
     }
 }
