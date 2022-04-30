@@ -16,12 +16,7 @@ class DashboardPartsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->brands = Brand::All();
-        $this->models = Models::All();
-        $this->categories = CategoriePart::all();
-    }
+
     public function index()
     {
         $part = sparepart::latest();
@@ -42,9 +37,9 @@ class DashboardPartsController extends Controller
     public function create()
     {
         return view('dashboard.sparepart.create', [
-            'brands' => $this->brands,
-            'models' => $this->models,
-            'categories' => $this->categories,
+            'brands' => Brand::All(),
+            'models' => Models::all(),
+            'categories' => CategoriePart::all(),
         ]);
     }
 
@@ -94,9 +89,9 @@ class DashboardPartsController extends Controller
     {
         return view('dashboard.sparepart.edit', [
             'part' => $sparepart,
-            'brands' => $this->brands,
-            'models' => $this->models,
-            'categories' => $this->categories,
+            'brands' => Brand::All(),
+            'models' => Models::all(),
+            'categories' => CategoriePart::all(),
         ]);
     }
 

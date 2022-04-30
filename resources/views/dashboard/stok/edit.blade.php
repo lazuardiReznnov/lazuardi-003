@@ -3,16 +3,17 @@
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-    <h1 class="h2">Form Input Stock</h1>
+    <h1 class="h2">Form Edit Stock</h1>
 </div>
 
 <div class="row">
     <div class="col-lg-6">
         <form
-            action="/dashboard/stocks"
+            action="/dashboard/stocks/{{ $stock->id }}"
             method="post"
             enctype="multipart/form-data"
         >
+            @method('put')
             @csrf
 
             <div class="mb-3">
@@ -22,14 +23,9 @@
                     id="type"
                     name="type"
                 >
-               
-                @if(old('type')=='type')
-                <option value="{{ old('type') }}" selected>{{ old('type') }}</option>
-                @else
                 <option value="" selected>--Select Buying Type--</option>
-                <option value="cash">Cash</option>
+                <option value="{{ $stock->type }}" selected>{{ $stock->type }}</option>
                 <option value="credit">Credit</option>
-                @endif
             </select>
             </div>
 
@@ -40,7 +36,7 @@
                     name="date"
                     class="form-control @error('date') is-invalid @enderror"
                     id="date"
-                    value="{{ old('date') }} "
+                    value="{{ old('date',$stock->date) }}"
                     
                 />
                 @error('date')
@@ -56,7 +52,7 @@
                     name="inv"
                     class="form-control @error('inv') is-invalid @enderror"
                     id="inv"
-                    value="{{ old('inv') }} "
+                    value="{{ old('inv',$stock->inv) }} "
                     
                 />
                 @error('inv')
@@ -72,7 +68,7 @@
                     name="store_name"
                     class="form-control @error('store_name') is-invalid @enderror"
                     id="store_name"
-                    value="{{ old('store_name') }} "
+                    value="{{ old('store_name',$stock->store_name) }} "
                     
                 />
                 @error('store_name')
@@ -86,7 +82,8 @@
                 <label for="categori" class="form-label">Sparepart Categories</label>
                 <select class="form-select" id="categorie" name="categorie_id">
                     <option value="" selected>--Select Categories--</option>
-                    @foreach($categories as $categorie) @if(old('categorie_id')==$categorie->id)
+                    @foreach($categories as $categorie)
+                     @if(old('categorie_id',$stock->sparepart->categorie_id)==$categorie->id)
                     <option value="{{ $categorie->id }}" selected>
                         {{ $categorie->name }}
                     </option>
@@ -99,10 +96,14 @@
             <div class="mb-3">
                 <label for="sparepart" class="form-label">Sparepart</label>
                 <select
-                    class="form-select"
+                    class="form-select "
                     id="sparepart"
                     name="sparepart_id"
-                ></select>
+                >
+                @if(old('sparepart_id',$stock->sparepart_id)==$stock->sparepart_id)
+                 <option value="{{ $stock->sparepart_id }}" selected>{{ $stock->sparepart->name }}</option> 
+                 @endif 
+            </select>
             </div>
 
             
@@ -113,7 +114,7 @@
                     name="qty"
                     class="form-control @error('qty') is-invalid @enderror"
                     id="qty"
-                    value="{{ old('qty') }} "
+                    value="{{ old('qty',$stock->qty) }} "
                     
                 />
                 @error('qty')
@@ -130,7 +131,7 @@
                     name="price"
                     class="form-control @error('price') is-invalid @enderror"
                     id="price"
-                    value="{{ old('price') }} "
+                    value="{{ old('price', number_format($stock->price)) }} "
                     
                 />
                 @error('price')

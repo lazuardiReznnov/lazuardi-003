@@ -16,18 +16,11 @@ class DashboardStockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->stock = Stock::latest();
-        $this->sparepart = sparepart::all();
-        $this->models = Models::All();
-        $this->brand = Brand::All();
-        $this->categories = CategoriePart::all();
-    }
+
     public function index()
     {
         return view('dashboard.stok.index', [
-            'stocks' => $this->stock->paginate(10),
+            'stocks' => stock::latest()->paginate(10),
         ]);
     }
 
@@ -39,10 +32,7 @@ class DashboardStockController extends Controller
     public function create()
     {
         return view('dashboard.stok.create', [
-            'brands' => $this->brand,
-            'models' => $this->models,
-            'spareparts' => $this->sparepart,
-            'categories' => $this->categories,
+            'categories' => CategoriePart::all(),
         ]);
     }
 
@@ -86,7 +76,6 @@ class DashboardStockController extends Controller
      */
     public function show(Stock $stock)
     {
-        //
     }
 
     /**
@@ -97,7 +86,10 @@ class DashboardStockController extends Controller
      */
     public function edit(Stock $stock)
     {
-        //
+        return view('dashboard.stok.edit', [
+            'stock' => $stock,
+            'categories' => CategoriePart::all(),
+        ]);
     }
 
     /**
@@ -109,7 +101,31 @@ class DashboardStockController extends Controller
      */
     public function update(Request $request, Stock $stock)
     {
-        //
+        $validatedData = $request->validate([
+            'type' => 'required',
+            'sparepart_id' => 'required',
+            'date' => 'required',
+            'inv' => 'required',
+            'store_name' => 'required',
+            'qty' => 'required',
+            'price' => 'required',
+        ]);
+
+        if ($stock->qty != $request->qty) {
+            $part_update =
+                $validatedData['qty'] + $stock->sparepart->qty - $stock->qty;
+            sparepart::where('id', $stock->sparepart_id)->update([
+                'qty' => $part_update,
+            ]);
+        }
+        $validatedData['price'] = str_replace(',', '', $validatedData['price']);
+
+        Stock::where('id', $stock->id)->update($validatedData);
+
+        return redirect('/dashboard/stocks')->with(
+            'success',
+            'Unit Has Been Updated.!'
+        );
     }
 
     /**
@@ -120,11 +136,13 @@ class DashboardStockController extends Controller
      */
     public function destroy(Stock $stock)
     {
-        $sparepart = sparepart::where('id', $stock->sparepart_id);
-        $sparepart_qty = $sparepart->first();
-        $part_update = $sparepart_qty->qty - $stock->qty;
+        // $sparepart = sparepart::where('id', $stock->sparepart_id);
+        // $sparepart_qty = $sparepart->first();
+        $part_update = $stock->sparepart->qty - $stock->qty;
 
-        $sparepart->update(['qty' => $part_update]);
+        sparepart::where('id', $stock->sparepart_id)->update([
+            'qty' => $part_update,
+        ]);
         Stock::destroy($stock->id);
 
         return redirect('/dashboard/stocks')->with(
