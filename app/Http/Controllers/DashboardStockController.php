@@ -111,6 +111,7 @@ class DashboardStockController extends Controller
             'price' => 'required',
         ]);
 
+        // jika qty stock diganti
         if ($stock->qty != $request->qty) {
             $part_update =
                 $validatedData['qty'] + $stock->sparepart->qty - $stock->qty;
@@ -118,6 +119,19 @@ class DashboardStockController extends Controller
                 'qty' => $part_update,
             ]);
         }
+        // jika nama sparepartnya diganti
+        if ($stock->sparepart_id != $request->sparepart_id) {
+            $part_update1 = $stock->sparepart->qty - $stock->qty;
+            sparepart::where('id', $stock->sparepart_id)->update([
+                'qty' => $part_update1,
+            ]);
+
+            $sparepart = sparepart::where('id', $request->sparepart_id);
+            $sparepart_qty = $sparepart->first();
+            $part_update2 = $validatedData['qty'] + $sparepart_qty->qty;
+            $sparepart->update(['qty' => $part_update2]);
+        }
+
         $validatedData['price'] = str_replace(',', '', $validatedData['price']);
 
         Stock::where('id', $stock->id)->update($validatedData);
