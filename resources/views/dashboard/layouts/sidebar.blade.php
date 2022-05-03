@@ -92,11 +92,11 @@
 <ul class="nav flex-column mb-2">
     <li class="nav-item">
         <a
-            class="nav-link {{ Request::is('dashboard/stocks*') ? 'active' : '' }}"
-            href="/dashboard/stocks"
+            class="nav-link {{ Request::is('dashboard/maintenance*') ? 'active' : '' }}"
+            href="/dashboard/maintenances"
         >
             <span data-feather="grid"></span>
-            REPAIR & MAINTENANCE
+            MAINTENANCE
         </a>
     </li>
 </ul>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardMaintenance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardUnitController;
 use App\Http\Controllers\DashboardPartsController;
@@ -77,4 +78,11 @@ Route::resource('/dashboard/stocks', DashboardStockController::class);
 Route::get('/dashboard/stock/getsparepart', [
     DashboardStockController::class,
     'getsparepart',
+]);
+
+Route::resource('/dashboard/maintenances', DashboardMaintenance::class);
+
+Route::get('/dashboard/maintenance/print/{maintenance:id}', [
+    DashboardMaintenance::class,
+    'print',
 ]);
