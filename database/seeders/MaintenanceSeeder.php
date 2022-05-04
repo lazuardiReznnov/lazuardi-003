@@ -18,22 +18,28 @@ class MaintenanceSeeder extends Seeder
         Maintenance::create([
             'unit_id' => 1,
             'date' => '2022/05/04',
-            'analysis' => 'Cek Rem',
-            'problem' => 'Rem Blong',
+            'analysis' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            quisquam placeat quasi! Itaque, perspiciatis possimus!',
+            'problem' => 'R Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            quisquam placeat quasi! Itaque, perspiciatis possimus!',
             'mechanic' => 'Ali',
         ]);
         Maintenance::create([
             'unit_id' => 2,
             'date' => '2022/05/03',
-            'analysis' => 'Cek Kelistrikan',
-            'problem' => 'Lampu Depan Mati',
+            'analysis' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            quisquam placeat quasi! Itaque, perspiciatis possimus!',
+            'problem' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            quisquam placeat quasi! Itaque, perspiciatis possimus!',
             'mechanic' => 'Nurdin',
         ]);
         Maintenance::create([
             'unit_id' => 3,
             'date' => '2022/05/05',
-            'analysis' => 'Cek Kopling',
-            'problem' => 'Gigi 3 tidak bisa Masuk',
+            'analysis' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            quisquam placeat quasi! Itaque, perspiciatis possimus!',
+            'problem' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            quisquam placeat quasi! Itaque, perspiciatis possimus!',
             'mechanic' => 'Tardi',
         ]);
     }

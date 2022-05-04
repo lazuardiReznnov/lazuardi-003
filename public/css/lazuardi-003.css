@@ -1,0 +1,21 @@
+@page {
+  size: A4 potrait;
+  margin: 1;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+.head {
+  font-weight: 600;
+}
+.t-sign {
+  margin-top: 100px;
+}
+.white {
+  color: #ffff;
+}

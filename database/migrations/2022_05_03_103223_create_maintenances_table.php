@@ -16,9 +16,10 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('unit_id');
             $table->date('date');
-            $table->string('analysis');
+            $table->text('analysis');
             $table->string('mechanic');
             $table->text('problem');
+            $table->enum('status', ['work', 'end'])->default('end');
             $table->timestamps();
         });
     }
