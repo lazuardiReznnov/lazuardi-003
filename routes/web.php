@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardUnitController;
 use App\Http\Controllers\DashboardPartsController;
 use App\Http\Controllers\DashboardTypesController;
 use App\Http\Controllers\DashboardModelsController;
+use App\Http\Controllers\DashboardPartTenance;
+use App\Http\Controllers\DashboardPartTenanceController;
 use App\Http\Controllers\DashboardStockController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -85,4 +87,9 @@ Route::resource('/dashboard/maintenances', DashboardMaintenance::class);
 Route::get('/dashboard/maintenance/print/{maintenance:id}', [
     DashboardMaintenance::class,
     'print',
+]);
+
+Route::get('/dashboard/maintenance/partTenances/{maintenance:id}', [
+    DashboardPartTenanceController::class,
+    'create',
 ]);

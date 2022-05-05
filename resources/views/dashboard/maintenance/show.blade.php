@@ -107,6 +107,9 @@
 
 <section id="part">
 <h2 class="mt-3">Sparepart</h2>
+<a href="/dashboard/maintenance/partTenances/{{$maintenance->id}}" class="btn btn-primary mb-3"
+><span data-feather="plus-circle"></span> Add </a
+>
 <div class="table-responsive">
     <table class="table table-striped table-sm">
       <thead>
@@ -126,8 +129,24 @@
             <td>{{ $part->sparepart->codePart }}</td>
             <td>{{ $part->qty }}</td>
             <td>
-                <a href="">Edit</a>
-                <a href="">Delete</a>
+              <a
+              href="/dashboard/maintenance/parttenances/{{$part->id }}/edit"
+              class="badge bg-warning mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
+              ><span data-feather="edit"></span
+          ></a>
+          <form
+              action="/dashboard/maintenance/parttenances/{{ $part->id }}"
+              method="post"
+              class="d-inline"
+          >
+              @method('delete') @csrf
+              <button
+                  class="badge bg-danger border-0 mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
+                  onclick="return confirm('are You sure ??')"
+              >
+                  <span data-feather="x-circle"></span>
+              </button>
+          </form>
             </td>
         </tr>
         @endforeach 

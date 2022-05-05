@@ -87,7 +87,7 @@
     <h6
     class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
 >
-    <span>REPAIR & MAINTENANCE MANAGEMENT</span>
+    <span>MAINTENANCE MANAGEMENT</span>
 </h6>
 <ul class="nav flex-column mb-2">
     <li class="nav-item">
@@ -96,7 +96,7 @@
             href="/dashboard/maintenances"
         >
             <span data-feather="grid"></span>
-            MAINTENANCE
+            MAINTENANCE UNIT
         </a>
     </li>
 </ul>
