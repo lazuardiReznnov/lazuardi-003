@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             CategoriePartSeeder::class,
             SparepartSeeder::class,
             MaintenanceSeeder::class,
+            PartTenanceSeeder::class,
         ]);
 
         Grup::create([

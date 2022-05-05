@@ -9,11 +9,16 @@ class PartTenance extends Model
 {
     use HasFactory;
 
-    protected $with = ['sparepart'];
+    protected $with = ['maintenance', 'sparepart'];
     protected $guarded = ['id'];
 
-    public function partTenance()
+    public function maintenance()
     {
         return $this->belongsTo(Maintenance::class);
+    }
+
+    public function sparepart()
+    {
+        return $this->belongsTo(Sparepart::class);
     }
 }

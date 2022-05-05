@@ -23,6 +23,7 @@
     <title>Maintenance | SPK</title>
   </head>
   <body>
+    <div class="container-fluid">
     <div class="card">
       <div class="card-body">
         <div class="row justify-content-center">
@@ -65,28 +66,24 @@
           <div class="col-8">
             : {{$maintenance->analysis}}
           </div>
-        </div>  
-          <div class="row justify-content-between mt-4">
-            <div class="col-md-2">
-              <p class="white">
-                .
-                <br />
-                .
-              </p>
+        </div> 
+<div class="row justify-content-end col-10">
+  <div class="col-4">
+    <p>Serang, {{ \Carbon\Carbon::parse($maintenance->date)->format('d/m/Y') }}</p>
+  </div>
+</div>
+          <div class="row justify-content-between mt-4 col-10">
+            <div class="col-md-4">
+             
               <p class="t-sign">
-                (............................)
+                (..........................)
                 <br />
                 Mechanic
               </p>
             </div>
-            <div class="col-md-2">
-              <p>
-                Serang, {{ \Carbon\Carbon::parse($maintenance->date)->format('d/m/Y') }}
-                <br />
-                Pt. SS
-              </p>
+            <div class="col-md-4">
               <p class="t-sign">
-                (............................)
+                (..........................)
                 <br />
                 Administrator
               </p>
@@ -95,6 +92,7 @@
         </div>
       </div>
     </div>
+  </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

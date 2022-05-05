@@ -28,6 +28,7 @@
                 <th scope="col">Unit</th>
                 <th scope="col">Problem</th>
                 <th scope="col">Mechanic</th>
+                <th scope="col">Status</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -40,8 +41,9 @@
                 </td>
                 <td>{{ \Carbon\Carbon::parse($tenance->date)->format('d/m/Y') }}</td>
                 <td>{{ $tenance->unit->noReg }}</td>
-                <td>{{ $tenance->problem }}</td>
+                <td>{{ Illuminate\Support\str::of($tenance->problem)->limit(20) }}</td>
                 <td>{{ $tenance->mechanic }}</td>
+                <td>{{ $tenance->status }}</td>
                 <td>
                     <a
                         href="/dashboard/maintenances/{{$tenance->id }}"
@@ -53,12 +55,12 @@
                     class="badge bg-success mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="print SPK"
                     ><span data-feather="printer"></span></a>
                     <a
-                        href="/dashboard/tenance/{{$tenance->id }}/edit"
+                        href="/dashboard/maintenances/{{$tenance->id }}/edit"
                         class="badge bg-warning mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
                         ><span data-feather="edit"></span
                     ></a>
                     <form
-                        action="/dashboard/maintenance/{{ $tenance->id }}"
+                        action="/dashboard/maintenances/{{ $tenance->id }}"
                         method="post"
                         class="d-inline"
                     >

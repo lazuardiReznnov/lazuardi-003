@@ -11,7 +11,8 @@ class Maintenance extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $with = ['partTenance', 'unit'];
+    protected $with = ['unit'];
+    protected $load = ['partTenance'];
 
     public function unit()
     {

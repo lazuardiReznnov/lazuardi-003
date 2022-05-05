@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Maintenance;
+use App\Models\PartTenance;
 use Illuminate\Http\Request;
 
 class DashboardMaintenance extends Controller
@@ -48,7 +49,12 @@ class DashboardMaintenance extends Controller
      */
     public function show(Maintenance $maintenance)
     {
-        //
+        return view('dashboard.maintenance.show', [
+            'maintenance' => $maintenance,
+            'parts' => PartTenance::where('maintenance_id', $maintenance->id)
+                ->latest()
+                ->paginate(10),
+        ]);
     }
 
     /**
