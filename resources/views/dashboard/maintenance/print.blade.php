@@ -24,75 +24,78 @@
   </head>
   <body>
     <div class="container-fluid">
-    <div class="card">
-      <div class="card-body">
-        <div class="row justify-content-center">
-          <div class="col-md-2">
-            <img src="/img/logo.png" width="125px" />
+      <div class="card">
+       <div class="card-body">
+       
+          <div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            
+              <span class="fs-4">Work Order</span>
+            
+            </header>
           </div>
-          <div class="col-md-10">
-            <h1 class="text-center p-4">Work Order</h1>
-          </div>
-        </div>
-        <div class="row p-2 mt-4">
-          <div class="col-2 head">
-            Date
-          </div>
-          <div class="col-8">
-            : {{ \Carbon\Carbon::parse($maintenance->date)->format('d/m/Y') }}
-          </div>
-        </div>
-        <div class="row p-2">
-          <div class="col-2 head">
-            Unit
-          </div>
-          <div class="col-8">
-            : {{ $maintenance->unit->noReg }}
-          </div>
-        </div>
 
-        <div class="row p-2">
-          <div class="col-2 head">
-            Problem
-          </div>
-          <div class="col-8">
-            : {{$maintenance->problem}}
-          </div>
-        </div>
-        <div class="row p-2">
-          <div class="col-2 head">
-            Desc Repair
-          </div>
-          <div class="col-8">
-            : {{$maintenance->analysis}}
-          </div>
-        </div> 
-<div class="row justify-content-end col-10">
-  <div class="col-4">
-    <p>Serang, {{ \Carbon\Carbon::parse($maintenance->date)->format('d/m/Y') }}</p>
-  </div>
-</div>
-          <div class="row justify-content-between mt-4 col-10">
-            <div class="col-md-4">
-             
-              <p class="t-sign">
-                (..........................)
-                <br />
-                Mechanic
-              </p>
+            <div class="container">
+              <div class="row p-2 mt-4">
+                <div class="col-2 head">
+                  Date
+                </div>
+                <div class="col-8">
+                  : {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}
+                </div>
+              </div>
+              <div class="row p-2">
+                <div class="col-2 head">
+                  Unit
+                </div>
+                <div class="col-8">
+                  : {{ $maintenance->unit->noReg }}
+                </div>
+              </div>
+
+              <div class="row p-2">
+                <div class="col-2 head">
+                  Problem
+                </div>
+                <div class="col-8">
+                  : {{$maintenance->problem}}
+                </div>
+              </div>
+              <div class="row p-2">
+                <div class="col-2 head">
+                  Desc Repair
+                </div>
+                <div class="col-8">
+                  : {{$maintenance->analysis}}
+                </div>
+              </div> 
+            <div class="row justify-content-end col">
+            <div class="col-4">
+            <p>Serang, {{ \Carbon\Carbon::parse($maintenance->date)->format(' d F Y') }}</p>
             </div>
-            <div class="col-md-4">
-              <p class="t-sign">
-                (..........................)
-                <br />
-                Administrator
-              </p>
             </div>
-          </div>
-        </div>
+                <div class="row justify-content-between mt-4">
+                  <div class="col-md-4">
+                  
+                    <p class="t-sign">
+                      (..........................)
+                      <br />
+                      Mechanic
+                    </p>
+                  </div>
+                  <div class="col-md-4">
+                    <p class="t-sign">
+                      (..........................)
+                      <br />
+                      Administrator
+                    </p>
+                  </div>
+                </div>
+            </div>
+       </div>
       </div>
     </div>
-  </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
