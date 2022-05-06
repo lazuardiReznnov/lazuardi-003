@@ -27,7 +27,15 @@ class DashboardPartTenanceController extends Controller
                 'qty' => 'required',
             ]);
 
+            $sparepart = sparepart::where(
+                'id',
+                $validatedData['sparepart_id']
+            )->first();
+            $update_part = $sparepart->qty - $validatedData['qty'];
+
             PartTenance::create($validatedData);
+
+            $sparepart->update(['qty' => $update_part]);
 
             return redirect(
                 '/dashboard/maintenances/' . request('maintenance_id')

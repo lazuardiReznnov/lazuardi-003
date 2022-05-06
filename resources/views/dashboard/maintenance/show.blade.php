@@ -39,20 +39,45 @@
 </div>
 </section>
 
+<section id="problem">
+  <h2>Repair Detail</h2>
+  <div class="row p-2 mt-4">
+      <div class="col-2 head">
+        Date
+      </div>
+      <div class="col-8">
+        : {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}
+      </div>
+    </div>
+  
+    <div class="row p-2">
+      <div class="col-2 head">
+        Problem
+      </div>
+      <div class="col-8">
+        : {{$maintenance->problem}}
+      </div>
+    </div>
+    <div class="row p-2">
+      <div class="col-2 head">
+        
+      </div>
+      <div class="col-8">
+        : {{$maintenance->analysis}}
+      </div>
+      <div class="row p-2">
+          <div class="col-2 head">
+            Status
+          </div>
+          <div class="col-8">
+            : {{$maintenance->status}}
+          </div>
+    </div> 
+  </section>
+
 <section id="spek">
 <h2 class="mb-2 mt-4">Spesifikasi</h2>
 <div class="row my-5">
-    <div class="col-md-3">
-        @if($maintenance->unit->img)
-            <div style="max-height: 350px; overflow:hidden">
-                  <img src="{{ asset('storage/'. $maintenance->unit->img) }}" class="card-img-top img-thumbnail rounded-circle mt-3" alt="..." class="img-fluid">    
-            </div>
-        @else
-        <div style="max-height: 250px; overflow:hidden">
-            <img src="  https://source.unsplash.com/350x350/?car" class="card-img-top img-thumbnail rounded-circle mt-3" alt="..." class="img-fluid" >
-          </div>
-        @endif
-    </div>
     <div class="col-md-5">
         <ul class="list-group">
             <li class="list-group-item active" aria-current="true">{{ $maintenance->unit->noReg }}</li>
@@ -69,41 +94,7 @@
 </div>
 </section>
 
-<section id="problem">
-<h2>Repair Detail</h2>
-<div class="row p-2 mt-4">
-    <div class="col-2 head">
-      Date
-    </div>
-    <div class="col-8">
-      : {{ \Carbon\Carbon::parse($maintenance->date)->format('d/m/Y') }}
-    </div>
-  </div>
 
-  <div class="row p-2">
-    <div class="col-2 head">
-      Problem
-    </div>
-    <div class="col-8">
-      : {{$maintenance->problem}}
-    </div>
-  </div>
-  <div class="row p-2">
-    <div class="col-2 head">
-      Desc Repair
-    </div>
-    <div class="col-8">
-      : {{$maintenance->analysis}}
-    </div>
-    <div class="row p-2">
-        <div class="col-2 head">
-          Status
-        </div>
-        <div class="col-8">
-          : {{$maintenance->status}}
-        </div>
-  </div> 
-</section>
 
 <section id="part">
      <!-- Alert -->
