@@ -106,6 +106,12 @@
 </section>
 
 <section id="part">
+     <!-- Alert -->
+     @if(session()->has('success'))
+     <div class="alert alert-success" role="alert">
+         {{ session("success") }}
+     </div>
+     @endif
 <h2 class="mt-3">Sparepart</h2>
 <a href="/dashboard/maintenance/partTenances/{{$maintenance->id}}" class="btn btn-primary mb-3"
 ><span data-feather="plus-circle"></span> Add </a

@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-lg-6">
         <form
-            action="/dashboard/maintenance/partTenances/store"
+            action="/dashboard/maintenance/partTenances"
             method="post"
             enctype="multipart/form-data"
         >

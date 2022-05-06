@@ -93,3 +93,7 @@ Route::get('/dashboard/maintenance/partTenances/{maintenance:id}', [
     DashboardPartTenanceController::class,
     'create',
 ]);
+Route::post('/dashboard/maintenance/partTenances', [
+    DashboardPartTenanceController::class,
+    'store',
+]);
