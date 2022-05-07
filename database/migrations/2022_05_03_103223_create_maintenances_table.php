@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->text('analysis');
             $table->string('mechanic');
             $table->text('problem');
-            $table->enum('status', ['work', 'end'])->default('end');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

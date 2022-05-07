@@ -97,3 +97,13 @@ Route::post('/dashboard/maintenance/partTenances', [
     DashboardPartTenanceController::class,
     'store',
 ]);
+
+Route::get('/dashboard/maintenance/{maintenance:id}/edit', [
+    DashboardMaintenance::class,
+    'editstatus',
+]);
+
+Route::put('dashboard/maintenance/{maintenance:id}', [
+    DashboardMaintenance::class,
+    'statusupdate',
+]);

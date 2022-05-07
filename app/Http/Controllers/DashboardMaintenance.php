@@ -97,4 +97,47 @@ class DashboardMaintenance extends Controller
             'maintenance' => $maintenance,
         ]);
     }
+
+    public function editstatus(Maintenance $maintenance)
+    {
+        $states = [
+            [
+                'status' => 0,
+                'desc' => 'mulai Perbaikan',
+            ],
+            [
+                'status' => 25,
+                'desc' => 'Analisis',
+            ],
+            [
+                'status' => 50,
+                'desc' => 'Part Wait',
+            ],
+            [
+                'status' => 75,
+                'desc' => 'Fhinishing',
+            ],
+            [
+                'status' => 100,
+                'desc' => 'End',
+            ],
+        ];
+        return view('dashboard.maintenance.editstatus', [
+            'maintenance' => $maintenance,
+            'states' => $states,
+        ]);
+    }
+
+    public function statusupdate(Request $request, Maintenance $maintenance)
+    {
+        $validateData = $request->validate([
+            'status' => 'required',
+        ]);
+        Maintenance::Where('id', $maintenance->id)->update($validateData);
+
+        return redirect('/dashboard/maintenances/' . $maintenance->id)->with(
+            'success',
+            'Status Has Been Updated.!'
+        );
+    }
 }

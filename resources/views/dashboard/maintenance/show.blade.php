@@ -6,7 +6,15 @@
 >
     <h1 class="h2">Maintenance Unit : {{ $maintenance->unit->noReg }}</h1>
 </div>
-<section id="link">
+
+<!-- Alert -->
+@if(session()->has('success'))
+<div class="alert alert-success" role="alert">
+    {{ session("success") }}
+</div>
+@endif
+
+<section id="link" class="my-3">
 <div class="row">
     <div class="col">
         <a
@@ -37,10 +45,61 @@
     </form>
     </div>
 </div>
+
 </section>
 
-<section id="problem">
-  <h2>Repair Detail</h2>
+<section id="spek">
+  <div class="row my-5">
+      <div class="col-md-5">
+          <ul class="list-group">
+              <li class="list-group-item active" aria-current="true">{{ $maintenance->unit->noReg }}</li>
+              <li class="list-group-item"><span class="fw-bold">Merk : </span>
+                  {{ $maintenance->unit->Models->brand->name }} 
+               {{ $maintenance->unit->models->name }}
+              </li>
+              <li class="list-group-item"><span class="fw-bold">Vin : </span>{{ $maintenance->unit->vin }}</li>
+              <li class="list-group-item"><span class="fw-bold">Engine Number : </span>{{ $maintenance->unit->engineNum }}</li>
+              <li class="list-group-item"><span class="fw-bold">Year : </span>{{ $maintenance->unit->year}}</li>
+              <li class="list-group-item"><span class="fw-bold">Color : </span>{{ $maintenance->unit->color}}</li>
+            </ul>
+      </div>
+      <div class="col-md-5">
+        
+      
+      <ul class="list-group">
+        <li class="list-group-item active" aria-current="true">STATUS PERBAIKAN</li>
+        <li class="list-group-item"> 
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{ $maintenance->status }}%;" aria-valuenow="{{ $maintenance->status }}" aria-valuemin="0" aria-valuemax="100">{{ $maintenance->status }}%</div>
+             </div>
+            <p class="text-muted"> 
+                @if($maintenance->status===0)
+                  {{ 'Mulai Perbaikan' }} 
+                @elseif($maintenance->status===25)
+                  {{ 'Analisis' }}
+                @elseif($maintenance->status===50)
+                  {{'Part Wait'}}
+                @elseif($maintenance->status===75)
+                  {{'Fhinishing'}}
+                @elseif($maintenance->status===100)
+                  {{ 'End'}}
+                @endif
+            </p>
+            <a
+            href="/dashboard/maintenance/{{$maintenance->id }}/edit"
+            class="btn btn-warning mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Status"
+            ><span data-feather="edit"></span
+        ></a>
+      </li>
+       
+      </ul>
+  </div>
+  </section>
+  
+
+<section id="problem" class="my-3">
+  <h2>REPAIR DETAIL</h2>
+
   <div class="row p-2 mt-4">
       <div class="col-2 head">
         Date
@@ -65,44 +124,14 @@
       <div class="col-8">
         : {{$maintenance->analysis}}
       </div>
-      <div class="row p-2">
-          <div class="col-2 head">
-            Status
-          </div>
-          <div class="col-8">
-            : {{$maintenance->status}}
-          </div>
-    </div> 
+      <div class="row">
+       
+      </div>
   </section>
-
-<section id="spek">
-<h2 class="mb-2 mt-4">Spesifikasi</h2>
-<div class="row my-5">
-    <div class="col-md-5">
-        <ul class="list-group">
-            <li class="list-group-item active" aria-current="true">{{ $maintenance->unit->noReg }}</li>
-            <li class="list-group-item"><span class="fw-bold">Merk : </span>
-                {{ $maintenance->unit->Models->brand->name }} 
-             {{ $maintenance->unit->models->name }}
-            </li>
-            <li class="list-group-item"><span class="fw-bold">Vin : </span>{{ $maintenance->unit->vin }}</li>
-            <li class="list-group-item"><span class="fw-bold">Engine Number : </span>{{ $maintenance->unit->engineNum }}</li>
-            <li class="list-group-item"><span class="fw-bold">Year : </span>{{ $maintenance->unit->year}}</li>
-            <li class="list-group-item"><span class="fw-bold">Color : </span>{{ $maintenance->unit->color}}</li>
-          </ul>
-    </div>
-</div>
-</section>
-
 
 
 <section id="part">
-     <!-- Alert -->
-     @if(session()->has('success'))
-     <div class="alert alert-success" role="alert">
-         {{ session("success") }}
-     </div>
-     @endif
+     
 <h2 class="mt-3">Sparepart</h2>
 <a href="/dashboard/maintenance/partTenances/{{$maintenance->id}}" class="btn btn-primary mb-3"
 ><span data-feather="plus-circle"></span> Add </a

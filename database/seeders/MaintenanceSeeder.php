@@ -18,29 +18,27 @@ class MaintenanceSeeder extends Seeder
         Maintenance::create([
             'unit_id' => 1,
             'date' => '2022/05/04',
-            'analysis' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-            quisquam placeat quasi! Itaque, perspiciatis possimus!',
-            'problem' => 'R Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-            quisquam placeat quasi! Itaque, perspiciatis possimus!',
+            'analysis' => 'Service Berkala, Cek Rem, Cek Roda RR RH ',
+            'problem' =>
+                'Mobil Brebet, Rem Ngebuang Kekanan, Roda RR RH Keluar Oli',
             'mechanic' => 'Ali',
+            'status' => 25,
         ]);
         Maintenance::create([
             'unit_id' => 2,
             'date' => '2022/05/03',
-            'analysis' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-            quisquam placeat quasi! Itaque, perspiciatis possimus!',
-            'problem' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-            quisquam placeat quasi! Itaque, perspiciatis possimus!',
+            'analysis' => 'Service Berkala. Cek Kelistrikan ',
+            'problem' => 'Oli Tekor,  Sein LH Mati ',
             'mechanic' => 'Nurdin',
+            'Status' => 50,
         ]);
         Maintenance::create([
             'unit_id' => 3,
             'date' => '2022/05/05',
-            'analysis' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-            quisquam placeat quasi! Itaque, perspiciatis possimus!',
-            'problem' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-            quisquam placeat quasi! Itaque, perspiciatis possimus!',
+            'analysis' => 'Cek Roda FR ',
+            'problem' => 'Roda FR LH Kemakan Sebelah ',
             'mechanic' => 'Tardi',
+            'Status' => 75,
         ]);
     }
 }
