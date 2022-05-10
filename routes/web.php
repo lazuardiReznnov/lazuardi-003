@@ -107,3 +107,13 @@ Route::put('dashboard/maintenance/{maintenance:id}', [
     DashboardMaintenance::class,
     'statusupdate',
 ]);
+
+Route::get('dashboard/maintenance/partTenances/{partTenance:id}/edit', [
+    DashboardPartTenanceController::class,
+    'edit',
+]);
+
+Route::put('dashboard/maintenance/partTenances/{partTenance:id}', [
+    DashboardPartTenanceController::class,
+    'update',
+]);

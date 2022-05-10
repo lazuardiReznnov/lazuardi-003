@@ -156,7 +156,7 @@
             <td>{{ $part->qty }}</td>
             <td>
               <a
-              href="/dashboard/maintenance/parttenances/{{$part->id }}/edit"
+              href="/dashboard/maintenance/partTenances/{{$part->id }}/edit"
               class="badge bg-warning mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
               ><span data-feather="edit"></span
           ></a>
