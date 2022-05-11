@@ -32,7 +32,7 @@ class Unit extends Model
 
     public function grup()
     {
-        return $this->belongsTo(Unit::class);
+        return $this->belongsTo(Grup::class);
     }
 
     public function maintenance()

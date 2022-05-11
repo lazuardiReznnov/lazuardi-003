@@ -38,6 +38,7 @@
                     <li class="list-group-item"><span class="fw-bold">Color : </span> {{ $unit->color }}</li>
                     <li class="list-group-item"><span class="fw-bold">Year : </span> {{ $unit->year }}</li>
                     <li class="list-group-item"><span class="fw-bold">Owner : </span> {{ $unit->owner->name }}</li>
+                    <li class="list-group-item"><span class="fw-bold">Grup : </span> {{ $unit->grup->name }}</li>
                   </ul>
              </div>
          </div>

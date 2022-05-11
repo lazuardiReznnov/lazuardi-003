@@ -43,6 +43,16 @@ Route::get('/dashboard/unit/getmodels', [
     'getmodels',
 ]);
 
+Route::post('/dashboard/Units/file-import', [
+    DashboardUnitController::class,
+    'fileImport',
+]);
+
+Route::get('/dashboard/Units/file-import-create', [
+    DashboardUnitController::class,
+    'fileImportCreate',
+]);
+
 Route::get('/dashboard/unit/checkSlug', [
     DashboardUnitController::class,
     'checkSlug',
@@ -84,32 +94,29 @@ Route::get('/dashboard/stock/getsparepart', [
 
 Route::resource('/dashboard/maintenances', DashboardMaintenance::class);
 
-Route::controller(DashboardMaintenance::class)->group(function(){
-    Route::get('/dashboard/maintenance/print/{maintenance:id}','print');
-    
-    
+Route::controller(DashboardMaintenance::class)->group(function () {
+    Route::get('/dashboard/maintenance/print/{maintenance:id}', 'print');
+
     Route::get('/dashboard/maintenance/{maintenance:id}/edit', 'editstatus');
-    
-    Route::put('dashboard/maintenance/{maintenance:id}','statusupdate');
+
+    Route::put('dashboard/maintenance/{maintenance:id}', 'statusupdate');
 });
 
-
-
-
-Route::controller(DashboardPartTenanceController::class)->group(function(){
-    Route::get('/dashboard/maintenance/partTenances/{maintenance:id}',
-        'create',
+Route::controller(DashboardPartTenanceController::class)->group(function () {
+    Route::get(
+        '/dashboard/maintenance/partTenances/{maintenance:id}',
+        'create'
     );
-    Route::post('/dashboard/maintenance/partTenances', 
-        'store',
+    Route::post('/dashboard/maintenance/partTenances', 'store');
+    Route::get(
+        'dashboard/maintenance/partTenances/{partTenance:id}/edit',
+        'edit'
     );
-    Route::get('dashboard/maintenance/partTenances/{partTenance:id}/edit',
-        'edit');
-    
-    Route::put('dashboard/maintenance/partTenances/{partTenance:id}', 
-        'update',
+
+    Route::put('dashboard/maintenance/partTenances/{partTenance:id}', 'update');
+
+    Route::delete(
+        'dashboard/maintenance/partTenances/{partTenance:id}',
+        'destroy'
     );
-    
-    Route::delete('dashboard/maintenance/partTenances/{partTenance:id}',  'destroy'
-    ); 
 });

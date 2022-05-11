@@ -181,4 +181,9 @@ class DashboardUnitController extends Controller
         $slug = SlugService::createSlug(Unit::class, 'slug', $request->noReg);
         return response()->json(['slug' => $slug]);
     }
+
+    public function fileImportCreate()
+    {
+        return view('dashboard.units.file-import-create');
+    }
 }

@@ -6,7 +6,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-6">
         <form
             action="/dashboard/units"
             method="post"
@@ -23,6 +23,7 @@
                     value="{{ old('noReg') }}"
                     required
                     autofocus
+                    placeholder="X XXXX XXX"
                 />
                 @error('noReg')
                 <div class="invalid-feedback">
@@ -115,7 +116,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="vin" class="form-label">Vin</label>
+                <label for="vin" class="form-label">Vin Number</label>
                 <input
                     type="text"
                     name="vin"
@@ -123,7 +124,7 @@
                     id="vin"
                     value="{{ old('vin') }}"
                     required
-                    autofocus
+                    placeholder="xxxxxxx"
                 />
                 @error('vin')
                 <div class="invalid-feedback">
@@ -141,6 +142,7 @@
                     id="engineNum"
                     value="{{ old('engineNum') }}"
                     required
+                    placeholder="xxxx"
                 />
                 @error('engineNum')
                 <div class="invalid-feedback">
@@ -148,11 +150,11 @@
                 </div>
                 @enderror
             </div>
-            <div class="mb-3">
+            <div class="mb-3 col-md-4">
                 <label for="year" class="form-label">Year</label>
                 @php $now = date('Y'); @endphp
                 <select name="year" class="form-select">
-                    <option selected>--Pilih Tahun</option>
+                    <option selected>--Choice Year--</option>
                     @for ($a=2012;$a<=$now;$a++)
 
                     <option value="{{ $a }}">{{ $a }}</option>
@@ -164,7 +166,7 @@
                 </div>
                 @enderror
             </div>
-            <div class="mb-3">
+            <div class="mb-3 col-md-4">
                 <label for="color" class="form-label">Color</label>
                 <input
                     type="text"
@@ -198,7 +200,7 @@
                 </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Create Post</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
 </div>
