@@ -84,40 +84,32 @@ Route::get('/dashboard/stock/getsparepart', [
 
 Route::resource('/dashboard/maintenances', DashboardMaintenance::class);
 
-Route::get('/dashboard/maintenance/print/{maintenance:id}', [
-    DashboardMaintenance::class,
-    'print',
-]);
+Route::controller(DashboardMaintenance::class)->group(function(){
+    Route::get('/dashboard/maintenance/print/{maintenance:id}','print');
+    
+    
+    Route::get('/dashboard/maintenance/{maintenance:id}/edit', 'editstatus');
+    
+    Route::put('dashboard/maintenance/{maintenance:id}','statusupdate');
+});
 
-Route::get('/dashboard/maintenance/partTenances/{maintenance:id}', [
-    DashboardPartTenanceController::class,
-    'create',
-]);
-Route::post('/dashboard/maintenance/partTenances', [
-    DashboardPartTenanceController::class,
-    'store',
-]);
 
-Route::get('/dashboard/maintenance/{maintenance:id}/edit', [
-    DashboardMaintenance::class,
-    'editstatus',
-]);
 
-Route::put('dashboard/maintenance/{maintenance:id}', [
-    DashboardMaintenance::class,
-    'statusupdate',
-]);
 
-Route::get('dashboard/maintenance/partTenances/{partTenance:id}/edit', [
-    DashboardPartTenanceController::class,
-    'edit',
-]);
-
-Route::put('dashboard/maintenance/partTenances/{partTenance:id}', [
-    DashboardPartTenanceController::class,
-    'update',
-]);
-
-Route::delete('dashboard/maintenance/partTenances/{partTenance:id}', [
-    DashboardPartTenanceController::class, 'destroy'
-]);
+Route::controller(DashboardPartTenanceController::class)->group(function(){
+    Route::get('/dashboard/maintenance/partTenances/{maintenance:id}',
+        'create',
+    );
+    Route::post('/dashboard/maintenance/partTenances', 
+        'store',
+    );
+    Route::get('dashboard/maintenance/partTenances/{partTenance:id}/edit',
+        'edit');
+    
+    Route::put('dashboard/maintenance/partTenances/{partTenance:id}', 
+        'update',
+    );
+    
+    Route::delete('dashboard/maintenance/partTenances/{partTenance:id}',  'destroy'
+    ); 
+});
