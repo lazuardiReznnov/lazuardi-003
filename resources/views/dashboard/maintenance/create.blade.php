@@ -101,6 +101,7 @@
                     class="form-control @error('mechanic') is-invalid @enderror"
                     id="mechanic"
                     placeholder="Mechanic Name"
+                    name="mechanic"
                 />
                 @error('mechanic')
                 <div class="invalid-feedback">

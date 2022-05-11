@@ -41,7 +41,21 @@ class DashboardMaintenance extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $validateData = $request->validate([
+            'date' => 'required',
+            'unit_id'=> 'required',
+            'problem' => 'required',
+            'analysis'=>'required|max:255',
+            'mechanic'=>'required'
+        ]);
+
+        Maintenance::create($validateData);
+
+        return redirect('/dashboard/maintenances')->with(
+            'success',
+            'New Data Has Been aded.!'
+        );
     }
 
     /**
