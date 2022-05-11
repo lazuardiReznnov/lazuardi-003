@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Maintenance;
 use App\Models\PartTenance;
+use App\Models\sparepart;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 
@@ -82,7 +83,9 @@ class DashboardMaintenance extends Controller
      */
     public function edit(Maintenance $maintenance)
     {
-        //
+        return view('dashboard.maintenance.edit',[
+        'maintenance'=>$maintenance,
+        'units'=>Unit::All()]);
     }
 
     /**
@@ -94,7 +97,19 @@ class DashboardMaintenance extends Controller
      */
     public function update(Request $request, Maintenance $maintenance)
     {
-        //
+        $validateData = $request->validate([
+            'date' => 'required',
+            'unit_id'=> 'required',
+            'problem' => 'required',
+            'analysis'=>'required|max:255',
+            'mechanic'=>'required'
+        ]);
+
+        Maintenance::where('id',$maintenance->id)->update($validateData);
+        return redirect('/dashboard/maintenances')->with(
+            'success',
+            'Data Has Been Updated.!'
+        );
     }
 
     /**
@@ -105,7 +120,22 @@ class DashboardMaintenance extends Controller
      */
     public function destroy(Maintenance $maintenance)
     {
-        //
+      
+        // Maintenance::destroy($maintenance->id);
+
+    //     $sparepart = PartTenance::where('maintenance_id',$maintenance->id)->get();
+    //    foreach($sparepart as $part){
+    //             sparepart::where('id', $part->sparepart_id)->update(['qty'=>])
+    //    }
+
+            // if($sparepart !=""){
+            //    dd($sparepart);
+            // }
+
+        //     // PartTenance::where('maintenance_id',$maintenance->id)->delete();
+
+            
+        // }
     }
 
     public function print(Maintenance $maintenance)
