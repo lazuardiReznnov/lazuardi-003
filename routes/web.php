@@ -117,3 +117,7 @@ Route::put('dashboard/maintenance/partTenances/{partTenance:id}', [
     DashboardPartTenanceController::class,
     'update',
 ]);
+
+Route::delete('dashboard/maintenance/partTenances/{partTenance:id}', [
+    DashboardPartTenanceController::class, 'destroy'
+]);

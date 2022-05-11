@@ -161,7 +161,7 @@
               ><span data-feather="edit"></span
           ></a>
           <form
-              action="/dashboard/maintenance/parttenances/{{ $part->id }}"
+              action="/dashboard/maintenance/partTenances/{{ $part->id }}"
               method="post"
               class="d-inline"
           >

@@ -75,15 +75,26 @@ class DashboardPartTenanceController extends Controller
             sparepart::where('id', $partTenance->sparepart_id)->update([
                 'qty' => $part_update1,
             ]);
-            $sparepart = sparepart::where('id', $request->sparepart_id);
-            $sparepart_qty = $sparepart->first();
-            $part_update2 = $sparepart_qty->qty - $validatedData['qty'];
-            $sparepart->update(['qty' => $part_update2]);
+           
+            $part_update2 = $partTenance->sparepart->qty - $validatedData['qty'];
+            sparepart::where('id', $request->sparepart_id)->update(['qty' => $part_update2]);
         }
 
         PartTenance::where('id', $partTenance->id)->update($validatedData);
         return redirect(
             '/dashboard/maintenances/' . request('maintenance_id')
         )->with('success', 'New Sparepart Data Has Been aded.!');
+    }
+
+    public function destroy(PartTenance $partTenance){
+
+        PartTenance::destroy($partTenance->id);
+        
+        $partUpdate = $partTenance->sparepart->qty+$partTenance->qty;
+        sparepart::where('id',$partTenance->sparepart_id)->update(['qty'=>$partUpdate]);
+
+        return redirect(
+            '/dashboard/maintenances/' . $partTenance->maintenance_id
+        )->with('success', ' Data Has Been Deleted.!');
     }
 }
