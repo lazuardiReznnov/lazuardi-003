@@ -29,8 +29,8 @@ class DashboardMaintenance extends Controller
      */
     public function create()
     {
-        return view('dashboard.maintenance.create',[
-            'units'=> Unit::all()
+        return view('dashboard.maintenance.create', [
+            'units' => Unit::all(),
         ]);
     }
 
@@ -42,13 +42,12 @@ class DashboardMaintenance extends Controller
      */
     public function store(Request $request)
     {
-        
         $validateData = $request->validate([
             'date' => 'required',
-            'unit_id'=> 'required',
+            'unit_id' => 'required',
             'problem' => 'required',
-            'analysis'=>'required|max:255',
-            'mechanic'=>'required'
+            'analysis' => 'required|max:255',
+            'mechanic' => 'required',
         ]);
 
         Maintenance::create($validateData);
@@ -83,9 +82,10 @@ class DashboardMaintenance extends Controller
      */
     public function edit(Maintenance $maintenance)
     {
-        return view('dashboard.maintenance.edit',[
-        'maintenance'=>$maintenance,
-        'units'=>Unit::All()]);
+        return view('dashboard.maintenance.edit', [
+            'maintenance' => $maintenance,
+            'units' => Unit::All(),
+        ]);
     }
 
     /**
@@ -99,13 +99,13 @@ class DashboardMaintenance extends Controller
     {
         $validateData = $request->validate([
             'date' => 'required',
-            'unit_id'=> 'required',
+            'unit_id' => 'required',
             'problem' => 'required',
-            'analysis'=>'required|max:255',
-            'mechanic'=>'required'
+            'analysis' => 'required|max:255',
+            'mechanic' => 'required',
         ]);
 
-        Maintenance::where('id',$maintenance->id)->update($validateData);
+        Maintenance::where('id', $maintenance->id)->update($validateData);
         return redirect('/dashboard/maintenances')->with(
             'success',
             'Data Has Been Updated.!'
@@ -120,22 +120,23 @@ class DashboardMaintenance extends Controller
      */
     public function destroy(Maintenance $maintenance)
     {
-      
-        // Maintenance::destroy($maintenance->id);
+        $sparepart = PartTenance::where(
+            'maintenance_id',
+            $maintenance->id
+        )->get();
 
-    //     $sparepart = PartTenance::where('maintenance_id',$maintenance->id)->get();
-    //    foreach($sparepart as $part){
-    //             sparepart::where('id', $part->sparepart_id)->update(['qty'=>])
-    //    }
-
-            // if($sparepart !=""){
-            //    dd($sparepart);
-            // }
-
-        //     // PartTenance::where('maintenance_id',$maintenance->id)->delete();
-
-            
-        // }
+        foreach ($sparepart as $part) {
+            $part_update = $part->sparepart->qty + $part->qty;
+            sparepart::where('id', $part->sparepart_id)->update([
+                'qty' => $part_update,
+            ]);
+        }
+        PartTenance::where('maintenance_id', $maintenance->id)->delete();
+        Maintenance::destroy($maintenance->id);
+        return redirect('/dashboard/maintenances')->with(
+            'success',
+            'Data Has Been Deleted.!'
+        );
     }
 
     public function print(Maintenance $maintenance)
