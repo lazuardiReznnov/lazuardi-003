@@ -43,12 +43,12 @@ Route::get('/dashboard/unit/getmodels', [
     'getmodels',
 ]);
 
-Route::post('/dashboard/Units/file-import', [
+Route::post('/dashboard/unit/file-import', [
     DashboardUnitController::class,
     'fileImport',
 ]);
 
-Route::get('/dashboard/Units/file-import-create', [
+Route::get('/dashboard/unit/file-import-create', [
     DashboardUnitController::class,
     'fileImportCreate',
 ]);

@@ -19,12 +19,13 @@ class UnitImport implements ToModel
             'type_id' => $row[0],
             'owner_id' => $row[1],
             'models_id' => $row[2],
-            'NoReg' => $row[3],
-            'Slug' => $row[4],
-            'vin' => $row[5],
-            'enginNumber' => $row[6],
-            'year' => $row[7],
-            'color' => $row[8],
+            'grup_id' => $row[3],
+            'noReg' => $row[4],
+            'Slug' => $row[5],
+            'vin' => $row[6],
+            'enginNumber' => $row[7],
+            'year' => $row[8],
+            'color' => $row[9],
         ]);
     }
 }

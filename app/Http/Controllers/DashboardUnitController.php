@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\UnitImport;
 use App\Models\Unit;
 use App\Models\Brand;
 use App\Models\Owner;
@@ -12,6 +13,7 @@ use Illuminate\support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardUnitController extends Controller
 {
@@ -184,6 +186,15 @@ class DashboardUnitController extends Controller
 
     public function fileImportCreate()
     {
-        return view('dashboard.units.file-import-create');
+        return view('dashboard.unit.units.file-import-create');
+    }
+    public function fileImport(Request $request)
+    {
+        
+        Excel::import(new UnitImport, $request->file('excl'));
+        return redirect('/dashboard/units')->with(
+            'success',
+            'New Units Has Been Aded.!'
+        );
     }
 }
