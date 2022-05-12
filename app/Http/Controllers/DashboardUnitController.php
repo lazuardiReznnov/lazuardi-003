@@ -25,7 +25,7 @@ class DashboardUnitController extends Controller
     public function index()
     {
         return view('dashboard.unit.units.index', [
-            'units' => Unit::latest()->paginate(),
+            'units' => Unit::latest()->paginate(10),
         ]);
     }
 
@@ -188,6 +188,7 @@ class DashboardUnitController extends Controller
     {
         return view('dashboard.unit.units.file-import-create');
     }
+
     public function fileImport(Request $request)
     {
         $validatedData = $request->validate([
