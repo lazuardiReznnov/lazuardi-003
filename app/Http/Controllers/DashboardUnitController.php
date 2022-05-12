@@ -190,11 +190,16 @@ class DashboardUnitController extends Controller
     }
     public function fileImport(Request $request)
     {
-        
-        Excel::import(new UnitImport, $request->file('excl'));
-        return redirect('/dashboard/units')->with(
-            'success',
-            'New Units Has Been Aded.!'
-        );
+        $validatedData = $request->validate([
+            'excl' => 'required:mimes:xlsx,xls,csv|max:2048',
+        ]);
+
+        if ($request->file('excl')) {
+            Excel::import(new UnitImport(), $validatedData['excl']);
+            return redirect('/dashboard/units')->with(
+                'success',
+                'New Units Has Been Aded.!'
+            );
+        }
     }
 }

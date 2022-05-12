@@ -18,11 +18,11 @@
                 <label for="image" class="form-label">Upload Excel</label>
 
                 <input
-                    class="form-control @error('image') is-invalid @enderror"
+                    class="form-control @error('excl') is-invalid @enderror"
                     type="file"
                     id="excl"
                     name="excl"
-                    onchange="previewImage()"
+                    placeholder="choice file"
                 />
                 @error('excl')
                 <div class="invalid-feedback">

@@ -8,8 +8,8 @@
     <a href="/dashboard/units/create" class="btn btn-primary mb-3"
         ><span data-feather="plus-circle"></span> Add
     </a>
-    <a href="/dashboard/units/file-import-create" class="btn btn-primary mb-3"
-        ><span data-feather="plus-circle"></span> Add
+    <a href="/dashboard/unit/file-import-create" class="btn btn-primary mb-3"
+        ><span data-feather="file-text"></span> Add
     </a>
 
     <!-- Alert -->
