@@ -4,18 +4,30 @@
 >
     <h1 class="h2">Models List</h1>
 </div>
-<div class="table-responsive col-lg-8">
-    <a href="/dashboard/unit/models/create" class="btn btn-primary mb-3"
-        ><span data-feather="plus-circle"></span> Add </a
-    >
 
-    <!-- Alert -->
-    @if(session()->has('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session("success") }}
+<div class="row">
+    <div class="col-md-5">
+        <!-- Alert -->
+        @if(session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session("success") }}
+        </div>
+        @endif
     </div>
-    @endif
-
+</div>
+<div class="row">
+    <div class="col-md-6 ms-auto">
+        <a href="/dashboard/unit/models/create" class="btn btn-primary mb-3"
+            ><span data-feather="plus-circle"></span> Add
+        </a>
+        <a
+            href="/dashboard/unit/models/file-import-create"
+            class="btn btn-primary mb-3"
+            ><span data-feather="file-text"></span> Add
+        </a>
+    </div>
+</div>
+<div class="table-responsive col-lg-8">
     <!-- data Tables -->
     <table class="table table-striped table-sm">
         <thead>

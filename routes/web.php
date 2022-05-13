@@ -25,28 +25,16 @@ Route::get('/', function () {
     return view('dashboard.index');
 });
 
-// 
-Route::resource(
-    '/dashboard/unit/types',
-    DashboardTypesController::class
-)->except('show');
 
-Route::get('/dashboard/unit/types/checkSlug', [
-    DashboardTypesController::class,
-    'checkSlug',
-]);
+// Route Type Unit
+Route::resource('/dashboard/unit/types',DashboardTypesController::class)->except('show');
 
-Route::post('/dashboard/unit/types/file-import', [
-    DashboardTypesController::class,
-    'fileImport',
-]);
-
-Route::get('/dashboard/unit/types/file-import-create', [
-    DashboardTypesController::class,
-    'fileImportCreate',
-]);
-
-
+Route::controller(DashboardTypesController::class)->group(function(){
+    Route::get('/dashboard/unit/types/checkSlug', 'checkSlug');
+    Route::post('/dashboard/unit/types/file-import','fileImport');
+    Route::get('/dashboard/unit/types/file-import-create', 'fileImportCreate');
+});
+// End Route End Type
 
 // Route Unit
 Route::resource('/dashboard/units', DashboardUnitController::class);
@@ -59,7 +47,7 @@ Route::controller(Unit::class)->group(function(){
 });
 // End Route Unit
 
-
+//Route Models Unit 
 Route::resource(
     '/dashboard/unit/models',
     DashboardModelsController::class
@@ -69,6 +57,9 @@ Route::get('/dashboard/unit/model/slug', [
     DashboardModelsController::class,
     'slug',
 ]);
+
+Route::post('/dashboard/unit/models/file-import',[DashboardModelsController::class, 'fileImport']);
+Route::get('/dashboard/unit/models/file-import-create',[DashboardModelsController::class, 'fileImportCreate']);
 
 Route::resource(
     '/dashboard/spareparts',
@@ -86,6 +77,8 @@ Route::get('/dashboard/sparepart/slug', [
     DashboardPartsController::class,
     'slug',
 ]);
+
+
 
 Route::resource('/dashboard/stocks', DashboardStockController::class);
 

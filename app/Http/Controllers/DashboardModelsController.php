@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Models;
+use App\Imports\ModelsImport;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardModelsController extends Controller
 {
@@ -130,5 +132,25 @@ class DashboardModelsController extends Controller
     {
         $slug = SlugService::createSlug(Models::class, 'slug', $request->name);
         return response()->json(['slug' => $slug]);
+    }
+
+    public function fileImportCreate()
+    {
+        return view('dashboard.unit.models.file-import-create');
+    }
+
+    public function fileImport(Request $request)
+    {
+        $validatedData = $request->validate([
+            'excl' => 'required:mimes:xlsx,xls,csv|max:2048',
+        ]);
+
+        if ($request->file('excl')) {
+            Excel::import(new ModelsImport(), $validatedData['excl']);
+            return redirect('/dashboard/unit/models')->with(
+                'success',
+                'New Units Has Been Aded.!'
+            );
+        }
     }
 }
