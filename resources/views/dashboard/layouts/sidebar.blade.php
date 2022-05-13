@@ -65,6 +65,15 @@
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
                 <a
+                    class="nav-link {{ Request::is('dashboard/sparepart/categories*') ? 'active' : '' }}"
+                    href="/dashboard/sparepart/categories"
+                >
+                    <span data-feather="grid"></span>
+                    CATEGORY
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
                     class="nav-link {{ Request::is('dashboard/spareparts*') ? 'active' : '' }}"
                     href="/dashboard/spareparts"
                 >
@@ -83,22 +92,21 @@
             </li>
         </ul>
 
-    
-    <h6
-    class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
->
-    <span>MAINTENANCE MANAGEMENT</span>
-</h6>
-<ul class="nav flex-column mb-2">
-    <li class="nav-item">
-        <a
-            class="nav-link {{ Request::is('dashboard/maintenance*') ? 'active' : '' }}"
-            href="/dashboard/maintenances"
+        <h6
+            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
         >
-            <span data-feather="grid"></span>
-            MAINTENANCE UNIT
-        </a>
-    </li>
-</ul>
+            <span>MAINTENANCE MANAGEMENT</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                <a
+                    class="nav-link {{ Request::is('dashboard/maintenance*') ? 'active' : '' }}"
+                    href="/dashboard/maintenances"
+                >
+                    <span data-feather="grid"></span>
+                    MAINTENANCE UNIT
+                </a>
+            </li>
+        </ul>
     </div>
 </nav>

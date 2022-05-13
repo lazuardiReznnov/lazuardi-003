@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardCategoriePartController;
 use App\Http\Controllers\DashboardMaintenance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardUnitController;
@@ -72,7 +73,7 @@ Route::controller(DashboardPartsController::class)->group(function(){
 // End Route Sparepart
 
 
-
+// Route Stok 
 Route::resource('/dashboard/stocks', DashboardStockController::class);
 
 Route::get('/dashboard/stock/getsparepart', [
@@ -99,4 +100,7 @@ Route::controller(DashboardPartTenanceController::class)->group(function () {
     Route::delete('dashboard/maintenance/partTenances/{partTenance:id}','destroy');
 });
 // End Route Part Tenance
+
+Route::resource('/dashboard/sparepart/categories', DashboardCategoriePartController::class)->except('show');
+
 
