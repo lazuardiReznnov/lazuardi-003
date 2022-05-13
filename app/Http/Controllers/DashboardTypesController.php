@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Type;
+use App\Imports\TypeImport;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Auth\Events\Validated;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardTypesController extends Controller
 {
@@ -123,5 +125,23 @@ class DashboardTypesController extends Controller
     {
         $slug = SlugService::createSlug(Type::class, 'slug', $request->title);
         return response()->json(['slug' => $slug]);
+    }
+
+    public function fileImportCreate(){
+        return view('dashboard.unit.types.file-import-create');
+    }
+
+    public function fileImport(Request $request){
+        $validatedData = $request->validate([
+            'excl' => 'required:mimes:xlsx,xls,csv|max:2048',
+        ]);
+
+        if ($request->file('excl')) {
+            Excel::import(new TypeImport(), $validatedData['excl']);
+            return redirect('/dashboard/unit/types')->with(
+                'success',
+                'New Type Units Has Been Aded.!'
+            );
+        }
     }
 }

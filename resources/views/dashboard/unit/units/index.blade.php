@@ -4,24 +4,20 @@
 >
     <h1 class="h2">UNIT LIST</h1>
 </div>
-<div class="table-responsive col-lg">
-    <div class="row justify-content-between">
-        <div class="col-2">
-            <a href="/" class="btn btn-primary mb-3"
-            ><span data-feather="skip-back"></span> Back
-        </a>
-        </div>
-        <div class="col-3">
-            <a href="/dashboard/units/create" class="btn btn-primary mb-3"
+<div class="row">
+    <div class="col-md-6 ms-auto">
+        <a href="/dashboard/units/create" class="btn btn-primary mb-3"
             ><span data-feather="plus-circle"></span> Add
-             </a>
-             <a href="/dashboard/unit/file-import-create" class="btn btn-primary mb-3"
+        </a>
+        <a
+            href="/dashboard/unit/file-import-create"
+            class="btn btn-primary mb-3"
             ><span data-feather="file-text"></span> Add
-             </a>
-        </div>
+        </a>
     </div>
-   
+</div>
 
+<div class="table-responsive col-lg-8">
     <!-- Alert -->
     @if(session()->has('success'))
     <div class="alert alert-success col-md-5" role="alert">

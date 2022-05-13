@@ -6,7 +6,6 @@ use App\Http\Controllers\DashboardUnitController;
 use App\Http\Controllers\DashboardPartsController;
 use App\Http\Controllers\DashboardTypesController;
 use App\Http\Controllers\DashboardModelsController;
-use App\Http\Controllers\DashboardPartTenance;
 use App\Http\Controllers\DashboardPartTenanceController;
 use App\Http\Controllers\DashboardStockController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -26,6 +25,7 @@ Route::get('/', function () {
     return view('dashboard.index');
 });
 
+// 
 Route::resource(
     '/dashboard/unit/types',
     DashboardTypesController::class
@@ -36,27 +36,29 @@ Route::get('/dashboard/unit/types/checkSlug', [
     'checkSlug',
 ]);
 
-Route::resource('/dashboard/units', DashboardUnitController::class);
-
-Route::get('/dashboard/unit/getmodels', [
-    DashboardUnitController::class,
-    'getmodels',
-]);
-
-Route::post('/dashboard/unit/file-import', [
-    DashboardUnitController::class,
+Route::post('/dashboard/unit/types/file-import', [
+    DashboardTypesController::class,
     'fileImport',
 ]);
 
-Route::get('/dashboard/unit/file-import-create', [
-    DashboardUnitController::class,
+Route::get('/dashboard/unit/types/file-import-create', [
+    DashboardTypesController::class,
     'fileImportCreate',
 ]);
 
-Route::get('/dashboard/unit/checkSlug', [
-    DashboardUnitController::class,
-    'checkSlug',
-]);
+
+
+// Route Unit
+Route::resource('/dashboard/units', DashboardUnitController::class);
+
+Route::controller(Unit::class)->group(function(){
+    Route::get('/dashboard/unit/getmodels','getmodels');
+    Route::post('/dashboard/unit/file-import', 'fileImport');
+    Route::get('/dashboard/unit/file-import-create', 'fileImportCreate');
+    Route::get('/dashboard/unit/checkSlug','checkSlug');
+});
+// End Route Unit
+
 
 Route::resource(
     '/dashboard/unit/models',
@@ -92,6 +94,7 @@ Route::get('/dashboard/stock/getsparepart', [
     'getsparepart',
 ]);
 
+// route Maintenance
 Route::resource('/dashboard/maintenances', DashboardMaintenance::class);
 
 Route::controller(DashboardMaintenance::class)->group(function () {
@@ -101,22 +104,15 @@ Route::controller(DashboardMaintenance::class)->group(function () {
 
     Route::put('dashboard/maintenance/{maintenance:id}', 'statusupdate');
 });
+// end Route Maintenance
 
+// Route Part Tenance
 Route::controller(DashboardPartTenanceController::class)->group(function () {
-    Route::get(
-        '/dashboard/maintenance/partTenances/{maintenance:id}',
-        'create'
-    );
+    Route::get('/dashboard/maintenance/partTenances/{maintenance:id}','create');
     Route::post('/dashboard/maintenance/partTenances', 'store');
-    Route::get(
-        'dashboard/maintenance/partTenances/{partTenance:id}/edit',
-        'edit'
-    );
-
+    Route::get('dashboard/maintenance/partTenances/{partTenance:id}/edit', 'edit');
     Route::put('dashboard/maintenance/partTenances/{partTenance:id}', 'update');
-
-    Route::delete(
-        'dashboard/maintenance/partTenances/{partTenance:id}',
-        'destroy'
-    );
+    Route::delete('dashboard/maintenance/partTenances/{partTenance:id}','destroy');
 });
+// End Route Part Tenance
+
