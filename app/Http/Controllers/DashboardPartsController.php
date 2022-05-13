@@ -6,8 +6,10 @@ use App\Models\CategoriePart;
 use App\Models\sparepart;
 use App\Models\Brand;
 use App\Models\Models;
+use App\Imports\sparepartImport;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardPartsController extends Controller
 {
@@ -157,6 +159,25 @@ class DashboardPartsController extends Controller
         );
         return response()->json(['slug' => $slug]);
     }
+    public function fileImportCreate()
+    {
+        return view('dashboard.sparepart.file-import-create');
+    }
+
+    public function fileImport(Request $request)
+    {
+        $validatedData = $request->validate([
+            'excl' => 'required:mimes:xlsx,xls,csv|max:2048',
+        ]);
+
+        if ($request->file('excl')) {
+            Excel::import(new sparepartImport(), $validatedData['excl']);
+            return redirect('/dashboard/spareparts')->with(
+                'success',
+                'New Models Units Has Been Aded.!'
+            );
+        }
+    }
     // public function cari(Request $request)
     // {
     //     $sparepart = sparepart::where(
@@ -165,4 +186,6 @@ class DashboardPartsController extends Controller
     //     )->get();
     //     return response()->json($sparepart);
     // }
+
+
 }

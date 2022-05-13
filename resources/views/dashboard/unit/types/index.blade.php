@@ -17,14 +17,22 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6 ms-auto">
-        <a href="/dashboard/unit/types/create" class="btn btn-primary mb-3"
-            ><span data-feather="plus-circle"></span> Add</a
-        >
+    <div class="col-md-5 ms-auto">
+        <a
+            href="/dashboard/unit/types/create"
+            class="btn btn-primary mb-3"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Create New Type Unit"
+            ><span data-feather="plus-circle"></span
+        ></a>
         <a
             href="/dashboard/unit/types/file-import-create"
             class="btn btn-primary mb-3"
-            ><span data-feather="file-text"></span> Add
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Create New Type Unit Via Excel"
+            ><span data-feather="file-text"></span>
         </a>
     </div>
 </div>

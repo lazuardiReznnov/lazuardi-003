@@ -39,7 +39,7 @@ Route::controller(DashboardTypesController::class)->group(function(){
 // Route Unit
 Route::resource('/dashboard/units', DashboardUnitController::class);
 
-Route::controller(Unit::class)->group(function(){
+Route::controller(DashboardUnitController::class)->group(function(){
     Route::get('/dashboard/unit/getmodels','getmodels');
     Route::post('/dashboard/unit/file-import', 'fileImport');
     Route::get('/dashboard/unit/file-import-create', 'fileImportCreate');
@@ -48,35 +48,28 @@ Route::controller(Unit::class)->group(function(){
 // End Route Unit
 
 //Route Models Unit 
-Route::resource(
-    '/dashboard/unit/models',
-    DashboardModelsController::class
-)->except('show');
+Route::resource('/dashboard/unit/models',DashboardModelsController::class)->except('show');
 
-Route::get('/dashboard/unit/model/slug', [
-    DashboardModelsController::class,
-    'slug',
-]);
+Route::controller(DashboardModelsController::class)->group(function(){
+    Route::get('/dashboard/unit/model/slug','slug');
+    Route::post('/dashboard/unit/models/file-import','fileImport');
+    Route::get('/dashboard/unit/models/file-import-create' ,'fileImportCreate');
+});
 
-Route::post('/dashboard/unit/models/file-import',[DashboardModelsController::class, 'fileImport']);
-Route::get('/dashboard/unit/models/file-import-create',[DashboardModelsController::class, 'fileImportCreate']);
+// end Models Unit
 
-Route::resource(
-    '/dashboard/spareparts',
-    DashboardPartsController::class
-)->except('show');
+// Route Sparepart
+Route::resource('/dashboard/spareparts',DashboardPartsController::class)->except('show');
 
 // Route::get('/dashboard/part/cari', [DashboardPartsController::class, 'cari']);
 
-Route::get('/dashboard/sparepart/getmodels', [
-    DashboardPartsController::class,
-    'getmodels',
-]);
-
-Route::get('/dashboard/sparepart/slug', [
-    DashboardPartsController::class,
-    'slug',
-]);
+Route::controller(DashboardPartsController::class)->group(function(){
+    Route::get('/dashboard/sparepart/getmodels','getmodels');
+    Route::get('/dashboard/sparepart/slug','slug');
+    Route::get('/dashboard/spareparts/file-import-create', 'fileImportCreate');
+    Route::post('/dashboard/spareparts/file-import','fileImport');
+});
+// End Route Sparepart
 
 
 
@@ -92,9 +85,7 @@ Route::resource('/dashboard/maintenances', DashboardMaintenance::class);
 
 Route::controller(DashboardMaintenance::class)->group(function () {
     Route::get('/dashboard/maintenance/print/{maintenance:id}', 'print');
-
     Route::get('/dashboard/maintenance/{maintenance:id}/edit', 'editstatus');
-
     Route::put('dashboard/maintenance/{maintenance:id}', 'statusupdate');
 });
 // end Route Maintenance

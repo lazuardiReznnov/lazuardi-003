@@ -149,7 +149,7 @@ class DashboardModelsController extends Controller
             Excel::import(new ModelsImport(), $validatedData['excl']);
             return redirect('/dashboard/unit/models')->with(
                 'success',
-                'New Units Has Been Aded.!'
+                'New Models Units Has Been Aded.!'
             );
         }
     }
