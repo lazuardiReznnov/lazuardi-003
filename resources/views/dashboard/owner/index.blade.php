@@ -26,7 +26,7 @@
             <span data-feather="plus-circle"></span
         ></a>
         <a
-            href="/dashboard/owners/file-import-create"
+            href="/dashboard/owner/file-import-create"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
             title="Create New Category Sparepart Data Via excel"

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Owner;
+use App\Imports\OwnerImport;
 use Illuminate\Http\Request;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\support\Facades\Storage;
+use App\Models\Unit;
 
 class DashboardOwnerController extends Controller
 {
@@ -28,7 +33,7 @@ class DashboardOwnerController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.owner.create');
     }
 
     /**
@@ -39,7 +44,25 @@ class DashboardOwnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:owners',
+            'slug' => 'required|unique:owners',
+            'address' => 'required',
+            'email' => 'required|email:dns',
+            'phone' => 'required',
+            'img' => 'image|file|max:2048',
+        ]);
+
+        if ($request->file('img')) {
+            $validatedData['img'] = $request->file('img')->store('owner-img');
+        }
+
+        Owner::create($validatedData);
+
+        return redirect('/dashboard/owners')->with(
+            'success',
+            'New Owner Has Been aded.'
+        );
     }
 
     /**
@@ -61,7 +84,9 @@ class DashboardOwnerController extends Controller
      */
     public function edit(Owner $owner)
     {
-        //
+        return view('dashboard.owner.edit', [
+            'owner' => $owner,
+        ]);
     }
 
     /**
@@ -73,7 +98,34 @@ class DashboardOwnerController extends Controller
      */
     public function update(Request $request, Owner $owner)
     {
-        //
+        $rules = [
+            'address' => 'required',
+            'email' => 'required|email:dns',
+            'phone' => 'required',
+            'img' => 'image|file|max:2048',
+        ];
+
+        if ($request->name != $owner->name) {
+            $rules['name'] = 'required|unique:owners';
+        }
+        if ($request->slug != $owner->slug) {
+            $rules['slug'] = 'required|unique:owners';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('img')) {
+            if ($request->old_img) {
+                storage::delete($request->old_img);
+            }
+            $validatedData['img'] = $request->file('img')->store('owner-img');
+        }
+
+        Owner::Where('id', $request->id)->update($validatedData);
+        return redirect('/dashboard/owners')->with(
+            'success',
+            'Owner Has Been Updated.!'
+        );
     }
 
     /**
@@ -84,6 +136,40 @@ class DashboardOwnerController extends Controller
      */
     public function destroy(Owner $owner)
     {
-        //
+        Owner::destroy($owner->id);
+        Unit::where('owner_id', $owner->id)->delete();
+        if ($owner->img) {
+            storage::delete($owner->img);
+        }
+        return redirect('/dashboard/owners')->with(
+            'success',
+            'Owner Has Been Deleted.'
+        );
+    }
+
+    public function slug(Request $request)
+    {
+        $slug = SlugService::createSlug(Owner::class, 'slug', $request->name);
+        return response()->json(['slug' => $slug]);
+    }
+
+    public function fileImportCreate()
+    {
+        return view('dashboard.owner.file-import-create');
+    }
+
+    public function fileImport(Request $request)
+    {
+        $validatedData = $request->validate([
+            'excl' => 'required:mimes:xlsx,xls,csv|max:2048',
+        ]);
+
+        if ($request->file('excl')) {
+            Excel::import(new OwnerImport(), $validatedData['excl']);
+            return redirect('/dashboard/owners')->with(
+                'success',
+                'New Owners Has Been Aded.!'
+            );
+        }
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('address');
+            $table->text('address');
             $table->string('email')->unique()->safe;
             $table->string('phone');
             $table->string('img')->nullable();

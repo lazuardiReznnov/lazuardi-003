@@ -138,3 +138,9 @@ Route::controller(DashboardCategoriePartController::class)->group(function () {
 
 // end Route Sparepart Category
 Route::resource('/dashboard/owners', DashboardOwnerController::class);
+
+Route::controller(DashboardOwnerController::class)->group(function () {
+    Route::get('dashboard/owner/slug', 'slug');
+    Route::get('dashboard/owner/file-import-create', 'fileImportCreate');
+    Route::post('/dashboard/owner/file-import', 'fileImport');
+});

@@ -143,7 +143,7 @@ class DashboardUnitController extends Controller
             if ($request->old_img) {
                 storage::delete($request->old_img);
             }
-            $validatedData['img'] = $request->file('img')->store('unit_img');
+            $validatedData['img'] = $request->file('img')->store('unit-img');
         }
 
         Unit::where('id', $unit->id)->update($validatedData);
