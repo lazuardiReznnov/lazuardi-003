@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoriePart;
+use App\Models\sparePart;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardCategoriePartController extends Controller
 {
@@ -14,8 +17,10 @@ class DashboardCategoriePartController extends Controller
      */
     public function index()
     {
-        return view('dashboard.sparepart.category.index',[
-            'categories'=>CategoriePart::latest()->paginate(10)->withQueryString()
+        return view('dashboard.sparepart.category.index', [
+            'categories' => CategoriePart::latest()
+                ->paginate(10)
+                ->withQueryString(),
         ]);
     }
 
@@ -26,7 +31,7 @@ class DashboardCategoriePartController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.sparepart.category.create');
     }
 
     /**
@@ -37,7 +42,17 @@ class DashboardCategoriePartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'slug' => 'required|unique:categorie_parts',
+        ]);
+
+        CategoriePart::create($validatedData);
+
+        return redirect('/dashboard/sparepart/categorieParts')->with(
+            'success',
+            'Category Sparepart Data Has Been Aded.!'
+        );
     }
 
     /**
@@ -59,7 +74,9 @@ class DashboardCategoriePartController extends Controller
      */
     public function edit(CategoriePart $categoriePart)
     {
-        //
+        return view('dashboard.sparepart.category.edit', [
+            'category' => $categoriePart,
+        ]);
     }
 
     /**
@@ -71,7 +88,21 @@ class DashboardCategoriePartController extends Controller
      */
     public function update(Request $request, CategoriePart $categoriePart)
     {
-        //
+        $rules = [
+            'name' => 'required',
+        ];
+
+        if ($request->slug != $categoriePart->slug) {
+            $rules['slug'] = 'required|unique:categorie_parts';
+        }
+
+        $validatedData = $request->validate($rules);
+        CategoriePart::where('id', $categoriePart->id)->update($validatedData);
+
+        return redirect('/dashboard/sparepart/categorieParts')->with(
+            'success',
+            'Category Has Been Updated.!'
+        );
     }
 
     /**
@@ -82,6 +113,23 @@ class DashboardCategoriePartController extends Controller
      */
     public function destroy(CategoriePart $categoriePart)
     {
-        //
+        sparepart::where('categorie_id', $categoriePart->id)->delete();
+
+        CategoriePart::destroy($categoriePart->id);
+
+        return redirect('/dashboard/sparepart/categorieParts')->with(
+            'success',
+            'Category Sparepart Data Has Been Deleted.!'
+        );
+    }
+
+    public function slug(Request $request)
+    {
+        $slug = SlugService::createSlug(
+            sparepart::class,
+            'slug',
+            $request->name
+        );
+        return response()->json(['slug' => $slug]);
     }
 }

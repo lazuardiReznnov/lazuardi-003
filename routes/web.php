@@ -26,13 +26,15 @@ Route::get('/', function () {
     return view('dashboard.index');
 });
 
-
 // Route Type Unit
-Route::resource('/dashboard/unit/types',DashboardTypesController::class)->except('show');
+Route::resource(
+    '/dashboard/unit/types',
+    DashboardTypesController::class
+)->except('show');
 
-Route::controller(DashboardTypesController::class)->group(function(){
+Route::controller(DashboardTypesController::class)->group(function () {
     Route::get('/dashboard/unit/types/checkSlug', 'checkSlug');
-    Route::post('/dashboard/unit/types/file-import','fileImport');
+    Route::post('/dashboard/unit/types/file-import', 'fileImport');
     Route::get('/dashboard/unit/types/file-import-create', 'fileImportCreate');
 });
 // End Route End Type
@@ -40,40 +42,45 @@ Route::controller(DashboardTypesController::class)->group(function(){
 // Route Unit
 Route::resource('/dashboard/units', DashboardUnitController::class);
 
-Route::controller(DashboardUnitController::class)->group(function(){
-    Route::get('/dashboard/unit/getmodels','getmodels');
+Route::controller(DashboardUnitController::class)->group(function () {
+    Route::get('/dashboard/unit/getmodels', 'getmodels');
     Route::post('/dashboard/unit/file-import', 'fileImport');
     Route::get('/dashboard/unit/file-import-create', 'fileImportCreate');
-    Route::get('/dashboard/unit/checkSlug','checkSlug');
+    Route::get('/dashboard/unit/checkSlug', 'checkSlug');
 });
 // End Route Unit
 
-//Route Models Unit 
-Route::resource('/dashboard/unit/models',DashboardModelsController::class)->except('show');
+//Route Models Unit
+Route::resource(
+    '/dashboard/unit/models',
+    DashboardModelsController::class
+)->except('show');
 
-Route::controller(DashboardModelsController::class)->group(function(){
-    Route::get('/dashboard/unit/model/slug','slug');
-    Route::post('/dashboard/unit/models/file-import','fileImport');
-    Route::get('/dashboard/unit/models/file-import-create' ,'fileImportCreate');
+Route::controller(DashboardModelsController::class)->group(function () {
+    Route::get('/dashboard/unit/model/slug', 'slug');
+    Route::post('/dashboard/unit/models/file-import', 'fileImport');
+    Route::get('/dashboard/unit/models/file-import-create', 'fileImportCreate');
 });
 
 // end Models Unit
 
 // Route Sparepart
-Route::resource('/dashboard/spareparts',DashboardPartsController::class)->except('show');
+Route::resource(
+    '/dashboard/spareparts',
+    DashboardPartsController::class
+)->except('show');
 
 // Route::get('/dashboard/part/cari', [DashboardPartsController::class, 'cari']);
 
-Route::controller(DashboardPartsController::class)->group(function(){
-    Route::get('/dashboard/sparepart/getmodels','getmodels');
-    Route::get('/dashboard/sparepart/slug','slug');
+Route::controller(DashboardPartsController::class)->group(function () {
+    Route::get('/dashboard/sparepart/getmodels', 'getmodels');
+    Route::get('/dashboard/sparepart/slug', 'slug');
     Route::get('/dashboard/spareparts/file-import-create', 'fileImportCreate');
-    Route::post('/dashboard/spareparts/file-import','fileImport');
+    Route::post('/dashboard/spareparts/file-import', 'fileImport');
 });
 // End Route Sparepart
 
-
-// Route Stok 
+// Route Stok
 Route::resource('/dashboard/stocks', DashboardStockController::class);
 
 Route::get('/dashboard/stock/getsparepart', [
@@ -93,14 +100,29 @@ Route::controller(DashboardMaintenance::class)->group(function () {
 
 // Route Part Tenance
 Route::controller(DashboardPartTenanceController::class)->group(function () {
-    Route::get('/dashboard/maintenance/partTenances/{maintenance:id}','create');
+    Route::get(
+        '/dashboard/maintenance/partTenances/{maintenance:id}',
+        'create'
+    );
     Route::post('/dashboard/maintenance/partTenances', 'store');
-    Route::get('dashboard/maintenance/partTenances/{partTenance:id}/edit', 'edit');
+    Route::get(
+        'dashboard/maintenance/partTenances/{partTenance:id}/edit',
+        'edit'
+    );
     Route::put('dashboard/maintenance/partTenances/{partTenance:id}', 'update');
-    Route::delete('dashboard/maintenance/partTenances/{partTenance:id}','destroy');
+    Route::delete(
+        'dashboard/maintenance/partTenances/{partTenance:id}',
+        'destroy'
+    );
 });
 // End Route Part Tenance
 
-Route::resource('/dashboard/sparepart/categories', DashboardCategoriePartController::class)->except('show');
+Route::resource(
+    '/dashboard/sparepart/categorieParts',
+    DashboardCategoriePartController::class
+)->except('show');
 
-
+Route::get('dashboard/sparepart/categorieParts/slug', [
+    DashboardCategoriePartController::class,
+    'slug',
+]);

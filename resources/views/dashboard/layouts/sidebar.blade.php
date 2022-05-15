@@ -66,7 +66,7 @@
             <li class="nav-item">
                 <a
                     class="nav-link {{ Request::is('dashboard/sparepart/categories*') ? 'active' : '' }}"
-                    href="/dashboard/sparepart/categories"
+                    href="/dashboard/sparepart/categorieParts"
                 >
                     <span data-feather="grid"></span>
                     CATEGORY

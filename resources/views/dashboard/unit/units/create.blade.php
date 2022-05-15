@@ -1,30 +1,16 @@
 @extends('dashboard.layouts.main') @section('container')
-<div
-    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
->
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Input New Unit</h1>
 </div>
 
 <div class="row">
     <div class="col-lg-6">
-        <form
-            action="/dashboard/units"
-            method="post"
-            enctype="multipart/form-data"
-        >
+        <form action="/dashboard/units" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="noReg" class="form-label">Reg Number</label>
-                <input
-                    type="text"
-                    name="noReg"
-                    class="form-control @error('noReg') is-invalid @enderror"
-                    id="noReg"
-                    value="{{ old('noReg') }}"
-                    required
-                    autofocus
-                    placeholder="X XXXX XXX"
-                />
+                <input type="text" name="noReg" class="form-control @error('noReg') is-invalid @enderror" id="noReg"
+                    value="{{ old('noReg') }}" required autofocus placeholder="X XXXX XXX" />
                 @error('noReg')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -34,14 +20,8 @@
 
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
-                <input
-                    type="text"
-                    name="slug"
-                    class="form-control @error('slug') is-invalid @enderror"
-                    id="slug"
-                    value="{{ old('slug') }} "
-                    readonly
-                />
+                <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror" id="slug"
+                    value="{{ old('slug') }} " readonly />
                 @error('slug')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -94,11 +74,7 @@
 
             <div class="mb-3">
                 <label for="Models" class="form-label">Models</label>
-                <select
-                    class="form-select"
-                    id="models"
-                    name="models_id"
-                ></select>
+                <select class="form-select" id="models" name="models_id"></select>
             </div>
 
             <div class="mb-3">
@@ -117,15 +93,8 @@
 
             <div class="mb-3">
                 <label for="vin" class="form-label">Vin Number</label>
-                <input
-                    type="text"
-                    name="vin"
-                    class="form-control @error('vin') is-invalid @enderror"
-                    id="vin"
-                    value="{{ old('vin') }}"
-                    required
-                    placeholder="xxxxxxx"
-                />
+                <input type="text" name="vin" class="form-control @error('vin') is-invalid @enderror" id="vin"
+                    value="{{ old('vin') }}" required placeholder="xxxxxxx" />
                 @error('vin')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -135,15 +104,8 @@
 
             <div class="mb-3">
                 <label for="engineNum" class="form-label">Engine Number</label>
-                <input
-                    type="text"
-                    name="engineNum"
-                    class="form-control @error('engineNum') is-invalid @enderror"
-                    id="engineNum"
-                    value="{{ old('engineNum') }}"
-                    required
-                    placeholder="xxxx"
-                />
+                <input type="text" name="engineNum" class="form-control @error('engineNum') is-invalid @enderror"
+                    id="engineNum" value="{{ old('engineNum') }}" required placeholder="xxxx" />
                 @error('engineNum')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -155,10 +117,8 @@
                 @php $now = date('Y'); @endphp
                 <select name="year" class="form-select">
                     <option selected>--Choice Year--</option>
-                    @for ($a=2012;$a<=$now;$a++)
-
-                    <option value="{{ $a }}">{{ $a }}</option>
-                    @endfor
+                    @for ($a=2012;$a<=$now;$a++) <option value="{{ $a }}">{{ $a }}</option>
+                        @endfor
                 </select>
                 @error('year')
                 <div class="invalid-feedback">
@@ -168,14 +128,8 @@
             </div>
             <div class="mb-3 col-md-4">
                 <label for="color" class="form-label">Color</label>
-                <input
-                    type="text"
-                    name="color"
-                    class="form-control @error('color') is-invalid @enderror"
-                    id="color"
-                    value="{{ old('color') }}"
-                    required
-                />
+                <input type="text" name="color" class="form-control @error('color') is-invalid @enderror" id="color"
+                    value="{{ old('color') }}" required />
 
                 @error('color')
                 <div class="invalid-feedback">
@@ -187,13 +141,8 @@
             <div class="mb-3">
                 <label for="image" class="form-label">Upload Image</label>
                 <img class="img-preview img-fluid mb-2 col-sm-5" />
-                <input
-                    class="form-control @error('image') is-invalid @enderror"
-                    type="file"
-                    id="image"
-                    name="img"
-                    onchange="previewImage()"
-                />
+                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="img"
+                    onchange="previewImage()" />
                 @error('image')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -204,7 +153,6 @@
         </form>
     </div>
 </div>
-
 
 <script type="text/javascript">
     // slug post
@@ -223,22 +171,27 @@
             .then((data) => (slug.value = data.slug));
     });
 
+    const brand = document.querySelector("#brand");
+    const models = document.querySelector("#models");
 
-const brand = document.querySelector('#brand')
-const models = document.querySelector('#models')
+    brand.addEventListener("change", function () {
+        fetch("/dashboard/unit/getmodels?brand=" + brand.value)
+            .then((response) => response.json())
+            .then((response) => {
+                const m = response;
+                let card = "<option>---Pilih Models---</option>";
+                m.forEach(
+                    (m) =>
+                    (card +=
+                        '<option value="' +
+                        m.id +
+                        '">' +
+                        m.name +
+                        "</option>")
+                );
+                models.innerHTML = card;
+            });
+    });
 
-brand.addEventListener('change', function () {
-  fetch('/dashboard/unit/getmodels?brand=' + brand.value)
-    .then((response) => response.json())
-    .then((response) => {
-      const m = response
-      let card = '<option>---Pilih Models---</option>'
-      m.forEach(
-        (m) => (card += '<option value="' + m.id + '">' + m.name + '</option>'),
-      )
-      models.innerHTML = card
-    })
-})
-   
 </script>
 @endsection

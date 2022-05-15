@@ -17,7 +17,7 @@
 <div class="row">
     <div class="col-md-5 ms-auto">
         <a
-            href="/dashboard/sparepart/categories/create"
+            href="/dashboard/sparepart/categorieParts/create"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
             title="Create New Category Sparepart Data"
@@ -26,7 +26,7 @@
             <span data-feather="plus-circle"></span
         ></a>
         <a
-            href="/dashboard/sparepart/categories/file-import-create"
+            href="/dashboard/sparepart/categorieParts/file-import-create"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
             title="Create New Category Sparepart Data Via excel"
@@ -59,7 +59,7 @@
 
                 <td>
                     <a
-                        href="/dashboard/sparepart/categories/{{ $category->slug }}/edit"
+                        href="/dashboard/sparepart/categorieParts/{{ $category->slug }}/edit"
                         class="badge bg-warning"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
@@ -67,7 +67,7 @@
                         ><span data-feather="edit"></span
                     ></a>
                     <form
-                        action="/dashboard/sparepart/categories/{{ $category->slug }}"
+                        action="/dashboard/sparepart/categorieParts/{{ $category->slug }}"
                         method="post"
                         class="d-inline"
                     >
