@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Owner;
-use App\Http\Requests\StoreOwnerRequest;
-use App\Http\Requests\UpdateOwnerRequest;
+use Illuminate\Http\Request;
 
-class OwnerController extends Controller
+class DashboardOwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,11 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.owner.index', [
+            'owners' => Owner::latest()
+                ->paginate(10)
+                ->withQueryString(),
+        ]);
     }
 
     /**
@@ -31,10 +34,10 @@ class OwnerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreOwnerRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOwnerRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -64,11 +67,11 @@ class OwnerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateOwnerRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOwnerRequest $request, Owner $owner)
+    public function update(Request $request, Owner $owner)
     {
         //
     }

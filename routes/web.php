@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\DashboardCategoriePartController;
-use App\Http\Controllers\DashboardMaintenance;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardMaintenance;
 use App\Http\Controllers\DashboardUnitController;
+use App\Http\Controllers\DashboardOwnerController;
 use App\Http\Controllers\DashboardPartsController;
+use App\Http\Controllers\DashboardStockController;
 use App\Http\Controllers\DashboardTypesController;
 use App\Http\Controllers\DashboardModelsController;
 use App\Http\Controllers\DashboardPartTenanceController;
-use App\Http\Controllers\DashboardStockController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\DashboardCategoriePartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,12 +118,23 @@ Route::controller(DashboardPartTenanceController::class)->group(function () {
 });
 // End Route Part Tenance
 
+// Route Sparepart Category
 Route::resource(
     '/dashboard/sparepart/categorieParts',
     DashboardCategoriePartController::class
 )->except('show');
 
-Route::get('dashboard/sparepart/categorieParts/slug', [
-    DashboardCategoriePartController::class,
-    'slug',
-]);
+Route::controller(DashboardCategoriePartController::class)->group(function () {
+    Route::get('dashboard/sparepart/categorieParts/slug', 'slug');
+    Route::get(
+        'dashboard/sparepart/categorieParts/file-import-create',
+        'fileImportCreate'
+    );
+    Route::post(
+        '/dashboard/sparepart/categorieParts/file-import',
+        'fileImport'
+    );
+});
+
+// end Route Sparepart Category
+Route::resource('/dashboard/owners', DashboardOwnerController::class);

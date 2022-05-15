@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\CategoriePart;
 use App\Models\sparePart;
 use Illuminate\Http\Request;
+use App\Imports\CategoriePartImport;
 use PhpOffice\PhpSpreadsheet\Calculation\Category;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardCategoriePartController extends Controller
 {
@@ -131,5 +133,25 @@ class DashboardCategoriePartController extends Controller
             $request->name
         );
         return response()->json(['slug' => $slug]);
+    }
+
+    public function fileImportCreate()
+    {
+        return view('dashboard.sparepart.category.file-import-create');
+    }
+
+    public function fileImport(Request $request)
+    {
+        $validatedData = $request->validate([
+            'excl' => 'required:mimes:xlsx,xls,csv|max:2048',
+        ]);
+
+        if ($request->file('excl')) {
+            Excel::import(new CategoriePartImport(), $validatedData['excl']);
+            return redirect('/dashboard/sparepart/categorieParts')->with(
+                'success',
+                'New Category Sparepart Has Been Aded.!'
+            );
+        }
     }
 }
