@@ -5,16 +5,41 @@
     <h1 class="h2">SUPPLIER LIST</h1>
 </div>
 
+<div class="row">
+  <div class="col-md-6">
+      <!-- Alert -->
+      @if(session()->has('success'))
+      <div class="alert alert-success" role="alert">
+          {{ session("success") }}
+      </div>
+      @endif
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2 ms-auto">
+      <a
+          href="/dashboard/suppliers/create"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Create New Category Sparepart Data"
+          class="btn btn-primary mb-3"
+      >
+          <span data-feather="plus-circle"></span
+      ></a>
+      <a
+          href="/dashboard/suppliers/file-import-create"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Create New Category Sparepart Data Via excel"
+          class="btn btn-primary mb-3"
+      >
+          <span data-feather="file-text"></span
+      ></a>
+  </div>
+</div>
+
 <div class="table-responsive">
-    <a href="/dashboard/suppliers/create" class="btn btn-primary mb-3"
-    > <span data-feather="plus-circle"></span></a
->
-    <!-- Alert -->
-    @if(session()->has('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session("success") }}
-    </div>
-    @endif
+
     
     <table class="table table-striped table-sm">
       <thead>

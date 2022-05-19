@@ -147,3 +147,8 @@ Route::controller(DashboardOwnerController::class)->group(function () {
 });
 
 Route::resource('/dashboard/suppliers', DashboardSupplierController::class);
+Route::controller(DashboardSupplierController::class)->group(function () {
+    Route::get('dashboard/supplier/slug', 'slug');
+    Route::get('dashboard/supplier/file-import-create', 'fileImportCreate');
+    Route::post('/dashboard/supplier/file-import', 'fileImport');
+});

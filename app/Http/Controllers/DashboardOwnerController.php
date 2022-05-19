@@ -121,7 +121,7 @@ class DashboardOwnerController extends Controller
             $validatedData['img'] = $request->file('img')->store('owner-img');
         }
 
-        Owner::Where('id', $request->id)->update($validatedData);
+        Owner::Where('id', $owner->id)->update($validatedData);
         return redirect('/dashboard/owners')->with(
             'success',
             'Owner Has Been Updated.!'
