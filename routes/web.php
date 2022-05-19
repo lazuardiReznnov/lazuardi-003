@@ -28,6 +28,11 @@ Route::get('/', function () {
     return view('dashboard.index');
 });
 
+/*
+|-----------------------------------------------------------------------------
+DASHBOARD ROUTE
+*/
+
 // Route Type Unit
 Route::resource(
     '/dashboard/unit/types',
@@ -138,6 +143,8 @@ Route::controller(DashboardCategoriePartController::class)->group(function () {
 });
 
 // end Route Sparepart Category
+
+// Route Owner
 Route::resource('/dashboard/owners', DashboardOwnerController::class);
 
 Route::controller(DashboardOwnerController::class)->group(function () {
@@ -145,10 +152,17 @@ Route::controller(DashboardOwnerController::class)->group(function () {
     Route::get('dashboard/owner/file-import-create', 'fileImportCreate');
     Route::post('/dashboard/owner/file-import', 'fileImport');
 });
+// end ROute OWner
 
+// Route Supplier
 Route::resource('/dashboard/suppliers', DashboardSupplierController::class);
 Route::controller(DashboardSupplierController::class)->group(function () {
     Route::get('dashboard/supplier/slug', 'slug');
     Route::get('dashboard/supplier/file-import-create', 'fileImportCreate');
     Route::post('/dashboard/supplier/file-import', 'fileImport');
 });
+// End Route Supplier
+/*
+|-----------------------------------------------------------------------------
+END DASHBOARD ROUTE
+*/
