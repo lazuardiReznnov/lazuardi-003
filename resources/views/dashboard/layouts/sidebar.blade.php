@@ -90,6 +90,15 @@
                     STOCK
                 </a>
             </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link {{ Request::is('dashboard/suppliers*') ? 'active' : '' }}"
+                    href="/dashboard/suppliers"
+                >
+                    <span data-feather="grid"></span>
+                    SUPLIER
+                </a>
+            </li>
         </ul>
 
         <h6

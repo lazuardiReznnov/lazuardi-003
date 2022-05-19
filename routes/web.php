@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardModelsController;
 use App\Http\Controllers\DashboardPartTenanceController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\DashboardCategoriePartController;
+use App\Http\Controllers\DashboardSupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -144,3 +145,5 @@ Route::controller(DashboardOwnerController::class)->group(function () {
     Route::get('dashboard/owner/file-import-create', 'fileImportCreate');
     Route::post('/dashboard/owner/file-import', 'fileImport');
 });
+
+Route::resource('/dashboard/suppliers', DashboardSupplierController::class);

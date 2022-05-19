@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             MaintenanceSeeder::class,
             PartTenanceSeeder::class,
             GrupSeeder::class,
+            SupplierSeeder::class
         ]);
 
         // Owner::factory(5)->create();
