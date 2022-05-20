@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             TypeSeeder::class,
             BrandSeeder::class,
             ModelsSeeder::class,
-            UnitSeeder::class,
+            // UnitSeeder::class,
             OwnerSeeder::class,
             CategoriePartSeeder::class,
             SparepartSeeder::class,

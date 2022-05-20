@@ -22,7 +22,7 @@ class SparepartSeeder extends Seeder
             'merk' => 'Pertamina',
             'slug' => 'mediteran-sc',
             'codePart' => '0000-0000',
-            'qty' => '10',
+            'qty' => '0',
         ]);
 
         sparepart::create([
@@ -32,7 +32,7 @@ class SparepartSeeder extends Seeder
             'merk' => 'NN',
             'slug' => 'upper-fuel-filter',
             'codePart' => '0000-0000',
-            'qty' => '10',
+            'qty' => '0',
         ]);
 
         sparepart::create([
@@ -42,7 +42,7 @@ class SparepartSeeder extends Seeder
             'merk' => 'NN',
             'slug' => 'bottom-fuel-filter',
             'codePart' => '0000-0000',
-            'qty' => '10',
+            'qty' => '0',
         ]);
     }
 }

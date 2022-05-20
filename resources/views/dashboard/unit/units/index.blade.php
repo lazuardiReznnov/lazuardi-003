@@ -32,7 +32,27 @@
         {{ session("success") }}
     </div>
     @endif
-
+    <div class="col-md-5 my-4">
+        <form action="/dashboard/units" method="get" class="d-inline">
+            <div class="input-group">
+                <select class="form-select" id="categori" name="owner">
+                    <option selected>Choose...</option>
+                    @foreach($owners as $owner)
+                    <option value="{{ $owner->id }}">
+                        {{ $owner->name }}
+                    </option>
+                    @endforeach
+                </select>
+                <button
+                    class="btn btn-outline-secondary"
+                    id="cari"
+                    type="submit"
+                >
+                    <span data-feather="search"></span>
+                </button>
+            </div>
+        </form>
+    </div>
     <!-- data Tables -->
     <table class="table table-striped table-sm">
         <thead>
@@ -42,7 +62,6 @@
                 <th scope="col">Merk</th>
                 <th scope="col">Type</th>
                 <th scope="col">Model</th>
-                <th scope="col">Owner</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -56,7 +75,6 @@
                 <td>{{ $unit->models->brand->name }}</td>
                 <td>{{ $unit->type->title }}</td>
                 <td>{{ $unit->models->name }}</td>
-                <td>{{ $unit->Owner->name }}</td>
                 <td>
                     <a
                         href="/dashboard/units/{{$unit->slug }}"

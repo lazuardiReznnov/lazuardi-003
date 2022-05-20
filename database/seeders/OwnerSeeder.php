@@ -59,5 +59,13 @@ class OwnerSeeder extends Seeder
             'phone' => '021',
             'img' => 'null',
         ]);
+        Owner::create([
+            'name' => 'CV. Gema Makmur abadi',
+            'slug' => 'gma',
+            'address' => 'address',
+            'email' => 'gemamakmurabadi@gmail.com',
+            'phone' => '021',
+            'img' => 'null',
+        ]);
     }
 }

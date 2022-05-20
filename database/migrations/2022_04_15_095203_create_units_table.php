@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->string('engineNum')->nullable();
             $table->year('year')->nullable();
             $table->string('color')->nullable();
+            $table->string('karoseri');
             $table->string('img')->nullable();
             $table->timestamps();
         });

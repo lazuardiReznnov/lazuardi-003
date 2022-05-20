@@ -26,6 +26,7 @@ class UnitSeeder extends Seeder
             'engineNum' => 'DDBS',
             'year' => '2019',
             'color' => 'Green',
+            'karoseri'=>'losbak'
         ]);
         Unit::create([
             'type_id' => 3,
@@ -38,6 +39,7 @@ class UnitSeeder extends Seeder
             'engineNum' => 'DDBS',
             'year' => '2019',
             'color' => 'Green',
+            'karoseri'=>'losbak'
         ]);
         Unit::create([
             'type_id' => 3,
@@ -50,6 +52,7 @@ class UnitSeeder extends Seeder
             'engineNum' => 'DDBS',
             'year' => '2019',
             'color' => 'Green',
+            'karoseri'=>'losbak'
         ]);
     }
 }

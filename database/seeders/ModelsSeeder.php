@@ -42,5 +42,20 @@ class ModelsSeeder extends Seeder
             'name' => 'Universal',
             'slug' => 'universal',
         ]);
+        Models::create([
+            'brand_id' => 1,
+            'name' => 'Dutro 130MD Long',
+            'slug' => 'dutro-130md-long',
+        ]);
+        Models::create([
+            'brand_id' => 1,
+            'name' => 'Ranger FG 8 JS',
+            'slug' => 'ranger fg-8-js',
+        ]);
+        Models::create([
+            'brand_id' => 1,
+            'name' => 'Ranger FL 8 JW',
+            'slug' => 'ranger fL-8-jW',
+        ]);
     }
 }

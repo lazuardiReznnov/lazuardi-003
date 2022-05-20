@@ -26,6 +26,7 @@ class UnitImport implements ToModel, WithHeadingRow
             'engineNum' => $row['en'],
             'year' => $row['year'],
             'color' => $row['col'],
+            'karoseri'=>$row['karoseri']
             // 'type_id' => $row[0],
             // 'owner_id' => $row[1],
             // 'models_id' => $row[2],
