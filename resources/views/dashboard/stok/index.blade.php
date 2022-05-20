@@ -40,7 +40,7 @@
             <td>{{ $stock->type }}</td>
             <td>{{ date('d/m/Y', strtotime($stock->date)) }}</td>
             <td>{{ $stock->inv }}</td>
-            <td>{{ $stock->store_name }}</td>
+            <td>{{ $stock->supplier->name }}</td>
             <td>{{ $stock->sparepart->name }}</td>
             <td>{{ $stock->qty }}</td>
             <td>@currency($stock->price)</td>

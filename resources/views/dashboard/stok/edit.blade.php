@@ -62,16 +62,29 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="store_name" class="form-label">Store</label>
-                <input
+                <label for="store_name" class="form-label">Supplier</label>
+                <select class="form-select" id="supplier" name="supplier_id">
+                    <option value="" selected>--Select Supplier--</option>
+                    @foreach($suppliers as $supplier)
+                    @if(old('supplier_id',$stock->supplier_id)==$supplier->id)
+                    <option value="{{ $supplier->id }}" selected>
+                        {{ $supplier->name }}
+                    </option>
+                    @endif
+                    <option value="{{ $supplier->id }}">
+                        {{ $supplier->name }}
+                    </option>
+                    @endforeach
+                </select>
+                <!-- <input
                     type="text"
                     name="store_name"
                     class="form-control @error('store_name') is-invalid @enderror"
                     id="store_name"
-                    value="{{ old('store_name',$stock->store_name) }} "
-                    
-                />
-                @error('store_name')
+                    value="{{ old('store_name') }} "
+                /> -->
+
+                @error('supplier_id')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

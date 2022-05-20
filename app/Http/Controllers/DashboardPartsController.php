@@ -22,12 +22,17 @@ class DashboardPartsController extends Controller
     public function index()
     {
         $part = sparepart::latest();
+        $title = '';
+
         if (request('categori')) {
             $part->where('categorie_id', request('categori'));
+            $category = CategoriePart::firstWhere('id', request('categori'));
+            $title = $category->name;
         }
         return view('dashboard.sparepart.index', [
             'categories' => CategoriePart::all(),
             'parts' => $part->paginate(10)->withQueryString(),
+            'title' => $title
         ]);
     }
 
@@ -111,7 +116,6 @@ class DashboardPartsController extends Controller
             'models_id' => 'required',
             'name' => 'required|max:100',
             'merk' => 'required:max:50',
-            'slug' => 'required|unique:spareparts',
             'codePart' => 'required',
         ];
         if ($request->slug != $sparepart->slug) {

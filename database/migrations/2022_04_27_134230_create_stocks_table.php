@@ -15,10 +15,10 @@ return new class extends Migration {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sparepart_id');
+            $table->foreignId('suplier_id');
             $table->date('date');
             $table->string('inv');
             $table->enum('type', ['cash', 'credit']);
-            $table->string('store_name');
             $table->integer('qty');
             $table->integer('price');
             $table->timestamps();

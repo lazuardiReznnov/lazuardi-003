@@ -17,6 +17,10 @@ class Supplier extends Model
         return 'slug';
     }
 
+    public function stock(){
+        return $this->hasMany(Stock::class);
+    }
+
     public function sluggable(): array
     {
         return [

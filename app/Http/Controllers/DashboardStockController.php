@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
+use App\Models\Supplier;
 use App\Models\CategoriePart;
 use App\Models\Models;
 use App\Models\sparepart;
@@ -20,7 +20,7 @@ class DashboardStockController extends Controller
     public function index()
     {
         return view('dashboard.stok.index', [
-            'stocks' => stock::latest()->paginate(10),
+            'stocks' => stock::latest()->paginate(10)->withQueryString(),
         ]);
     }
 
@@ -33,6 +33,7 @@ class DashboardStockController extends Controller
     {
         return view('dashboard.stok.create', [
             'categories' => CategoriePart::all(),
+            'suppliers' => Supplier::all()
         ]);
     }
 
@@ -47,9 +48,9 @@ class DashboardStockController extends Controller
         $validatedData = $request->validate([
             'type' => 'required',
             'sparepart_id' => 'required',
+            'supplier_id' => 'required',
             'date' => 'required',
             'inv' => 'required',
-            'store_name' => 'required',
             'qty' => 'required',
             'price' => 'required',
         ]);
@@ -89,6 +90,7 @@ class DashboardStockController extends Controller
         return view('dashboard.stok.edit', [
             'stock' => $stock,
             'categories' => CategoriePart::all(),
+            'suppliers' => Supplier::all()
         ]);
     }
 
@@ -104,9 +106,9 @@ class DashboardStockController extends Controller
         $validatedData = $request->validate([
             'type' => 'required',
             'sparepart_id' => 'required',
+            'supplier_id' => 'required',
             'date' => 'required',
             'inv' => 'required',
-            'store_name' => 'required',
             'qty' => 'required',
             'price' => 'required',
         ]);

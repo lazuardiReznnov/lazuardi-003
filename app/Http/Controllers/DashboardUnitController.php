@@ -25,12 +25,18 @@ class DashboardUnitController extends Controller
     public function index()
     {
         $unit = Unit::latest();
+        
+        $title = '';
+
         if(request('owner')){
             $unit->where('owner_id', request('owner'));
+            $owner = Owner::firstWhere('id', request('owner'));
+            $title = $owner->name;
         }
         return view('dashboard.unit.units.index', [
             'units' => $unit->paginate(10)->withQueryString(),
-            'owners'=> Owner::all()
+            'owners'=> Owner::all(),
+            'title' => $title
         ]);
     }
 
