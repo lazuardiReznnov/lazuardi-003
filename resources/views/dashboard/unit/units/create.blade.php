@@ -159,39 +159,15 @@
     //  slug alternatif`
     const noReg = document.querySelector("#noReg");
     const slug = document.querySelector("#slug");
+    const link = "/dashboard/unit/checkSlug?noReg=";
 
-    // noReg.addEventListener('change', function () {
-    //   let preslug = noReg.value
-    //   preslug = preslug.replace(/ /g, '-')
-    //   slug.value = preslug.toLowerCase()
-    // });
-    noReg.addEventListener("change", function () {
-        fetch("/dashboard/unit/checkSlug?noReg=" + noReg.value)
-            .then((response) => response.json())
-            .then((data) => (slug.value = data.slug));
-    });
+    makeslug(noReg, slug, link);
 
     const brand = document.querySelector("#brand");
     const models = document.querySelector("#models");
+    const link2 = "/dashboard/unit/getmodels?brand=";
 
-    brand.addEventListener("change", function () {
-        fetch("/dashboard/unit/getmodels?brand=" + brand.value)
-            .then((response) => response.json())
-            .then((response) => {
-                const m = response;
-                let card = "<option>---Pilih Models---</option>";
-                m.forEach(
-                    (m) =>
-                    (card +=
-                        '<option value="' +
-                        m.id +
-                        '">' +
-                        m.name +
-                        "</option>")
-                );
-                models.innerHTML = card;
-            });
-    });
+    makeBrand(brand,models,link2);
 
 </script>
 @endsection

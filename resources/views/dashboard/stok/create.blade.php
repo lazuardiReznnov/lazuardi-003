@@ -156,39 +156,8 @@
 <script type="text/javascript">
     const categoripart = document.querySelector("#categorie");
     const sparepart = document.querySelector("#sparepart");
+    const link =  "/dashboard/stock/getsparepart?categoripart=";
 
-    categoripart.addEventListener("change", function () {
-        fetch(
-            "/dashboard/stock/getsparepart?categoripart=" + categoripart.value
-        )
-            .then((response) => response.json())
-            .then((response) => {
-                const m = response;
-                let card = "<option>--Select Sparepart---</option>";
-                m.forEach(
-                    (m) =>
-                        (card +=
-                            '<option value="' +
-                            m.id +
-                            '">' +
-                            m.name +
-                            " - " +
-                            m.models.brand.name +
-                            "   " +
-                            m.models.name +
-                            "</option>")
-                );
-                sparepart.innerHTML = card;
-            });
-    });
-
-    //    const name = document.querySelector("#name");
-    //     const slug = document.querySelector("#slug");
-
-    //     name.addEventListener("change", function () {
-    //         fetch("/dashboard/sparepart/slug?name=" + name.value)
-    //             .then((response) => response.json())
-    //             .then((data) => (slug.value = data.slug));
-    //     });
+    addCategoryPart(categoripart,sparepart,link);
 </script>
 @endsection

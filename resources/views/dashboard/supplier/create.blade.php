@@ -78,23 +78,20 @@
         </form>
     </div>
 </div>
-
-<script type="text/javascript">
+<script>
     // slug post
     //  slug alternatif`
     const name = document.querySelector("#name");
     const slug = document.querySelector("#slug");
-
+    const link = '/dashboard/supplier/slug?name=';
+    
     // name.addEventListener('change', function () {
-    //   let preslug = name.value
-    //   preslug = preslug.replace(/ /g, '-')
-    //   slug.value = preslug.toLowerCase()
-    // });
-    name.addEventListener("change", function () {
-        fetch("/dashboard/supplier/slug?name=" + name.value)
-            .then((response) => response.json())
-            .then((data) => (slug.value = data.slug));
-    });
-
-</script>
+        //   let preslug = name.value
+        //   preslug = preslug.replace(/ /g, '-')
+        //   slug.value = preslug.toLowerCase()
+        // });
+        makeslug(name, slug, link);
+        
+    </script>
+<!-- <script src="/js/lazuardi-003.js"></script> -->
 @endsection

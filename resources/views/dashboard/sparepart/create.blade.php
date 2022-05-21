@@ -127,30 +127,16 @@
  
     const brand = document.querySelector('#brand')
     const models = document.querySelector('#models')
-   
-   brand.addEventListener('change', function () {
-       
-     fetch('/dashboard/sparepart/getmodels?brand=' + brand.value)
-       .then((response) => response.json())
-       .then((response) => {
-         const m = response
-         let card = '<option>---Pilih Models---</option>'
-         m.forEach(
-           (m) => (card += '<option value="' + m.id + '">' + m.name + '</option>'),
-         )
-         models.innerHTML = card
-       })
-   })
+    const link2 = '/dashboard/sparepart/getmodels?brand=';
+ 
+    makeBrand(brand,models,link2);
 
-   const name = document.querySelector("#name");
+
+    const name = document.querySelector("#name");
     const slug = document.querySelector("#slug");
+    const link ="/dashboard/sparepart/slug?name=";
 
-    name.addEventListener("change", function () {
-        fetch("/dashboard/sparepart/slug?name=" + name.value)
-            .then((response) => response.json())
-            .then((data) => (slug.value = data.slug));
-    });
-   
+    makeslug(name,slug,link);
    </script>
 @endsection
 

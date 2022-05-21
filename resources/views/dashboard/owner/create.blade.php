@@ -78,22 +78,5 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    // slug post
-    //  slug alternatif`
-    const name = document.querySelector("#name");
-    const slug = document.querySelector("#slug");
 
-    // name.addEventListener('change', function () {
-    //   let preslug = name.value
-    //   preslug = preslug.replace(/ /g, '-')
-    //   slug.value = preslug.toLowerCase()
-    // });
-    name.addEventListener("change", function () {
-        fetch("/dashboard/owner/slug?name=" + name.value)
-            .then((response) => response.json())
-            .then((data) => (slug.value = data.slug));
-    });
-
-</script>
 @endsection

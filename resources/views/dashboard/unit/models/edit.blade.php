@@ -70,37 +70,16 @@
 </div>
 
 <script type="text/javascript">
-    // slug post
-    //  slug alternatif`
-   //  slug alternatif`
-   const name = document.querySelector("#name");
+    const name = document.querySelector("#name");
     const slug = document.querySelector("#slug");
-
-    // noReg.addEventListener('change', function () {
-    //   let preslug = noReg.value
-    //   preslug = preslug.replace(/ /g, '-')
-    //   slug.value = preslug.toLowerCase()
-    // });
-    name.addEventListener("change", function () {
-        fetch("/dashboard/unit/model/slug?name=" + name.value)
-            .then((response) => response.json())
-            .then((data) => (slug.value = data.slug));
-    });
+    const link ="/dashboard/unit/model/slug?name=";
+    
+   makeslug(name,slug,link);        
 
     const brand = document.querySelector('#brand')
-const models = document.querySelector('#models')
+    const models = document.querySelector('#models')
+    const link2 = '/dashboard/unit/getmodels?brand=';
 
-brand.addEventListener('change', function () {
-  fetch('/dashboard/unit/getmodels?brand=' + brand.value)
-    .then((response) => response.json())
-    .then((response) => {
-      const m = response
-      let card = '<option>---Pilih Models---</option>'
-      m.forEach(
-        (m) => (card += '<option value="' + m.id + '">' + m.name + '</option>'),
-      )
-      models.innerHTML = card
-    })
-})
+    makeBrand(brand,models,link2);
 </script>
 @endsection

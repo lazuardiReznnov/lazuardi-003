@@ -56,14 +56,11 @@
 </div> 
 <script type="text/javascript">
 
-   const name = document.querySelector("#name");
+    const name = document.querySelector("#name");
     const slug = document.querySelector("#slug");
+    const link ="/dashboard/sparepart/categorieParts/slug?name="; 
 
-    name.addEventListener("change", function () {
-        fetch("/dashboard/sparepart/categorieParts/slug?name=" + name.value)
-            .then((response) => response.json())
-            .then((data) => (slug.value = data.slug));
-    });
+    makeslug(name,slug,link);
    
    </script>
 @endsection
