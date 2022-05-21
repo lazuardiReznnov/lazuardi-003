@@ -34,7 +34,7 @@
                     href="/dashboard/units"
                 >
                     <span data-feather="grid"></span>
-                    UNIT LIST
+                    UNIT DATA
                 </a>
             </li>
             <li class="nav-item">
@@ -43,7 +43,7 @@
                     href="/dashboard/unit/types"
                 >
                     <span data-feather="grid"></span>
-                    TYPE UNIT LIST
+                    TYPE UNIT DATA
                 </a>
             </li>
             <li class="nav-item">
@@ -52,7 +52,7 @@
                     href="/dashboard/unit/models"
                 >
                     <span data-feather="grid"></span>
-                    MODELS LIST
+                    MODELS DATA
                 </a>
             </li>
         </ul>
