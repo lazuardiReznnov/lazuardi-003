@@ -16,7 +16,7 @@
              </form>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-md-10">      
             <div class="row mt-5">
                 <div class="col-md-4">
@@ -56,13 +56,41 @@
           <button class="nav-link" id="pills-documents-tab" data-bs-toggle="pill" data-bs-target="#pills-documents" type="button" role="tab" aria-controls="pills-documents" aria-selected="false">DOCUMENTS</button>
         </li>
       </ul>
-      <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-STNK" role="tabpanel" aria-labelledby="pills-STNK-tab" tabindex="0">STNK</div>
-        <div class="tab-pane fade" id="pills-KIR" role="tabpanel" aria-labelledby="pills-KIR-tab" tabindex="0">...</div>
+      <div class="tab-content col-md-6" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-STNK" role="tabpanel" aria-labelledby="pills-STNK-tab" tabindex="0">
+          <dl class="row m-3 border p-3 rounded">
+            <dt class="col-sm-3">Owner Name</dt>
+            <dd class="col-sm-9">: PT,,, SSS</dd>
+            <dt class="col-sm-3">Address</dt>
+            <dd class="col-sm-9">: jl. ss</dd>
+            <dt class="col-sm-3">Taxt Date </dt>
+            <dd class="col-sm-9">: dd/mm/yy</dd>
+            <dt class="col-sm-3"> Date </dt>
+            <dd class="col-sm-9">: dd/mm/yy</dd>
+            <dt class="col-sm-3"> Area </dt>
+            <dd class="col-sm-9">: </dd>
+            
+          </dl>
+        </div>
+        <div class="tab-pane fade" id="pills-KIR" role="tabpanel" aria-labelledby="pills-KIR-tab" tabindex="0">
+          <dl class="row m-3 border p-3 rounded">
+            <dt class="col-sm-3">Owner Name</dt>
+            <dd class="col-sm-9">: PT,,, SSS</dd>
+            <dt class="col-sm-3">Address</dt>
+            <dd class="col-sm-9">: jl. ss</dd>
+            <dt class="col-sm-3">Taxt Date </dt>
+            <dd class="col-sm-9">: dd/mm/yy</dd>
+            <dt class="col-sm-3"> Date </dt>
+            <dd class="col-sm-9">: dd/mm/yy</dd>
+            <dt class="col-sm-3"> Area </dt>
+            <dd class="col-sm-9">: </dd>
+            
+          </dl>
+        </div>
         <div class="tab-pane fade" id="pills-documents" role="tabpanel" aria-labelledby="pills-documents-tab" tabindex="0">...</div>
 
       </div>
 
 <!--Report  -->
-<h2 class="mb-3">Surat-surat</h2>
+<h2 class="mb-3">Report</h2>
 @endsection

@@ -39,6 +39,15 @@
             </li>
             <li class="nav-item">
                 <a
+                    class="nav-link {{ Request::is('dashboard/letters*') ? 'active' : '' }}"
+                    href="/dashboard/letters"
+                >
+                    <span data-feather="grid"></span>
+                    LETTERS
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
                     class="nav-link {{ Request::is('dashboard/unit/types*') ? 'active' : '' }}"
                     href="/dashboard/unit/types"
                 >
