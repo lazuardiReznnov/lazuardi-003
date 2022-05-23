@@ -17,22 +17,24 @@
 </div>
 <div class="row">
     <div class="col-md-5 ms-auto">
-        <a
-            href="/dashboard/unit/models/create"
-            class="btn btn-primary mb-3"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title="Create New Models Data"
-            ><span data-feather="plus-circle"></span>
-        </a>
-        <a
-            href="/dashboard/unit/file-import-create"
-            class="btn btn-primary mb-3"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title="Create New Models Data Via Excel"
-            ><span data-feather="file-text"></span>
-        </a>
+        <div class="btn-group" role="group" aria-label="Button Input">
+            <a
+                href="/dashboard/unit/models/create"
+                class="btn btn-primary mb-3"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Create New Models Data"
+                ><span data-feather="plus-circle"></span>
+            </a>
+            <a
+                href="/dashboard/unit/file-import-create"
+                class="btn btn-primary mb-3"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Create New Models Data Via Excel"
+                ><span data-feather="file-text"></span>
+            </a>
+        </div>
     </div>
 </div>
 <div class="table-responsive col-lg-8">

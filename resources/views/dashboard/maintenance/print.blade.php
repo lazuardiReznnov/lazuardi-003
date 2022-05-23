@@ -23,78 +23,6 @@
     <title>Maintenance | SPK</title>
   </head>
   <body>
-    <!-- <div class="container-fluid">
-      <div class="card">
-       <div class="card-body">
-       
-          <div class="container">
-            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            
-              <span class="fs-4">Work Order</span>
-            
-            </header>
-          </div>
-
-            <div class="container">
-              <div class="row p-2 mt-4">
-                <div class="col-2 head">
-                  Date
-                </div>
-                <div class="col-8">
-                  : {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}
-                </div>
-              </div>
-              <div class="row p-2">
-                <div class="col-2 head">
-                  Unit
-                </div>
-                <div class="col-8">
-                  : {{ $maintenance->unit->noReg }}
-                </div>
-              </div>
-
-              <div class="row p-2">
-                <div class="col-2 head">
-                  Problem
-                </div>
-                <div class="col-8">
-                  : {{$maintenance->problem}}
-                </div>
-              </div>
-              <div class="row p-2">
-                <div class="col-2 head">
-                  Desc Repair
-                </div>
-                <div class="col-8">
-                  : {{$maintenance->analysis}}
-                </div>
-              </div> 
-            <div class="row justify-content-end col">
-            <div class="col-4">
-            <p>Serang, {{ \Carbon\Carbon::parse($maintenance->date)->format(' d F Y') }}</p>
-            </div>
-            </div>
-                <div class="row justify-content-between mt-4">
-                  <div class="col-md-4">
-                  
-                    <p class="t-sign">
-                      (..........................)
-                      <br />
-                      Mechanic
-                    </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p class="t-sign">
-                      (..........................)
-                      <br />
-                      Administrator
-                    </p>
-                  </div>
-                </div>
-            </div>
-       </div>
-      </div>
-    </div> -->
 
     <div class="container">
       <div class="card mt-3">
@@ -114,14 +42,29 @@
                 <dd class="col-9">: {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}</dd>
                 <dt class="col-2">Unit</dt>
                 <dd class="col-9">: {{ $maintenance->unit->noReg }}</dd>
+                <dt class="col-2">Merk/Model</dt>
+                <dd class="col-9">: {{ $maintenance->unit->models->brand->name." ".$maintenance->unit->models->name }}</dd>
+                <dt class="col-2">Type</dt>
+                <dd class="col-9">: {{ $maintenance->unit->type->title }}</dd>
                 <dt class="col-2">Problem</dt>
                 <dd class="col-9">: {{$maintenance->problem}}</dd>
-                <dt class="col-2">Desc Repair</dt>
+                <dt class="col-2">Diagnose</dt>
                 <dd class="col-9">: {{$maintenance->analysis}}</dd>
               </dl>
-
             </div>
           </section>
+          <row class="row">
+            <div class="col">
+              <p>Tangerang,  {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}</p>
+            </div>
+          </row>
+          <div class="row mt-5">
+            <div class="col">
+              
+              (.....................................)
+            <br> <span class="fw-bold">ADMINISTRATOR</span></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -2,26 +2,28 @@
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-    <h1 class="h2">UNIT DATA - {{ $title }}</h1>
+    <h1 class="h2">UNIT DATA  {{  $title }}</h1>
 </div>
 <div class="row">
     <div class="col-md-6 ms-auto">
-        <a
-            href="/dashboard/units/create"
-            class="btn btn-primary mb-3"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title="Create New Unit Data"
-            ><span data-feather="plus-circle"></span>
-        </a>
-        <a
-            href="/dashboard/unit/file-import-create"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title="Create New Unit Data Via Excel"
-            class="btn btn-primary mb-3"
-            ><span data-feather="file-text"></span>
-        </a>
+        <div class="btn-group" role="group" aria-label="Button Input">
+            <a
+                href="/dashboard/units/create"
+                class="btn btn-primary mb-3"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Create New Unit Data"
+                ><span data-feather="plus-circle"></span>
+            </a>
+            <a
+                href="/dashboard/unit/file-import-create"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Create New Unit Data Via Excel"
+                class="btn btn-primary mb-3"
+                ><span data-feather="file-text"></span>
+            </a>
+        </div>
     </div>
 </div>
 

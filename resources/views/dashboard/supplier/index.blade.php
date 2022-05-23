@@ -17,24 +17,26 @@
 </div>
 <div class="row">
   <div class="col-md-2 ms-auto">
-      <a
-          href="/dashboard/suppliers/create"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          title="Create New Category Sparepart Data"
-          class="btn btn-primary mb-3"
-      >
-          <span data-feather="plus-circle"></span
-      ></a>
-      <a
-          href="/dashboard/suppliers/file-import-create"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          title="Create New Category Sparepart Data Via excel"
-          class="btn btn-primary mb-3"
-      >
-          <span data-feather="file-text"></span
-      ></a>
+    <div class="btn-group" role="group" aria-label="Button Input">
+        <a
+            href="/dashboard/suppliers/create"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Create New Category Sparepart Data"
+            class="btn btn-primary mb-3"
+        >
+            <span data-feather="plus-circle"></span
+        ></a>
+        <a
+            href="/dashboard/suppliers/file-import-create"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Create New Category Sparepart Data Via excel"
+            class="btn btn-primary mb-3"
+        >
+            <span data-feather="file-text"></span
+        ></a>
+      </div>
   </div>
 </div>
 

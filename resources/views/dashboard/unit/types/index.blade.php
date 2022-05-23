@@ -18,22 +18,24 @@
 
 <div class="row">
     <div class="col-md-5 ms-auto">
-        <a
-            href="/dashboard/unit/types/create"
-            class="btn btn-primary mb-3"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title="Create New Type Unit"
-            ><span data-feather="plus-circle"></span
-        ></a>
-        <a
-            href="/dashboard/unit/types/file-import-create"
-            class="btn btn-primary mb-3"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title="Create New Type Unit Via Excel"
-            ><span data-feather="file-text"></span>
-        </a>
+        <div class="btn-group" role="group" aria-label="Button Input">
+            <a
+                href="/dashboard/unit/types/create"
+                class="btn btn-primary mb-3"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Create New Type Unit"
+                ><span data-feather="plus-circle"></span
+            ></a>
+            <a
+                href="/dashboard/unit/types/file-import-create"
+                class="btn btn-primary mb-3"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Create New Type Unit Via Excel"
+                ><span data-feather="file-text"></span>
+            </a>
+        </div>
     </div>
 </div>
 <div class="table-responsive col-lg-8">
