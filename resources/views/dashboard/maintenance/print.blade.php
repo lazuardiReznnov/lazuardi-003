@@ -23,7 +23,7 @@
     <title>Maintenance | SPK</title>
   </head>
   <body>
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
       <div class="card">
        <div class="card-body">
        
@@ -94,8 +94,37 @@
             </div>
        </div>
       </div>
-    </div>
+    </div> -->
 
+    <div class="container">
+      <div class="card mt-3">
+        <div class="card-body">
+          <header class="row border-bottom align-items-center mb-4">
+            <div class="col-2 p-2">
+              <img src="/img/logo.png" width="100px">
+            </div>
+            <div class="col-10">
+              <h1 class="text-center">WORK ORDER</h1>
+            </div>
+          </header>
+          <section class="row">
+            <div class="col">
+              <dl class="row">
+                <dt class="col-2">Date</dt>
+                <dd class="col-9">: {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}</dd>
+                <dt class="col-2">Unit</dt>
+                <dd class="col-9">: {{ $maintenance->unit->noReg }}</dd>
+                <dt class="col-2">Problem</dt>
+                <dd class="col-9">: {{$maintenance->problem}}</dd>
+                <dt class="col-2">Desc Repair</dt>
+                <dd class="col-9">: {{$maintenance->analysis}}</dd>
+              </dl>
+
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

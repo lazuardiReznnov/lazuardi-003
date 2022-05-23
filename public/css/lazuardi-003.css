@@ -1,7 +1,13 @@
-@page {
+/* @page {
   size: A4 potrait;
   margin: 1;
-}
+} */
+@media print { 
+    @page {
+    size: A4 potrait;
+    margin: 0,5px;
+  }
+ } 
 body {
   font-family: 'Poppins', sans-serif;
 }
