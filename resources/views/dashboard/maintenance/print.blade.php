@@ -35,34 +35,50 @@
               <h1 class="text-center">WORK ORDER</h1>
             </div>
           </header>
-          <section class="row">
+          <section class="row justify-content-center">
             <div class="col">
-              <dl class="row">
-                <dt class="col-2">Date</dt>
-                <dd class="col-9">: {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}</dd>
-                <dt class="col-2">Unit</dt>
-                <dd class="col-9">: {{ $maintenance->unit->noReg }}</dd>
-                <dt class="col-2">Merk/Model</dt>
-                <dd class="col-9">: {{ $maintenance->unit->models->brand->name." ".$maintenance->unit->models->name }}</dd>
-                <dt class="col-2">Type</dt>
-                <dd class="col-9">: {{ $maintenance->unit->type->title }}</dd>
-                <dt class="col-2">Problem</dt>
-                <dd class="col-9">: {{$maintenance->problem}}</dd>
-                <dt class="col-2">Diagnose</dt>
-                <dd class="col-9">: {{$maintenance->analysis}}</dd>
-              </dl>
+              <div class="row justify-content-between mb-4">
+                <div class="col-5">
+                  <dt class="col-2">Date :</dt>
+                  <dd class="col-6"> {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}</dd>
+                  <dt class="col-2">Unit :</dt>
+                  <dd class="col-9">{{ $maintenance->unit->noReg }}</dd>
+                </div>
+                <div class="col-5">
+                  <dt class="col-3">Estimasi :</dt>
+                  <dd class="col-9">7</dd>
+                  <dt class="col-3">Mekanik :</dt>
+                  <dd class="col-9"> {{ $maintenance->mechanic }}</dd>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-10">
+                  <dl class="row">
+                    <dt class="col-2">Desc Problem</dt>
+                    <dd class="col-9">: {{$maintenance->problem}}</dd>
+                    <dt class="col-2">Diagnose</dt>
+                    <dd class="col-9">: {{$maintenance->analysis}}</dd>
+                  </dl>
+                </div>
+              </div>
+            
             </div>
           </section>
-          <row class="row">
-            <div class="col">
+          <row class="row border-top">
+            <div class="col-5 text-center mt-3">
               <p>Tangerang,  {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}</p>
             </div>
           </row>
-          <div class="row mt-5">
-            <div class="col">
+          <div class="row mt-5 justify-content-between">
+            <div class="col-5 text-center">
               
               (.....................................)
             <br> <span class="fw-bold">ADMINISTRATOR</span></p>
+            </div>
+            <div class="col-5 text-center">
+              
+              (..................................)
+            <br> <span class="fw-bold">MECHANIC</span></p>
             </div>
           </div>
         </div>
