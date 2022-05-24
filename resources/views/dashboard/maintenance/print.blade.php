@@ -24,7 +24,7 @@
   </head>
   <body>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="card mt-3">
         <div class="card-body">
           <header class="row border-bottom align-items-center mb-4">
@@ -39,24 +39,24 @@
             <div class="col">
               <div class="row justify-content-between mb-4">
                 <div class="col-5">
-                  <dt class="col-2">Date :</dt>
+                  <dt class="col-3">Date :</dt>
                   <dd class="col-6"> {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}</dd>
                   <dt class="col-2">Unit :</dt>
-                  <dd class="col-9">{{ $maintenance->unit->noReg }}</dd>
+                  <dd class="col-6">{{ $maintenance->unit->noReg }}</dd>
                 </div>
-                <div class="col-5">
-                  <dt class="col-3">Estimasi :</dt>
-                  <dd class="col-9">7</dd>
-                  <dt class="col-3">Mekanik :</dt>
-                  <dd class="col-9"> {{ $maintenance->mechanic }}</dd>
+                <div class="col-5 text-end">
+                  <dt class="col">Estimasi :</dt>
+                  <dd class="col">7</dd>
+                  <dt class="col">Mekanik :</dt>
+                  <dd class="col"> {{ $maintenance->mechanic }}</dd>
                 </div>
               </div>
               <div class="row justify-content-center">
                 <div class="col-10">
                   <dl class="row">
-                    <dt class="col-2">Desc Problem</dt>
+                    <dt class="col-3">Desc Problem</dt>
                     <dd class="col-9">: {{$maintenance->problem}}</dd>
-                    <dt class="col-2">Diagnose</dt>
+                    <dt class="col-3">Diagnose</dt>
                     <dd class="col-9">: {{$maintenance->analysis}}</dd>
                   </dl>
                 </div>
