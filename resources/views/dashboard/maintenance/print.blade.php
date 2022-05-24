@@ -36,7 +36,7 @@
             </div>
           </header>
           <section class="row justify-content-center">
-            <div class="col">
+            <div class="col-10">
               <div class="row justify-content-between mb-4">
                 <div class="col-5">
                   <dt class="col-3">Date :</dt>

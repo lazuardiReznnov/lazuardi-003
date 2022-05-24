@@ -4,12 +4,12 @@
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-    <h1 class="h2">Maintenance Unit</h1>
+    <h1 class="h2 text-uppercase">Maintenance Unit</h1>
 </div>
 
 <div class="table-responsive col-lg-12">
     <a href="/dashboard/maintenances/create" class="btn btn-primary mb-3"
-        ><span data-feather="plus-circle"></span> Add </a
+        ><span data-feather="plus-circle"></span></a
     >
 
     <!-- Alert -->
@@ -41,9 +41,14 @@
                 </td>
                 <td>{{ \Carbon\Carbon::parse($tenance->date)->format('d/m/Y') }}</td>
                 <td>{{ $tenance->unit->noReg }}</td>
-                <td>{{ Illuminate\Support\str::of($tenance->problem)->limit(20) }}</td>
+                <td>{{ $tenance->problem }}</td>
                 <td>{{ $tenance->mechanic }}</td>
-                <td>{{ $tenance->status }}</td>
+                <td>@if($tenance->status===100)
+                     <span class="fw-semibold">Done</span>
+                    @else
+                      {{ $tenance->status }}
+                     @endif
+                </td>
                 <td>
                     <a
                         href="/dashboard/maintenances/{{$tenance->id }}"

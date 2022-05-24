@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->text('analysis');
             $table->string('mechanic');
             $table->text('problem');
+            $table->integer('estimasi');
             $table->integer('status')->default(0);
             $table->timestamps();
         });

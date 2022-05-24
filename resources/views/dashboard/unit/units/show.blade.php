@@ -2,10 +2,10 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Detail Unit : {{ $unit->noReg }}</h1>
+    <h1 class="h2 text-uppercase">Detail Unit : {{ $unit->noReg }}</h1>
   </div>
  
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-md-8">
             <a href=" /dashboard/units" class="btn btn-success"><span data-feather='arrow-left'></span> Back</a>
             <a href="/dashboard/units/{{ $unit->slug }}/edit" class="btn btn-warning"><span data-feather='eye'></span> Edit</a>
@@ -16,9 +16,14 @@
              </form>
         </div>
     </div>
-    <div class="row mb-4">
-        <div class="col-md-10">      
-            <div class="row mt-5">
+    <div class="row mb-4 justify-content-between">
+        <div class="col-md-10"> 
+          <div class="card">
+            <div class="card-header bg-dark text-white fw-semibold">
+              SPESIFICATION
+            </div>
+            <div class="card-body">
+              <div class="row mt-5">
                 <div class="col-md-4">
                     @if($unit->img)
                     <div style="max-height: 350px; overflow:hidden">
@@ -41,56 +46,75 @@
                     </ul>
                 </div>
             </div>
+            </div>
+          </div>     
+            
         </div>
     </div>
 <!-- surat-surat -->
-    <h2 class="mb-3">Surat-surat</h2>
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist mt-3">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="pills-STNK-tab" data-bs-toggle="pill" data-bs-target="#pills-STNK" type="button" role="tab" aria-controls="pills-STNK" aria-selected="true">STNK</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-KIR-tab" data-bs-toggle="pill" data-bs-target="#pills-KIR" type="button" role="tab" aria-controls="pills-KIR" aria-selected="false">KIR</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-documents-tab" data-bs-toggle="pill" data-bs-target="#pills-documents" type="button" role="tab" aria-controls="pills-documents" aria-selected="false">DOCUMENTS</button>
-        </li>
-      </ul>
-      <div class="tab-content col-md-6" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-STNK" role="tabpanel" aria-labelledby="pills-STNK-tab" tabindex="0">
-          <dl class="row m-3 border p-3 rounded">
-            <dt class="col-sm-3">Owner Name</dt>
-            <dd class="col-sm-9">: PT,,, SSS</dd>
-            <dt class="col-sm-3">Address</dt>
-            <dd class="col-sm-9">: jl. ss</dd>
-            <dt class="col-sm-3">Taxt Date </dt>
-            <dd class="col-sm-9">: dd/mm/yy</dd>
-            <dt class="col-sm-3"> Date </dt>
-            <dd class="col-sm-9">: dd/mm/yy</dd>
-            <dt class="col-sm-3"> Area </dt>
-            <dd class="col-sm-9">: </dd>
-            
-          </dl>
-        </div>
-        <div class="tab-pane fade" id="pills-KIR" role="tabpanel" aria-labelledby="pills-KIR-tab" tabindex="0">
-          <dl class="row m-3 border p-3 rounded">
-            <dt class="col-sm-3">Owner Name</dt>
-            <dd class="col-sm-9">: PT,,, SSS</dd>
-            <dt class="col-sm-3">Address</dt>
-            <dd class="col-sm-9">: jl. ss</dd>
-            <dt class="col-sm-3">Taxt Date </dt>
-            <dd class="col-sm-9">: dd/mm/yy</dd>
-            <dt class="col-sm-3"> Date </dt>
-            <dd class="col-sm-9">: dd/mm/yy</dd>
-            <dt class="col-sm-3"> Area </dt>
-            <dd class="col-sm-9">: </dd>
-            
-          </dl>
-        </div>
-        <div class="tab-pane fade" id="pills-documents" role="tabpanel" aria-labelledby="pills-documents-tab" tabindex="0">...</div>
-
+    <div class="card col-md-10 mb-4">
+      <div class="card-header text-white bg-dark fw-semibold">
+        LETTERS
       </div>
+      <div class="card-body">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist mt-3">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-STNK-tab" data-bs-toggle="pill" data-bs-target="#pills-STNK" type="button" role="tab" aria-controls="pills-STNK" aria-selected="true">STNK</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-KIR-tab" data-bs-toggle="pill" data-bs-target="#pills-KIR" type="button" role="tab" aria-controls="pills-KIR" aria-selected="false">KIR</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-documents-tab" data-bs-toggle="pill" data-bs-target="#pills-documents" type="button" role="tab" aria-controls="pills-documents" aria-selected="false">DOCUMENTS</button>
+          </li>
+        </ul>
+        <div class="tab-content col-md-6" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-STNK" role="tabpanel" aria-labelledby="pills-STNK-tab" tabindex="0">
+            <dl class="row m-3 border p-3 rounded">
+              <dt class="col-sm-3">Owner Name</dt>
+              <dd class="col-sm-9">: PT,,, SSS</dd>
+              <dt class="col-sm-3">Address</dt>
+              <dd class="col-sm-9">: jl. ss</dd>
+              <dt class="col-sm-3">Taxt Date </dt>
+              <dd class="col-sm-9">: dd/mm/yy</dd>
+              <dt class="col-sm-3"> Date </dt>
+              <dd class="col-sm-9">: dd/mm/yy</dd>
+              <dt class="col-sm-3"> Area </dt>
+              <dd class="col-sm-9">: </dd>
+              
+            </dl>
+          </div>
+          <div class="tab-pane fade" id="pills-KIR" role="tabpanel" aria-labelledby="pills-KIR-tab" tabindex="0">
+            <dl class="row m-3 border p-3 rounded">
+              <dt class="col-sm-3">Owner Name</dt>
+              <dd class="col-sm-9">: PT,,, SSS</dd>
+              <dt class="col-sm-3">Address</dt>
+              <dd class="col-sm-9">: jl. ss</dd>
+              <dt class="col-sm-3">Taxt Date </dt>
+              <dd class="col-sm-9">: dd/mm/yy</dd>
+              <dt class="col-sm-3"> Date </dt>
+              <dd class="col-sm-9">: dd/mm/yy</dd>
+              <dt class="col-sm-3"> Area </dt>
+              <dd class="col-sm-9">: </dd>
+              
+            </dl>
+          </div>
+          <div class="tab-pane fade" id="pills-documents" role="tabpanel" aria-labelledby="pills-documents-tab" tabindex="0">...</div>
+  
+        </div>
+  
+      </div>
+    </div>
 
 <!--Report  -->
-<h2 class="mb-3">Report</h2>
+<div class="card col-md-10">
+  <div class="card-header text-white fw-semibold bg-dark">
+    REPORT
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
 @endsection

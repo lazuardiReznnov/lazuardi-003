@@ -22,6 +22,7 @@ class MaintenanceSeeder extends Seeder
             'problem' =>
                 'Mobil Brebet, Rem Ngebuang Kekanan, Roda RR RH Keluar Oli',
             'mechanic' => 'Ali',
+            'estimasi' => 1,
             'status' => 25,
         ]);
         Maintenance::create([
@@ -30,6 +31,7 @@ class MaintenanceSeeder extends Seeder
             'analysis' => 'Service Berkala. Cek Kelistrikan ',
             'problem' => 'Oli Tekor,  Sein LH Mati ',
             'mechanic' => 'Nurdin',
+            'estimasi' => 1,
             'Status' => 50,
         ]);
         Maintenance::create([
@@ -38,6 +40,7 @@ class MaintenanceSeeder extends Seeder
             'analysis' => 'Cek Roda FR ',
             'problem' => 'Roda FR LH Kemakan Sebelah ',
             'mechanic' => 'Tardi',
+            'estimasi' => 1,
             'Status' => 75,
         ]);
     }

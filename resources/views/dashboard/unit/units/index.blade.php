@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<div class="table-responsive col-lg-8">
+<div class="table-responsive col-lg-10">
     <!-- Alert -->
     @if(session()->has('success'))
     <div class="alert alert-success col-md-5" role="alert">

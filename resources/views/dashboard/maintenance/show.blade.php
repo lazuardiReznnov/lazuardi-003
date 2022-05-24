@@ -4,7 +4,7 @@
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-    <h1 class="h2">Maintenance Unit : {{ $maintenance->unit->noReg }}</h1>
+    <h1 class="h2 text-uppercase">Maintenance Unit : {{ $maintenance->unit->noReg }}</h1>
 </div>
 
 <!-- Alert -->
@@ -17,6 +17,7 @@
 <section id="link" class="my-3">
 <div class="row">
     <div class="col">
+      
         <a
         href="/dashboard/maintenances"
         class="btn btn-primary mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="back">
@@ -52,7 +53,7 @@
   <div class="row my-5">
       <div class="col-md-5">
           <ul class="list-group">
-              <li class="list-group-item active" aria-current="true">{{ $maintenance->unit->noReg }}</li>
+              <li class="list-group-item text-white fw-semibold bg-dark" aria-current="true">{{ $maintenance->unit->noReg }}</li>
               <li class="list-group-item"><span class="fw-bold">Merk : </span>
                   {{ $maintenance->unit->Models->brand->name }} 
                {{ $maintenance->unit->models->name }}
@@ -67,7 +68,7 @@
         
       
       <ul class="list-group">
-        <li class="list-group-item active" aria-current="true">STATUS PERBAIKAN</li>
+        <li class="list-group-item bg-dark text-white fw-semibold" aria-current="true">Repair Status</li>
         <li class="list-group-item"> 
               <div class="progress">
                 <div class="progress-bar" role="progressbar" style="width: {{ $maintenance->status }}%;" aria-valuenow="{{ $maintenance->status }}" aria-valuemin="0" aria-valuemax="100">{{ $maintenance->status }}%</div>
@@ -98,92 +99,93 @@
   
 
 <section id="problem" class="my-3">
-  <h2>REPAIR DETAIL</h2>
+  <div class="card col-md-8">
+    <div class="card-header bg-dark text-white fw-semibold">
+      REPAIR DETAIL
+    </div>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3">Date</dt>
+        <dd class="col-sm-9">: {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}</dd>
+      </dl>
+      <dl class="row">
+        <dt class="col-sm-3">Problem Description</dt>
+        <dd class="col-sm-9">: {{$maintenance->problem}}</dd>
+      </dl>
+      <dl class="row">
+        <dt class="col-sm-3">Diagnose Description</dt>
+        <dd class="col-sm-9">: {{$maintenance->analysis}}</dd>
+      </dl>
+    </div>
+  </div>
+ 
 
-  <div class="row p-2 mt-4">
-      <div class="col-2 head">
-        Date
-      </div>
-      <div class="col-8">
-        : {{ \Carbon\Carbon::parse($maintenance->date)->format('d F Y') }}
-      </div>
-    </div>
-  
-    <div class="row p-2">
-      <div class="col-2 head">
-        Problem
-      </div>
-      <div class="col-8">
-        : {{$maintenance->problem}}
-      </div>
-    </div>
-    <div class="row p-2">
-      <div class="col-2 head">
-        
-      </div>
-      <div class="col-8">
-        : {{$maintenance->analysis}}
-      </div>
-      <div class="row">
-       
-      </div>
   </section>
 
 
 <section id="part">
      
-<h2 class="mt-3">Sparepart</h2>
-<a href="/dashboard/maintenance/partTenances/{{$maintenance->id}}" class="btn btn-primary mb-3"
-><span data-feather="plus-circle"></span> Add </a
->
-<div class="table-responsive">
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Code Part</th>
-          <th scope="col">Qty</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        @if($parts->count()) @foreach($parts as $part)
-        <tr>
-            <td> {{ ($parts->currentpage()-1) * $parts->perpage() + $loop->index + 1 }}</td>
-            <td>{{ $part->sparepart->name }}</td>
-            <td>{{ $part->sparepart->codePart }}</td>
-            <td>{{ $part->qty }}</td>
-            <td>
-              <a
-              href="/dashboard/maintenance/partTenances/{{$part->id }}/edit"
-              class="badge bg-warning mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
-              ><span data-feather="edit"></span
-          ></a>
-          <form
-              action="/dashboard/maintenance/partTenances/{{ $part->id }}"
-              method="post"
-              class="d-inline"
-          >
-              @method('delete') @csrf
-              <button
-                  class="badge bg-danger border-0 mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
-                  onclick="return confirm('are You sure ??')"
-              >
-                  <span data-feather="x-circle"></span>
-              </button>
-          </form>
-            </td>
-        </tr>
-        @endforeach 
-        @else
-            <tr>
-                <td colspan="6" class="text-center">Data Not Found</td>
-            </tr>
-        @endif
-      
-      </tbody>
-    </table>
+
+
+<div class="card col-8">
+  <div class="card-header bg-dark text-white fw-semibold">
+    SPAREPART
   </div>
+  <div class="card-body">
+    <a href="/dashboard/maintenance/partTenances/{{$maintenance->id}}" class="btn btn-dark mb-3"
+      ><span data-feather="plus-circle"></span>
+      </a>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Code Part</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if($parts->count()) @foreach($parts as $part)
+          <tr>
+              <td> {{ ($parts->currentpage()-1) * $parts->perpage() + $loop->index + 1 }}</td>
+              <td>{{ $part->sparepart->name }}</td>
+              <td>{{ $part->sparepart->codePart }}</td>
+              <td>{{ $part->qty }}</td>
+              <td>
+                <a
+                href="/dashboard/maintenance/partTenances/{{$part->id }}/edit"
+                class="badge bg-warning mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"
+                ><span data-feather="edit"></span
+            ></a>
+            <form
+                action="/dashboard/maintenance/partTenances/{{ $part->id }}"
+                method="post"
+                class="d-inline"
+            >
+                @method('delete') @csrf
+                <button
+                    class="badge bg-danger border-0 mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
+                    onclick="return confirm('are You sure ??')"
+                >
+                    <span data-feather="x-circle"></span>
+                </button>
+            </form>
+              </td>
+          </tr>
+          @endforeach 
+          @else
+              <tr>
+                  <td colspan="6" class="text-center">Data Not Found</td>
+              </tr>
+          @endif
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 </section>
 @endsection
