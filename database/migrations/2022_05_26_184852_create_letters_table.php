@@ -12,15 +12,15 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('stocks', function (Blueprint $table) {
+        Schema::create('letters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sparepart_id');
-            $table->foreignId('supplier_id');
-            $table->date('date');
-            $table->string('inv');
-            $table->enum('type', ['cash', 'credit']);
-            $table->integer('qty');
-            $table->integer('price');
+            $table->foreignId('unit_id');
+            $table->string('type');
+            $table->string('owner_name');
+            $table->string('owner_add');
+            $table->date('taxt')->nullable();
+            $table->date('reg')->nullable();
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('letters');
     }
 };

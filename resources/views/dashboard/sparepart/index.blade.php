@@ -2,7 +2,7 @@
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-    <h1 class="h2">SPAREPART LIST - {{ $title }}</h1>
+    <h1 class="h2">SPAREPART DATA  {{ $title }}</h1>
 </div>
 
 <div class="row">
@@ -17,7 +17,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-5 ms-auto">
+    <div class="col-md-5">
         <div class="btn-group" role="group" aria-label="Button Input">
             <a
                 href="/dashboard/spareparts/create"
@@ -39,9 +39,7 @@
             ></a>   
         </div>
     </div>
-</div>
-<div class="table-responsive col-lg-10">
-    <div class="col-md-5 my-4">
+    <div class="col-md-5">
         <form action="/dashboard/spareparts" method="get" class="d-inline">
             <div class="input-group">
                 <select class="form-select" id="categori" name="categori">
@@ -62,59 +60,65 @@
             </div>
         </form>
     </div>
-    <!-- data Tables -->
-    <table class="table table-striped table-sm">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Merk</th>
-                <th scope="col">Models</th>
-                <th scope="col">Name</th>
-                <th scope="col">Code Part</th>
-                <th scope="col">Qty</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody id="get">
-            @if($parts->count()) @foreach($parts as $part)
-            <tr>
-                <td>
-                    {{ ($parts->currentpage()-1) * $parts->perpage() + $loop->index + 1 }}
-                </td>
-                <td>{{ $part->models->brand->name }}</td>
-                <td>{{ $part->models->name }}</td>
-                <td>{{ $part->name }}</td>
-                <td>{{ $part->codePart }}</td>
-                <td>{{ $part->qty }}</td>
-                <td>
-                    <a
-                        href="/dashboard/spareparts/{{ $part->slug }}/edit"
-                        class="badge bg-warning"
-                        ><span data-feather="edit"></span
-                    ></a>
-                    <form
-                        action="/dashboard/spareparts/{{ $part->slug }}"
-                        method="post"
-                        class="d-inline"
-                    >
-                        @method('delete') @csrf
-                        <button
-                            class="badge bg-danger border-0"
-                            onclick="return confirm('are You sure ??')"
-                        >
-                            <span data-feather="x-circle"></span>
-                        </button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach @else
-            <tr>
-                <td colspan="7" class="text-center">Data Masih Kosong</td>
-            </tr>
-            @endif
-        </tbody>
-    </table>
 </div>
+<div class="row">
+    <div class="table-responsive col-lg-10">
+   
+        <!-- data Tables -->
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Merk</th>
+                    <th scope="col">Models</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Code Part</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="get">
+                @if($parts->count()) @foreach($parts as $part)
+                <tr>
+                    <td>
+                        {{ ($parts->currentpage()-1) * $parts->perpage() + $loop->index + 1 }}
+                    </td>
+                    <td>{{ $part->models->brand->name }}</td>
+                    <td>{{ $part->models->name }}</td>
+                    <td>{{ $part->name }}</td>
+                    <td>{{ $part->codePart }}</td>
+                    <td>{{ $part->qty }}</td>
+                    <td>
+                        <a
+                            href="/dashboard/spareparts/{{ $part->slug }}/edit"
+                            class="badge bg-warning"
+                            ><span data-feather="edit"></span
+                        ></a>
+                        <form
+                            action="/dashboard/spareparts/{{ $part->slug }}"
+                            method="post"
+                            class="d-inline"
+                        >
+                            @method('delete') @csrf
+                            <button
+                                class="badge bg-danger border-0"
+                                onclick="return confirm('are You sure ??')"
+                            >
+                                <span data-feather="x-circle"></span>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach @else
+                <tr>
+                    <td colspan="7" class="text-center">Data Masih Kosong</td>
+                </tr>
+                @endif
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 <div class="col-md-8">
     {{ $parts->links() }}

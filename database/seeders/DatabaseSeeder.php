@@ -21,14 +21,15 @@ class DatabaseSeeder extends Seeder
             TypeSeeder::class,
             BrandSeeder::class,
             ModelsSeeder::class,
-            // UnitSeeder::class,
+            UnitSeeder::class,
             OwnerSeeder::class,
             CategoriePartSeeder::class,
             SparepartSeeder::class,
             MaintenanceSeeder::class,
             PartTenanceSeeder::class,
             GrupSeeder::class,
-            SupplierSeeder::class
+            SupplierSeeder::class,
+            LetterSeeder::class,
         ]);
 
         // Owner::factory(5)->create();

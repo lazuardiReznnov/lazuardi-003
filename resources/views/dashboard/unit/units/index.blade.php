@@ -4,8 +4,8 @@
 >
     <h1 class="h2">UNIT DATA  {{  $title }}</h1>
 </div>
-<div class="row">
-    <div class="col-md-6 ms-auto">
+<div class="row justify-content-between">
+    <div class="col-md-4">
         <div class="btn-group" role="group" aria-label="Button Input">
             <a
                 href="/dashboard/units/create"
@@ -25,20 +25,11 @@
             </a>
         </div>
     </div>
-</div>
-
-<div class="table-responsive col-lg-10">
-    <!-- Alert -->
-    @if(session()->has('success'))
-    <div class="alert alert-success col-md-5" role="alert">
-        {{ session("success") }}
-    </div>
-    @endif
-    <div class="col-md-5 my-4">
+    <div class="col-md-4">
         <form action="/dashboard/units" method="get" class="d-inline">
             <div class="input-group">
                 <select class="form-select" id="categori" name="owner">
-                    <option selected>Choose...</option>
+                    <option selected>Choose Owner</option>
                     @foreach($owners as $owner)
                     <option value="{{ $owner->id }}">
                         {{ $owner->name }}
@@ -54,6 +45,23 @@
                 </button>
             </div>
         </form>
+    </div>
+</div>
+<!-- Alert -->
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Alert -->
+            @if(session()->has('success'))
+                <div class="alert alert-success col-md-5" role="alert">
+                    {{ session("success") }}
+                </div>
+            @endif
+        </div>
+    </div>
+<div class="table-responsive col-lg-12">
+   
+    <div class="col-md-5">
+      
     </div>
     <!-- data Tables -->
     <table class="table table-striped table-sm">

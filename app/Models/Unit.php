@@ -13,7 +13,7 @@ class Unit extends Model
 
     protected $guarded = ['id'];
     protected $with = ['models', 'owner', 'type'];
-    protected $load = ['grup', 'maintenance'];
+    protected $load = ['grup', 'maintenance', 'letters'];
 
     public function models()
     {
@@ -38,6 +38,11 @@ class Unit extends Model
     public function maintenance()
     {
         return $this->hasMany(Maintenance::class);
+    }
+
+    public function letters()
+    {
+        return $this->hasMany(letters::class);
     }
 
     public function getRouteKeyName()

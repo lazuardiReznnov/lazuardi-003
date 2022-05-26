@@ -81,8 +81,8 @@
               <dd class="col-sm-9">: dd/mm/yy</dd>
               <dt class="col-sm-3"> Area </dt>
               <dd class="col-sm-9">: </dd>
-              
             </dl>
+           
           </div>
           <div class="tab-pane fade" id="pills-KIR" role="tabpanel" aria-labelledby="pills-KIR-tab" tabindex="0">
             <dl class="row m-3 border p-3 rounded">
@@ -117,4 +117,5 @@
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
+
 @endsection

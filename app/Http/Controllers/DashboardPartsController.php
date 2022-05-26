@@ -27,12 +27,12 @@ class DashboardPartsController extends Controller
         if (request('categori')) {
             $part->where('categorie_id', request('categori'));
             $category = CategoriePart::firstWhere('id', request('categori'));
-            $title = $category->name;
+            $title = ' - ' . $category->name;
         }
         return view('dashboard.sparepart.index', [
             'categories' => CategoriePart::all(),
             'parts' => $part->paginate(10)->withQueryString(),
-            'title' => $title
+            'title' => $title,
         ]);
     }
 
@@ -190,6 +190,4 @@ class DashboardPartsController extends Controller
     //     )->get();
     //     return response()->json($sparepart);
     // }
-
-
 }

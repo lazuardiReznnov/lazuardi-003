@@ -11,7 +11,7 @@ use App\Http\Controllers\DashboardModelsController;
 use App\Http\Controllers\DashboardPartTenanceController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\DashboardCategoriePartController;
-use App\Http\Controllers\DashboardLettersController;
+use App\Http\Controllers\DashboardLetterController;
 use App\Http\Controllers\DashboardSupplierController;
 
 /*
@@ -164,7 +164,7 @@ Route::controller(DashboardSupplierController::class)->group(function () {
 });
 // End Route Supplier
 // Route Letters
-Route::get('/dashboard/letters', [DashboardLettersController::class, 'index']);
+Route::get('/dashboard/letters', [DashboardLetterController::class, 'index']);
 /*
 |-----------------------------------------------------------------------------
 END DASHBOARD ROUTE
